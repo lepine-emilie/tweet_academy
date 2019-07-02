@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    height: 46px;
+    margin-top: 0;
+}
+a {
+    outline: none;
+}
+.navbar ul, .navbar li {
+    list-style: none;
+    padding: 0;
+}
+.searchNavBar {
+    border: none;
+}
+.btn-search-NavBar {
+    border: none;
+}
+.btn-search-NavBar:focus {
+    outline-style: none;
+}
+.navbar form {
+    height: 32px;
+    border-radius: 100px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+.navbar form:focus-within {
+    transition: 0.5s;
+    border: 2px solid #1da1f2;
+}
+.btn-tweet {
+    opacity: 0.7;
+    height: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+}
+.redir-links-nav {
+    height: 46px;
+}
+.right-header {
+    width: 400px;
+}
