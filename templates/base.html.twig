@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
         {% block stylesheet %}{% endblock %}
     </head>
@@ -12,24 +13,25 @@
         <header>
             <nav class="navbar container">
                 <div class="d-flex redir-links-nav">
-                    <a class="nav-item nav-link" href="{{ path('home') }}"><span class="fas fa-home"></span><span class="">Home</span></a>
-                    <a class="nav-item nav-link" href="{{ path('notifications')}}"><span class="far fa-bell"></span><span>Notifications</span></a>
-                    <a class="nav-item nav-link" href="#"><span class="far fa-envelope"></span><span>Messages</span></a>
+                    <a class="nav-item nav-link" href="{{ path('home')
+                    }}"><span class="fas fa-home"></span><span class="p-2">Home</span></a>
+                    <a class="nav-item nav-link" href="{{ path('notifications')}}"><span class="far fa-bell"></span><span class="p-2">Notifications</span></a>
+                    <a class="nav-item nav-link" href="#"><span class="far fa-envelope"></span><span class="p-2">Messages</span></a>
                 </div>
-                <a href="#"><img class="w-10" src="{{ asset('assets/img/twitter_bird-svg.png') }}"></a>
+                <a href="#"><img src="{{ asset('assets/img/shooting-gallery.png')}}"></a>
                 <div class="d-flex justify-content-between right-header">
                     <form class="nav-item nav-link d-flex">
-                        <input class="searchNavBar" type="text" placeholder="Search Twitter">
+                        <input class="searchNavBar" type="text" placeholder="Search Ducker">
                         <button class="btn-search-NavBar fas fa-search"></button>
                     </form>
-                    <a class="nav-item" href="#"><img src="{{ asset
-                            ('assets/img/user-placeholder.png') }}"></a>
-                    <a class="nav-item btn btn-primary btn-tweet"
-                       href="#"><span class="text-btn">Tweet</span></a>
+                    <a class="nav-item" href="#"><img src="{{ asset('assets/img/user-placeholder.png') }}"></a>
+                    <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Cuack</span></a>
                 </div>
             </nav>
         </header>
-        {% block body %}{% endblock %}
+        <main>
+            {% block body %}{% endblock %}
+        </main>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
