@@ -1,9 +1,11 @@
-body {
-    margin: 0;
-    padding: 0;
+header {
+    background-color: white;
 }
 a {
     outline: none;
+}
+.navbar {
+    padding: 0;
 }
 .navbar ul, .navbar li {
     list-style: none;
@@ -37,6 +39,7 @@ a {
     border-radius: 20px;
 }
 .redir-links-nav {
+    padding-top: 3px;
     height: 46px;
 }
 .redir-links-nav a:hover {
