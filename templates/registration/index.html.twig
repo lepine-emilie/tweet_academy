@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Join Twitter today.</h1>
+
+    {{ form_start(formRegistration) }}
+
+    {{ form_row(formRegistration.username) }}
+    {{ form_row(formRegistration.email) }}
+    {{ form_row(formRegistration.password) }}
+
+    <button type="submit" class="btn btn-success">Sign up</button>
+
+    {{ form_end(formRegistration) }}
+
+{% endblock %}
