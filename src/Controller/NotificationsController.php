@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\NotificationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,13 +11,24 @@ class NotificationsController extends AbstractController
     /**
      * @Route("/notifications", name="notifications")
      */
-    public function index()
+    public function index(NotificationRepository $repository)
     {
-        return $this->render('notifications/index.html.twig');
+        $notifications = $repository->findAll();
+
+        return $this->render('notifications/index.html.twig', [
+            'notifications' => $notifications
+        ]);
     }
 
-    public function mentions()
+    /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function mentions(NotificationRepository $repository)
     {
-        return $this->render('notifications/mentions.html.twig');
+        $notifications = $repository->findAll();
+
+        return $this->render('notifications/mentions.html.twig', [
+            'notifications' => $notifications
+        ]);
     }
 }

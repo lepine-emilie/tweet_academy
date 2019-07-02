@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Twitter / Settings{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="{{ path('settings_account') }}" class="list-group-item list-group-item-action">Account</a>
+
+                    {% for i in 0..8 %}
+                        <a href="#" class="list-group-item list-group-item-action">Link</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                {% block settings_body %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

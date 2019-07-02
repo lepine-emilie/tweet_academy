@@ -12,9 +12,7 @@ class SettingsController extends AbstractController
      */
     public function index()
     {
-        return $this->render('settings/index.html.twig', [
-            'controller_name' => 'SettingsController',
-        ]);
+        return $this->redirectToRoute('settings_account');
     }
 
     /**
