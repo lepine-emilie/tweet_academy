@@ -4,27 +4,28 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     </head>
     <body>
         <header>
-            <nav class="container navbar">
-                <ul>
-                    <li>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Notifications</a></li>
-                            <li><a href="#">Messages</a></li>
-                        </ul>
-                    </li>
-                    <li><img src='{{ asset("assets/img/Twitter_Bird.svg.png") }}'></li>
-                    <li>
-                        <ul>
-                            <li><input type="text" placeholder="Search Twitter"></li>
-                            <li>Photo</li>
-                            <li>Tweet</li>
-                        </ul>
-                    </li>
-                </ul>
+            <nav class="navbar container">
+                <div class="d-flex">
+                    <a class="nav-item nav-link" href="#"><span class="fas fa-home"></span><span>Home</span></a>
+                    <a class="nav-item nav-link" href="#"><span class="far fa-bell"></span><span>Notifications</span></a>
+                    <a class="nav-item nav-link" href="#"><span class="far fa-envelope"></span><span>Messages</span></a>
+                </div>
+                <a href="#"><img class="w-10" src="{{ asset('assets/img/twitter_bird-svg.png') }}"></a>
+                <div class="d-flex">
+                    <form class="">
+                        <input class="searchNavBar" type="text" placeholder="Search Twitter">
+                        <span>
+                            <button class=""></button>
+                        </span>
+                    </form>
+                    <a class="btn nav-item nav-link" href="#"><img src="{{ asset('assets/img/user-placeholder.png') }}"></a>
+                    <a class="nav-item nav-link btn btn-primary" href="#">Tweet</a>
+                </div>
             </nav>
         </header>
         {% block body %}{% endblock %}
