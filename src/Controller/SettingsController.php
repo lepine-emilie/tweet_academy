@@ -16,4 +16,14 @@ class SettingsController extends AbstractController
             'controller_name' => 'SettingsController',
         ]);
     }
+
+    /**
+     * @Route("/settings/account", name="settings_account")
+     */
+    public function accountSettings()
+    {
+        return $this->render('settings/index.html.twig', [
+            'controller_name' => 'SettingsController',
+        ]);
+    }
 }
