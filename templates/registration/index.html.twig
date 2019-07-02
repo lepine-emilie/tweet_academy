@@ -2,13 +2,13 @@
 
 {% block body %}
 
-    <h1>Join Twitter today.</h1>
+    <h1>Join Ducker today.</h1>
 
     {{ form_start(formRegistration) }}
 
-    {{ form_row(formRegistration.username) }}
-    {{ form_row(formRegistration.email) }}
-    {{ form_row(formRegistration.password) }}
+    {{ form_widget(formRegistration.username) }}
+    {{ form_widget(formRegistration.email) }}
+    {{ form_widget(formRegistration.password) }}
 
     <button type="submit" class="btn btn-success">Sign up</button>
 
