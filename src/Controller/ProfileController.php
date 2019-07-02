@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AccountController extends AbstractController
+class ProfileController extends AbstractController
 {
     /**
-     * @Route("/account", name="account")
+     * @Route("/profile", name="profile")
      */
     public function index()
     {
-        return $this->render('account/index.html.twig', [
-            'controller_name' => 'AccountController',
+        return $this->render('profile/index.html.twig', [
+            'controller_name' => 'ProfileController',
         ]);
     }
 }
