@@ -1,7 +1,28 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Display Name (@username) | Twitter{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../../public/assets/css">
+{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block body %}
-
+    <div class="banner">
+        <img class="img-fluid" src="http://placehold.it/1910x350" alt="placeholder image">
+    </div>
+    <div class="profile-avatar">
+        <img src="http://placehold.it/200x200" alt="Profile picture" class="avatar">
+    </div>
+    <div class="nav-profile">
+        <ul>
+            <li>Tweets<a href="#"></a></li>
+            <li>Following<a href="#"></a></li>
+            <li>Followers<a href="#"></a></li>
+            <li>Likes<a href="#"></a></li>
+            <li>Lists<a href="#"></a></li>
+            <li>Moments<a href="#"></a></li>
+        </ul>
+        <button type="button" class="edit-profile">Edit Profile</button>
+    </div>
+    <div class="profile-info">
+        ul>li
+    </div>
 {% endblock %}
