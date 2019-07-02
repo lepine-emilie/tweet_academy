@@ -3,9 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
+        <header>
+            <nav class="container navbar">
+                <ul>
+                    <li>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Notifications</a></li>
+                            <li><a href="#">Messages</a></li>
+                        </ul>
+                    </li>
+                    <li><img src='{{ asset("assets/img/Twitter_Bird.svg.png") }}'></li>
+                    <li>
+                        <ul>
+                            <li><input type="text" placeholder="Search Twitter"></li>
+                            <li>Photo</li>
+                            <li>Tweet</li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
