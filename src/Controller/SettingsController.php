@@ -22,8 +22,6 @@ class SettingsController extends AbstractController
      */
     public function accountSettings()
     {
-        return $this->render('settings/index.html.twig', [
-            'controller_name' => 'SettingsController',
-        ]);
+        return $this->render('settings/account.html.twig');
     }
 }

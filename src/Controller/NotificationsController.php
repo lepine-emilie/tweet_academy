@@ -12,8 +12,11 @@ class NotificationsController extends AbstractController
      */
     public function index()
     {
-        return $this->render('notifications/index.html.twig', [
-            'controller_name' => 'NotificationsController',
-        ]);
+        return $this->render('notifications/index.html.twig');
+    }
+
+    public function mentions()
+    {
+        return $this->render('notifications/mentions.html.twig');
     }
 }
