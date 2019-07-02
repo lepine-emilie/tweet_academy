@@ -11,22 +11,21 @@
     <body>
         <header>
             <nav class="navbar container">
-                <div class="d-flex">
-                    <a class="nav-item nav-link" href="#"><span class="fas fa-home"></span><span>Home</span></a>
-                    <a class="nav-item nav-link" href="#"><span class="far fa-bell"></span><span>Notifications</span></a>
+                <div class="d-flex redir-links-nav">
+                    <a class="nav-item nav-link" href="{{ path('home') }}"><span class="fas fa-home"></span><span class="">Home</span></a>
+                    <a class="nav-item nav-link" href="{{ path('notifications')}}"><span class="far fa-bell"></span><span>Notifications</span></a>
                     <a class="nav-item nav-link" href="#"><span class="far fa-envelope"></span><span>Messages</span></a>
                 </div>
                 <a href="#"><img class="w-10" src="{{ asset('assets/img/twitter_bird-svg.png') }}"></a>
-                <div class="d-flex">
-                    <form class="nav-item nav-link">
+                <div class="d-flex justify-content-between right-header">
+                    <form class="nav-item nav-link d-flex">
                         <input class="searchNavBar" type="text" placeholder="Search Twitter">
-                        <span>
-                            <button class="btn fas fa-search"></button>
-                        </span>
+                        <button class="btn-search-NavBar fas fa-search"></button>
                     </form>
-                    <a class="nav-item nav-link" href="#"><img src="{{ asset
+                    <a class="nav-item" href="#"><img src="{{ asset
                             ('assets/img/user-placeholder.png') }}"></a>
-                    <a class="nav-item nav-link btn btn-primary" href="#">Tweet</a>
+                    <a class="nav-item btn btn-primary btn-tweet"
+                       href="#"><span class="text-btn">Tweet</span></a>
                 </div>
             </nav>
         </header>
