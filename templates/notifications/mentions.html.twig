@@ -3,16 +3,28 @@
 {% block title %}Twitter / Mentions{% endblock %}
 
 {% block body %}
-    <div class="card">
-        <div class="card-header">
-            <a href="{{ path('notifications') }}">All</a>
-            <a href="{{ path('mentions') }}">Mentions</a>
-        </div>
-        {% if notifications is empty %}
-            <div class="card-body">
-                <p>Nothing to see here — yet</p>
-                <p>When someone mentions you in a Tweet, you'll see it here</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
             </div>
-        {% endif %}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{ path('notifications') }}">All</a>
+                        <a href="{{ path('mentions') }}">Mentions</a>
+                    </div>
+                    {% if notifications is empty %}
+                        <div class="card-body">
+                            <p>Nothing to see here — yet</p>
+                            <p>When someone mentions you in a Tweet, you'll see it here</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
     </div>
 {% endblock %}
