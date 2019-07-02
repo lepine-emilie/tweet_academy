@@ -2,10 +2,6 @@ body {
     margin: 0;
     padding: 0;
 }
-.navbar {
-    height: 46px;
-    margin-top: 0;
-}
 a {
     outline: none;
 }
