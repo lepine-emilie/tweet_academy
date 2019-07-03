@@ -7,22 +7,26 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row">
-            <div id="banner" class="col-md-12">
+            <div id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <img class="img-fluid" src="http://placehold.it/1920x350" alt="placeholder image">
             </div>
-            <div class="profile-avatar col-md-1">
-                <img src="http://placehold.it/200x200" alt="Profile picture" class="avatar">
+            <div class="nav-profile">
+                <div class="container">
+                    <ul id="nav-ul" class="d-flex justify-content-md-center">
+                        <li class="nav-link">Quacks<a href="#"></a></li>
+                        <li class="nav-link">Following<a href="#"></a></li>
+                        <li class="nav-link">Followers<a href="#"></a></li>
+                        <li class="nav-link">Likes<a href="#"></a></li>
+                        <li class="nav-link">Lists<a href="#"></a></li>
+                        <li class="nav-link">Moments<a href="#"></a></li>
+                        <li><button type="button" class="btn btn-primary edit-profile">Edit Profile</button></li>
+                    </ul>
+                </div>
             </div>
-            <div class="nav-profile col-md-12">
-                <ul class="nav-ul">
-                    <li class="nav-link">Quacks<a href="#"></a></li>
-                    <li class="nav-link">Following<a href="#"></a></li>
-                    <li class="nav-link">Followers<a href="#"></a></li>
-                    <li class="nav-link">Likes<a href="#"></a></li>
-                    <li class="nav-link">Lists<a href="#"></a></li>
-                    <li class="nav-link">Moments<a href="#"></a></li>
-                </ul>
-                <button type="button" class="btn btn-primary edit-profile">Edit Profile</button>
+            <div class="container">
+                <div class="profile-avatar">
+                    <img src="{{ asset('assets/img/female.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
+                </div>
             </div>
             <div class="center col-md-8">
                 <div class="profile-info col-md-2">
@@ -39,14 +43,14 @@
                 <div class="quacks col-md-4">
                     <h3>Quacks</h3>
                 </div>
-                <div class="left-column col-md-2">
+                <div class="right-column col-md-2">
                     <div class="friend-suggestion col-md-2">
                         <h3>Suggestions</h3>
                         <ul>
 
                         </ul>
                     </div>
-                    <div class="trending col-md-2">
+                    <div class="trending, col-md-2">
                         <h3>Trending</h3>
                         <ul>
 
