@@ -1,0 +1,16 @@
+{% extends 'layour-3.html.twig' %}
+
+{% block left_sidebar %}
+    {{ render(controller('App\\Controller\\CommonController::trends')) }}
+{% endblock %}
+
+{% block center_body %}
+    <div class="card">
+        <div class="card-header">
+            <a href="{{ path('notifications') }}">All</a>
+            <a href="{{ path('mentions') }}">Mentions</a>
+        </div>
+        {% block notifications_body %}
+        {% endblock %}
+    </div>
+{% endblock %}

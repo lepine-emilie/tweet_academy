@@ -1,17 +1,21 @@
-{% extends 'layour-3.html.twig' %}
+{% extends 'notifications/_layout.html.twig' %}
 
 {% block title %}Twitter / Notifications{% endblock %}
 
-{% block center_body %}
-    <div class="card">
-        <div class="card-header">
-            <a href="{{ path('notifications') }}">All</a>
-            <a href="{{ path('mentions') }}">Mentions</a>
+{% block notifications_body %}
+    {% if notifications is empty %}
+        <div class="card-body">
+            <p>Nothing to see here — yet</p>
         </div>
-        {% if notifications is empty %}
-            <div class="card-body">
-                <p>Nothing to see here — yet</p>
-            </div>
-        {% endif %}
-    </div>
+    {% else %}
+        <div class="list-group list-group-flush">
+            {% for n in notifications %}
+                {% for i in 0..3 %}
+                    <div class="list-group-item">
+                        <p>Notification test {{ i }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
