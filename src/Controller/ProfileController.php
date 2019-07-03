@@ -12,7 +12,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}", name="profile_view")
      */
-    public function index(string $username, UserRepository $repository)
+    public function view(string $username, UserRepository $repository)
     {
         $user = $repository->findOneBy(['username' => $username]);
 
