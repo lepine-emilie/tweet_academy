@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ChatController extends AbstractController
 {
     /**
-     * @Route("/chat", name="chat")
+     * @Route("/messages", name="messages")
      */
     public function index()
     {
