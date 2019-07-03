@@ -1,5 +1,6 @@
 header {
     background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 a {
     outline: none;
@@ -16,6 +17,7 @@ a {
 }
 .btn-search-NavBar {
     border: none;
+    background-color: rgba(0, 0, 0, 0);
 }
 .btn-search-NavBar:focus {
     outline-style: none;
@@ -29,6 +31,9 @@ a {
 .navbar form:focus-within {
     transition: 0.5s;
     border: 2px solid #1da1f2;
+}
+.navbar form input::placeholder {
+    font-size: 15px;
 }
 .btn-tweet {
     opacity: 0.6;
@@ -47,4 +52,13 @@ a {
 }
 .right-header {
     width: 400px;
+}
+.dropdown-btn {
+    cursor: pointer;
+}
+.dropdown-header {
+    display: none;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 2px 15px rgba(0, 0, 0, 0.1);
 }

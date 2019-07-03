@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset("assets/favicon-32x32.png") }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("assets/favicon-16x16.png") }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
@@ -24,7 +26,15 @@
                         <input class="searchNavBar" type="text" placeholder="Search Ducker">
                         <button class="btn-search-NavBar fas fa-search"></button>
                     </form>
-                    <a class="nav-item" href="#"><img src="{{ asset('assets/img/user-placeholder.png') }}"></a>
+                    <div class="btn-group">
+                        <span class="dropdown-btn nav-item"><img class="dropdown-img-btn" src="{{asset('assets/img/user-placeholder.png') }}"></span>
+                        <div class="dropdown-header dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item">Je suis</button>
+                            <button class="dropdown-item">Une liste</button>
+                            <button class="dropdown-item">Qui se</button>
+                            <button class="dropdown-item">Déroule</button>
+                        </div>
+                    </div>
                     <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Quack</span></a>
                 </div>
             </nav>
@@ -32,6 +42,7 @@
         <main>
             {% block body %}{% endblock %}
         </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>        <script src="{{ asset('assets/js/header.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
