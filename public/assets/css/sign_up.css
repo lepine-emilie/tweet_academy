@@ -1,9 +1,9 @@
 body {
-    background-color: #10171e;
+    background-color: #192734;
 }
 main {
     display: flex;
-    width: 500px;
+    width: 400px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -14,10 +14,12 @@ h1 {
     font-weight: bold;
     width: 400px;
     padding: 0;
+    margin-top: 50px;
     margin-bottom: 24px;
 }
-input {
+.form-input {
     display: block;
+    background-color: #10171e;
     border: 1px solid #38444d;
     margin-bottom: 20px;
     font-size: 18px;
@@ -28,4 +30,9 @@ input {
 .btn {
     background-color: #1da1f2;
     border: 1px solid #1da1f2;
+    width: 372px;
+    border-radius: 100px;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 12px 20px;
 }
