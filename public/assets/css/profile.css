@@ -6,7 +6,7 @@ body{
 li{
     list-style-type: none;
 }
-.center, .nav-link, .nav-ul{
+.center, .nav-link, .nav-ul, .center{
     display: inline;
 }
 main{
@@ -21,7 +21,10 @@ main{
 .avatar{
     transform: translate(-15%,-70%);
     border-radius: 180px;
-    border: white 4px solid;
+    border: white 5px solid;
+}
+.profile-avatar{
+    height: 0;
 }
 .nav-profile{
     flex: 100%;
@@ -32,10 +35,24 @@ main{
 #nav-ul{
     margin-bottom: 0;
 }
-.nav-link {
-    padding-top: 15px;
+#nav-link {
+    padding-top: 12px;
+    color: #1da1f2;
 }
 .edit-profile{
     margin-top: 5px;
     margin-bottom: 5px;
+}
+.profile-info{
+    transform: translate(-20%, 10%);
+}
+.friend-suggestion, .trending{
+    margin-top: 25px;
+    height: 300px;
+    background-color: white;
+    padding: 15px;
+    font-size: smaller;
+}
+.quacks{
+    margin-top: 25px;
 }
