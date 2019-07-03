@@ -1,31 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'layour-3.html.twig' %}
 
 {% block title %}Twitter{% endblock %}
 
-{% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">[Mini Profile]</div>
-                </div>
-                <div class="card">
-                    <div class="card-body">[Trends]</div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">[Timeline]</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">[Who to follow]</div>
-                </div>
-                <div class="card">
-                    <div class="card-body">[Footer]</div>
-                </div>
-            </div>
-        </div>
+{% block left_sidebar %}
+    <div class="card">
+        <div class="card-body">[Mini Profile]</div>
+    </div>
+    {{ render(controller('App\\Controller\\CommonController::trends')) }}
+{% endblock %}
+
+{% block center_body %}
+    <div class="card">
+        <div class="card-body">[Timeline]</div>
+    </div>
+{% endblock %}
+
+{% block right_sidebar %}
+    <div class="card">
+        <div class="card-body">[Who to follow]</div>
+    </div>
+    <div class="card">
+        <div class="card-body">[Footer]</div>
     </div>
 {% endblock %}
