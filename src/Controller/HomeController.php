@@ -26,7 +26,7 @@ class HomeController extends AbstractController
         $posts = $repository->findBy([], ['id' => 'desc', 'submit_time' => 'desc']);
         $post = new Post();
         $form = $this->createForm(UserPostType::class, $post);
-        $user = $userRepository->findById(35)[0];
+        $user = $userRepository->findBy(['username' => 'LouisM'])[0];
         $post->setSender($user);
         $post->setSubmitTime(new \DateTime());
         $form->handleRequest($request);
