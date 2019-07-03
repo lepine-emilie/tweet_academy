@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\FollowerRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,9 +12,16 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}", name="profile_view")
      */
-    public function index(string $username)
+    public function index(string $username, UserRepository $repository)
     {
-        return $this->render('profile/index.html.twig');
+        $user = $repository->findOneBy(['username' => $username]);
+
+        if ($user === null)
+            throw $this->createNotFoundException('The user does not exist');
+
+        return $this->render('profile/index.html.twig', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -21,7 +29,14 @@ class ProfileController extends AbstractController
      */
     public function following(string $username, FollowerRepository $repository)
     {
-        return $this->render('profile/following.html.twig');
+        $user = $repository->findOneBy(['username' => $username]);
+
+        if ($user === null)
+            throw $this->createNotFoundException('The user does not exist');
+
+        return $this->render('profile/following.html.twig', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -29,6 +44,13 @@ class ProfileController extends AbstractController
      */
     public function followers(string $username, FollowerRepository $repository)
     {
-        return $this->render('profile/followers.html.twig');
+        $user = $repository->findOneBy(['username' => $username]);
+
+        if ($user === null)
+            throw $this->createNotFoundException('The user does not exist');
+
+        return $this->render('profile/followers.html.twig', [
+            'user' => $user
+        ]);
     }
 }
