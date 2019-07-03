@@ -5,3 +5,8 @@ body {
 main {
     padding-top: 35px;
 }
+
+.btn-primary {
+    background-color: #1da1f2;
+    border-radius: 20px;
+}
