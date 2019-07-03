@@ -9,15 +9,15 @@
 <div class="form, col-md-6">
     <h1>Join Ducker today.</h1>
 
-    {{ form_start(formRegistration) }}
+    {{ form_start(formSignup) }}
 
-    {{ form_widget(formRegistration.display_name) }}
-    {{ form_widget(formRegistration.username) }}
-    {{ form_widget(formRegistration.email) }}
-    {{ form_widget(formRegistration.password) }}
+    {{ form_widget(formSignup.display_name) }}
+    {{ form_widget(formSignup.username) }}
+    {{ form_widget(formSignup.email) }}
+    {{ form_widget(formSignup.password) }}
 
     <button type="submit" class="btn btn-success">Sign up</button>
 
-    {{ form_end(formRegistration) }}
+    {{ form_end(formSignup) }}
 </div>
 {% endblock %}

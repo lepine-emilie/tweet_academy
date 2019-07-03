@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\LoginType;
 
 
 class RegistrationController extends AbstractController
@@ -27,7 +28,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/registration/sign_up", name="sign_up")
+     * @Route("/signup", name="signup")
      */
     public function sign_up()
     {
@@ -36,7 +37,21 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
 
         return $this->render('registration/index.html.twig', [
-            'formRegistration' => $form->createView()
+            'formSignup' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function log_in()
+    {
+        $user = new User();
+        
+        $form = $this->createForm(LoginType::class, $user);
+
+        return $this->render('registration/login.html.twig', [
+            'formLogin' => $form->createView()
         ]);
     }
 }
