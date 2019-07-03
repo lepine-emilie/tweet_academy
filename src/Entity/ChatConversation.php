@@ -25,6 +25,7 @@ class ChatConversation
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="chatConversations")
+     * @ORM\JoinTable(name="chat_participant")
      */
     private $participants;
 
