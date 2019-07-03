@@ -1,6 +1,6 @@
 {% extends 'layour-3.html.twig' %}
 
-{% block title %}Twitter{% endblock %}
+{% block title %}Ducker{% endblock %}
 
 {% block left_sidebar %}
     {{ render(controller('App\\Controller\\CommonController::miniProfile')) }}
@@ -13,11 +13,11 @@
             <div class="list-group-item list-group-item-primary">
                 [ Make a Quack ]
             </div>
-            {% for i in 0..2 %}
+            {% for post in timeline %}
                 <div class="list-group-item">
                     <div>
-                    <a href="#"><strong>Le Canard Jaune</strong></a>
-                    <p>Quack quack</p>
+                    <a href="#"><strong>{{ post.sender.displayName }}</strong></a>
+                    <p>{{ post.content }}</p>
                     </div>
                     <div>
                         <button class="btn btn-secondary">Comment (0)</button>
