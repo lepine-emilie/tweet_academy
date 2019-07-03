@@ -1,5 +1,5 @@
 body {
-    background-color: #192734;
+    background-color: #ffffff;
 }
 main {
     display: flex;
@@ -8,7 +8,7 @@ main {
     margin-left: auto;
 }
 h1 {
-    color: white;
+    color: black;
     font-size: 27px;
     line-height: 32px;
     font-weight: bold;
@@ -19,8 +19,8 @@ h1 {
 }
 .form-input {
     display: block;
-    background-color: #10171e;
-    border: 1px solid #38444d;
+    background-color: #ffffff;
+    border: 1px solid #e6ecf0;
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: bold;
