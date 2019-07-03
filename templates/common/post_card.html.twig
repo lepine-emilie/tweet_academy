@@ -1,6 +1,6 @@
 <div class="list-group-item">
     <div>
-        <a href="{{ path('profile_view', { username: post.sender.username }) }}"><strong>{{ post.sender.displayName }}</strong> (@{{ post.sender.username }})</a>
+        <a href="{{ path('profile_view', { username: post.sender.username }) }}"><strong>{{ post.sender.displayName }}</strong></a> <small>(@{{ post.sender.username }})</small>
         <p>{{ post.content }}</p>
         {% if post.mediaUrl is not empty %}
             <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
