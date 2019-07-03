@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% block left_sidebar %}
+                {% endblock %}
+            </div>
+            <div class="col-md-6">
+                {% block center_body %}
+                {% endblock %}
+            </div>
+            <div class="col-md-3">
+                {% block right_sidebar %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
