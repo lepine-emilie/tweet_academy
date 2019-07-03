@@ -23,7 +23,7 @@ class UserType extends AbstractType
             ])
             ->add('username', TextType::class, [
                 'attr' => [
-                    'placeholder' => "sername",
+                    'placeholder' => "Username",
                     'class' => "form-input"
                 ]
             ])

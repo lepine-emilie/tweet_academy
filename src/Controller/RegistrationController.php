@@ -30,11 +30,19 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/signup", name="signup")
      */
-    public function sign_up()
+    public function sign_up(Request $request)
     {
         $user = new User();
         
         $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $user = $form->getData();
+            return $this->redirectToRoute('login');
+        }
 
         return $this->render('registration/index.html.twig', [
             'formSignup' => $form->createView()
