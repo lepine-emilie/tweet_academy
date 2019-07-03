@@ -11,24 +11,10 @@
     <div class="card">
         <div class="list-group list-group-flush">
             <div class="list-group-item list-group-item-primary">
-                [ Make a Quack ]
+                {% include 'common/post_maker.html.twig' %}
             </div>
             {% for post in timeline %}
-                <div class="list-group-item">
-                    <div>
-                        <a href="{{ path('profile_view', { username: post.sender.username }) }}"><strong>{{ post.sender.displayName }}</strong> (@{{ post.sender.username }})</a>
-                        <p>{{ post.content }}</p>
-                        {% if post.mediaUrl is not empty %}
-                            <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
-                        {% endif %}
-                    </div>
-                    <div>
-                        <button class="btn btn-secondary">Comment (0)</button>
-                        <button class="btn btn-secondary">Retweet (0)</button>
-                        <button class="btn btn-secondary">Like (0)</button>
-                        <button class="btn btn-secondary">Direct message</button>
-                    </div>
-                </div>
+                {% include 'common/post_card.html.twig' with { post: post } only %}
             {% endfor %}
         </div>
     </div>

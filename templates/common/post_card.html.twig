@@ -1,0 +1,15 @@
+<div class="list-group-item">
+    <div>
+        <a href="{{ path('profile_view', { username: post.sender.username }) }}"><strong>{{ post.sender.displayName }}</strong> (@{{ post.sender.username }})</a>
+        <p>{{ post.content }}</p>
+        {% if post.mediaUrl is not empty %}
+            <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
+        {% endif %}
+    </div>
+    <div>
+        <button class="btn btn-secondary">Comment (0)</button>
+        <button class="btn btn-secondary">Retweet (0)</button>
+        <button class="btn btn-secondary">Like (0)</button>
+        <button class="btn btn-secondary">Direct message</button>
+    </div>
+</div>
