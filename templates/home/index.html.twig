@@ -16,8 +16,11 @@
             {% for post in timeline %}
                 <div class="list-group-item">
                     <div>
-                    <a href="#"><strong>{{ post.sender.displayName }}</strong></a>
-                    <p>{{ post.content }}</p>
+                        <a href="#"><strong>{{ post.sender.displayName }}</strong> (@{{ post.sender.username }})</a>
+                        <p>{{ post.content }}</p>
+                        {% if post.mediaUrl is not empty %}
+                            <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
+                        {% endif %}
                     </div>
                     <div>
                         <button class="btn btn-secondary">Comment (0)</button>

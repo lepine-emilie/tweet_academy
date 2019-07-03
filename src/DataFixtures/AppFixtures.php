@@ -24,6 +24,7 @@ class AppFixtures extends Fixture
             $quack->setSender($user);
             $quack->setContent(str_repeat("quack ", $i));
             $quack->setSubmitTime(new DateTime());
+            $quack->setMediaUrl('http://french.peopledaily.com.cn/mediafile/201308/16/F201308160908385111850043.jpg');
             $manager->persist($quack);
         }
 
