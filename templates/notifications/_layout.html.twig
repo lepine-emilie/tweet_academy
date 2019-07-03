@@ -7,8 +7,11 @@
 {% block center_body %}
     <div class="card">
         <div class="card-header">
-            <a href="{{ path('notifications') }}">All</a>
-            <a href="{{ path('mentions') }}">Mentions</a>
+            <nav class="nav nav-pills">
+                {% set route = app.request.get('_route') %}
+                <a class="nav-link {{ route == 'notifications' ? 'active' }}" href="{{ path('notifications') }}">All</a>
+                <a class="nav-link {{ route == 'mentions' ? 'active' }}" href="{{ path('mentions') }}">Mentions</a>
+            </nav>
         </div>
         {% block notifications_body %}
         {% endblock %}

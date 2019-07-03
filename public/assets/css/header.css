@@ -48,6 +48,9 @@ header .navbar {
 .redir-links-nav a:hover {
     border-bottom: solid 2px rgb(29,161,242);
 }
+.redir-links-nav a.active {
+    border-bottom: solid 2px rgb(29,161,242);
+}
 .right-header {
     width: 400px;
 }
