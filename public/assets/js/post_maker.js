@@ -15,7 +15,15 @@ $('.submit-post_maker').click(function () {
         type: 'POST',
         url: '/',
         data: $('.post_maker form').serialize(),
+        dataType: 'json',
         success: function (data) {
+            if (data.success === false)
+                alert("Broken duck");
+            else
+            {
+                $('#user_post_content').val('');
+                $('.timeline').prepend(data.htmlTemplate);
+            }
         }
     });
 });

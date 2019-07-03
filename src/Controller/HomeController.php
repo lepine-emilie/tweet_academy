@@ -26,26 +26,25 @@ class HomeController extends AbstractController
         $posts = $repository->findBy([], ['id' => 'desc', 'submit_time' => 'desc']);
         $post = new Post();
         $form = $this->createForm(UserPostType::class, $post);
-        $user = $userRepository->findBy(['username' => 'LouisM'])[0];
-        $post->setSender($user);
-        $post->setSubmitTime(new \DateTime());
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid())
         {
+            if (!$form->isValid())
+                return new JsonResponse(["success" => false]);
+
+            $user = $userRepository->findBy(['username' => 'LouisM'])[0];
+            $post->setSender($user);
+            $post->setSubmitTime(new \DateTime());
             $em->persist($post);
             $em->flush();
-            return(new Response());
+            $view = $this->renderView("common/post_card.html.twig", ['post' => $post]);
+            return new JsonResponse(["success" => true, 'htmlTemplate' => $view]);
         }
-        elseif ($form->isSubmitted() && !$form->isValid())
-        {
-            return(new Response("hoho"));
-        }
-        else
-        {
-            return $this->render('home/index.html.twig', [
-                'timeline' => $posts,
-                'formPost' => $form->createView()
-            ]);
-        }
+
+        return $this->render('home/index.html.twig', [
+            'timeline' => $posts,
+            'formPost' => $form->createView()
+        ]);
     }
 }
