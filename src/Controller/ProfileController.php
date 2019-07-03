@@ -31,4 +31,12 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/followers.html.twig');
     }
+
+    /**
+     * @Route("/profile/view/{username}", name="profile_view")
+     */
+    public function view(string $username)
+    {
+        return $this->render('profile/index.html.twig');
+    }
 }

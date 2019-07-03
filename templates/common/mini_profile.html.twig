@@ -1,7 +1,9 @@
 <div class="card card-body">
     <div>
-        <strong>Gros Chef Bandzi</strong>
-        <p>@Poutouyemoun</p>
+        <a href="{{ path('profile_view', { username: 'Poutouyemoun' }) }}">
+            <strong>Gros Chef Bandzi</strong>
+            <p>@Poutouyemoun</p>
+        </a>
     </div>
     <p><strong>{{ post_count|number_format }}</strong> Quacks</p>
     <p><strong>{{ followers_count|number_format }}</strong> Followers</p>

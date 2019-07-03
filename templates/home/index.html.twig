@@ -16,7 +16,7 @@
             {% for post in timeline %}
                 <div class="list-group-item">
                     <div>
-                        <a href="#"><strong>{{ post.sender.displayName }}</strong> (@{{ post.sender.username }})</a>
+                        <a href="{{ path('profile_view', { username: 'Poutouyemoun' }) }}"><strong>{{ post.sender.displayName }}</strong> (@{{ post.sender.username }})</a>
                         <p>{{ post.content }}</p>
                         {% if post.mediaUrl is not empty %}
                             <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
