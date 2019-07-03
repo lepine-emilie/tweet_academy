@@ -5,7 +5,7 @@ header {
 a {
     outline: none;
 }
-.navbar {
+header .navbar {
     padding: 0;
 }
 .navbar ul, .navbar li {
