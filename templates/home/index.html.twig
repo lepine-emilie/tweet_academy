@@ -13,9 +13,11 @@
             <div class="list-group-item list-group-item-primary">
                 {% include 'common/post_maker.html.twig' %}
             </div>
-            {% for post in timeline %}
-                {% include 'common/post_card.html.twig' with { post: post } only %}
-            {% endfor %}
+            <div class="timeline">
+                {% for post in timeline %}
+                    {% include 'common/post_card.html.twig' with { post: post } only %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
