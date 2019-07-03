@@ -33,6 +33,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $em->persist($post);
+            $em->flush();
             return(new Response());
         }
         elseif ($form->isSubmitted() && !$form->isValid())
