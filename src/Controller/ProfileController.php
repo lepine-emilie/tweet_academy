@@ -9,34 +9,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/{username}", name="profile_view")
      */
-    public function index()
+    public function index(string $username)
     {
         return $this->render('profile/index.html.twig');
     }
 
     /**
-     * @Route("/profile/following", name="profile_following")
+     * @Route("/{username}/following", name="profile_following")
      */
-    public function following(FollowerRepository $repository)
+    public function following(string $username, FollowerRepository $repository)
     {
         return $this->render('profile/following.html.twig');
     }
 
     /**
-     * @Route("/profile/followers", name="profile_followers")
+     * @Route("/{username}/followers", name="profile_followers")
      */
-    public function followers(FollowerRepository $repository)
+    public function followers(string $username, FollowerRepository $repository)
     {
         return $this->render('profile/followers.html.twig');
-    }
-
-    /**
-     * @Route("/profile/view/{username}", name="profile_view")
-     */
-    public function view(string $username)
-    {
-        return $this->render('profile/index.html.twig');
     }
 }
