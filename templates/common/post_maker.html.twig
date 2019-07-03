@@ -1,1 +1,15 @@
-[ Make a Quack ]
+{% block stylesheet %}<link rel="stylesheet" href="{{ asset('assets/css/post_maker.css') }}">{% endblock %}
+<div class="post_maker-wrapper">
+    <div class="d-flex post_maker">
+        <span><img src="{{asset('assets/img/user-placeholder.png') }}"></span>
+        {{ form_start(formPost) }}
+        {{ form_row(formPost.content) }}
+        {{ form_end(formPost) }}
+    </div>
+    <span class="quacker-btn-displayer">
+        <span class="d-flex justify-content-between quacker-btn-displayer">
+            <span></span>
+            <button class="submit-post_maker btn btn-primary">Quacker</button>
+        </span>
+    </span>
+</div>
