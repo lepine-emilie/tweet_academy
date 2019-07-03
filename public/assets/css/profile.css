@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+li{
+    list-style-type: none;
+}
+.center, .nav-link, .nav-ul{
+    display: inline;
+}
+main{
+    padding: 0;
+    margin: 0;
+}
+#banner{
+    padding-left: 0;
+    padding-right: 0;
+
+}
+.avatar{
+    transform: translate(35%, -50%);
+    border-radius: 180px;
+    z-index: 10;
+    border: white 4px solid;
+    position: absolute;
+}
+.nav-profile\,.col-md-12{
+    background-color: rgba(176, 173, 186, 0.5);
+    flex: 100%;
+    height: 50%;
+    z-index: 2;
+}
+.nav-ul{
+    padding-left: 18%;
+}
+.edit-profile{
+    float: right;
+    margin-right: 20%;
+}
+.center{
+    display: inline-flex;
+    position: absolute;
+}
