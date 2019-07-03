@@ -25,11 +25,14 @@ main{
     border: white 4px solid;
     position: absolute;
 }
-.nav-profile\,.col-md-12{
-    background-color: rgba(176, 173, 186, 0.5);
+.nav-profile{
     flex: 100%;
     height: 50%;
     z-index: 2;
+    position: sticky;
+    background-color: white;
+    border-top: 1px solid rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
 }
 .nav-ul{
     padding-left: 18%;
@@ -39,6 +42,11 @@ main{
     margin-right: 20%;
 }
 .center{
-    display: inline-flex;
+    display: flex;
     position: absolute;
+    margin-top: 25%;
+}
+.nav-profile .nav-link {
+    display: inline-block;
+    vertical-align: middle;
 }
