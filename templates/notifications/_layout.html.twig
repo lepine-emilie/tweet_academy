@@ -14,3 +14,7 @@
         {% endblock %}
     </div>
 {% endblock %}
+
+{% block right_sidebar %}
+    {{ render(controller('App\\Controller\\CommonController::footer')) }}
+{% endblock %}

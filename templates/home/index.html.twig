@@ -3,15 +3,31 @@
 {% block title %}Twitter{% endblock %}
 
 {% block left_sidebar %}
-    <div class="card">
-        <div class="card-body">[Mini Profile]</div>
-    </div>
+    {{ render(controller('App\\Controller\\CommonController::miniProfile')) }}
     {{ render(controller('App\\Controller\\CommonController::trends')) }}
 {% endblock %}
 
 {% block center_body %}
     <div class="card">
-        <div class="card-body">[Timeline]</div>
+        <div class="list-group list-group-flush">
+            <div class="list-group-item list-group-item-primary">
+                [ Make a Quack ]
+            </div>
+            {% for i in 0..2 %}
+                <div class="list-group-item">
+                    <div>
+                    <a href="#"><strong>Le Canard Jaune</strong></a>
+                    <p>Quack quack</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-secondary">Comment (0)</button>
+                        <button class="btn btn-secondary">Retweet (0)</button>
+                        <button class="btn btn-secondary">Like (0)</button>
+                        <button class="btn btn-secondary">Direct message (0)</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
@@ -19,7 +35,5 @@
     <div class="card">
         <div class="card-body">[Who to follow]</div>
     </div>
-    <div class="card">
-        <div class="card-body">[Footer]</div>
-    </div>
+    {{ render(controller('App\\Controller\\CommonController::footer')) }}
 {% endblock %}
