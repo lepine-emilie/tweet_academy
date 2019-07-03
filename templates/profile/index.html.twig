@@ -1,28 +1,54 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="../../public/assets/css">
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
 {% endblock %}
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    <div class="banner">
+    <div class="banner, col-md-12">
         <img class="img-fluid" src="http://placehold.it/1910x350" alt="placeholder image">
     </div>
-    <div class="profile-avatar">
+    <div class="profile-avatar, col-">
         <img src="http://placehold.it/200x200" alt="Profile picture" class="avatar">
     </div>
-    <div class="nav-profile">
-        <ul>
-            <li>Tweets<a href="#"></a></li>
-            <li>Following<a href="#"></a></li>
-            <li>Followers<a href="#"></a></li>
-            <li>Likes<a href="#"></a></li>
-            <li>Lists<a href="#"></a></li>
-            <li>Moments<a href="#"></a></li>
+    <div class="nav-profile, col-md-12">
+        <ul class="nav-ul">
+            <li class="nav-link">Quacks<a href="#"></a></li>
+            <li class="nav-link">Following<a href="#"></a></li>
+            <li class="nav-link">Followers<a href="#"></a></li>
+            <li class="nav-link">Likes<a href="#"></a></li>
+            <li class="nav-link">Lists<a href="#"></a></li>
+            <li class="nav-link">Moments<a href="#"></a></li>
         </ul>
         <button type="button" class="edit-profile">Edit Profile</button>
     </div>
-    <div class="profile-info">
-        ul>li
+    <div class="center, col-md-8">
+        <div class="profile-info, col-md-2">
+            <ul>
+                <li class="screen-name"></li>
+                <li class="username"></li>
+                <li>Photos and videos
+                    <ul class="photo-video">
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="tweets, col-md-4">
+
+        </div>
+        <div class="col=md-2">
+            <div class="friend-suggestion">
+                <ul>
+
+                </ul>
+            </div>
+            <div class="tendance">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
     </div>
+
 {% endblock %}
