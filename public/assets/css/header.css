@@ -56,7 +56,7 @@ a {
 .dropdown-btn {
     cursor: pointer;
 }
-.dropdown-header {
+.dropdown-menu {
     display: none;
     margin-top: 10px;
     border-radius: 10px;
