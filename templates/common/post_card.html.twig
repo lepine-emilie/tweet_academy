@@ -1,4 +1,4 @@
-<div class="list-group-item">
+<div class="list-group-item list-group-item-action">
     <div>
         <a href="{{ path('profile_view', { username: post.sender.username }) }}"><strong>{{ post.sender.displayName }}</strong></a> <span>(@{{ post.sender.username }})</span>
         <p>{{ post.content }}</p>
@@ -7,9 +7,9 @@
         {% endif %}
     </div>
     <div class="my-3">
-        <button class="btn btn-secondary">Comment (0)</button>
-        <button class="btn btn-secondary">Retweet (0)</button>
-        <button class="btn btn-secondary">Like (0)</button>
-        <button class="btn btn-secondary">Direct message</button>
+        <button class="btn btn-secondary btn-sm" title="Comment"><i class="far fa-comment"></i> 0</button>
+        <button class="btn btn-secondary btn-sm" title="Copyquack"><i class="fas fa-retweet"></i> 0</button>
+        <button class="btn btn-secondary btn-sm" title="Like"><i class="far fa-heart"></i> 0</button>
+        <button class="btn btn-secondary btn-sm" title="Direct message"><i class="far fa-envelope"></i></button>
     </div>
 </div>
