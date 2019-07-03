@@ -5,48 +5,54 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    <div class="banner, col-md-12">
-        <img class="img-fluid" src="http://placehold.it/1910x350" alt="placeholder image">
-    </div>
-    <div class="profile-avatar, col-">
-        <img src="http://placehold.it/200x200" alt="Profile picture" class="avatar">
-    </div>
-    <div class="nav-profile, col-md-12">
-        <ul class="nav-ul">
-            <li class="nav-link">Quacks<a href="#"></a></li>
-            <li class="nav-link">Following<a href="#"></a></li>
-            <li class="nav-link">Followers<a href="#"></a></li>
-            <li class="nav-link">Likes<a href="#"></a></li>
-            <li class="nav-link">Lists<a href="#"></a></li>
-            <li class="nav-link">Moments<a href="#"></a></li>
-        </ul>
-        <button type="button" class="edit-profile">Edit Profile</button>
-    </div>
-    <div class="center, col-md-8">
-        <div class="profile-info, col-md-2">
-            <ul>
-                <li class="screen-name"></li>
-                <li class="username"></li>
-                <li>Photos and videos
-                    <ul class="photo-video">
-
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="tweets, col-md-4">
-
-        </div>
-        <div class="col=md-2">
-            <div class="friend-suggestion">
-                <ul>
-
-                </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="banner" class="col-md-12">
+                <img class="img-fluid" src="http://placehold.it/1920x350" alt="placeholder image">
             </div>
-            <div class="tendance">
-                <ul>
-
+            <div class="profile-avatar, col-md-1">
+                <img src="http://placehold.it/200x200" alt="Profile picture" class="avatar">
+            </div>
+            <div class="nav-profile, col-md-12">
+                <ul class="nav-ul">
+                    <li class="nav-link">Quacks<a href="#"></a></li>
+                    <li class="nav-link">Following<a href="#"></a></li>
+                    <li class="nav-link">Followers<a href="#"></a></li>
+                    <li class="nav-link">Likes<a href="#"></a></li>
+                    <li class="nav-link">Lists<a href="#"></a></li>
+                    <li class="nav-link">Moments<a href="#"></a></li>
                 </ul>
+                <button type="button" class="btn btn-primary edit-profile">Edit Profile</button>
+            </div>
+            <div class="jumbotron, col-md-8">
+                <div class="profile-info, col-md-2">
+                    <ul>
+                        <li class="screen-name"></li>
+                        <li class="username"></li>
+                        <li>Photos and videos
+                            <ul class="photo-video">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="quacks, col-md-4">
+                    <h3>Quacks</h3>
+                </div>
+                <div class="left-column, col-md-2">
+                    <div class="friend-suggestion, col-md-2">
+                        <h3>Suggestions</h3>
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div class="trending, col-md-2">
+                        <h3>Trending</h3>
+                        <ul>
+
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
