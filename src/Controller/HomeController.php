@@ -28,7 +28,7 @@ class HomeController extends AbstractController
         $form = $this->createForm(UserPostType::class, $post);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
+        if ($form->isSubmitted())
         {
             if (!$form->isValid())
                 return new JsonResponse(["success" => false]);
