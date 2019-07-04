@@ -1,7 +1,25 @@
 {% extends 'profile/_layout.html.twig' %}
 
-{% block title %}People following Display Name (@username) | Ducker{% endblock %}
+{% block title %}People following {{ user.displayName }} (@{{ user.username }}) | Ducker{% endblock %}
 
 {% block profile_center %}
-    Bla bla bla
+    <div class="card">
+        <div class="card-header">
+            <strong>Followers</strong>
+        </div>
+        <div class="list-group list-group-flush">
+            <div class="card-group">
+                {% for follower in user.followers %}
+                    <div class="card">
+                        <div class="card-body">
+                            <strong class="card-title">{{ follower.follower.displayName }}</strong>
+                            <strong class="card-title">(@{{ follower.follower.username }})</strong>
+                            <p class="card-text"><img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64" alt="Card image cap">
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

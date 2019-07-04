@@ -58,3 +58,8 @@ main{
 .quacks{
     margin-top: 25px;
 }
+#avatar{
+    border-radius: 180px;
+    border: white 5px solid;
+    background-color: #e6ecf0;
+}
