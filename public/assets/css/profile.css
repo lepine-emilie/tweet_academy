@@ -48,9 +48,6 @@ main{
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.profile-info{
-    transform: translate(0, 10%);
-}
 .friend-suggestion, .trending{
     margin-top: 25px;
     height: 300px;
