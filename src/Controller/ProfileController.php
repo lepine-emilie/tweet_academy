@@ -65,7 +65,7 @@ class ProfileController extends AbstractController
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
 
-        return $this->render('profile/followers.html.twig', [
+        return $this->render('profile/favorites.html.twig', [
             'user' => $user
         ]);
     }

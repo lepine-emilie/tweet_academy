@@ -1,6 +1,9 @@
 <div class="list-group-item list-group-item-action card-timeline">
     <div>
-        <a href="{{ path('profile_view', { username: post.sender.username }) }}"><strong>{{ post.sender.displayName }}</strong></a> <span>(@{{ post.sender.username }})</span>
+        <a href="{{ path('profile_view', { username: post.sender.username }) }}">
+            <strong>{{ post.sender.displayName }}</strong>
+        </a>
+        <span>(@{{ post.sender.username }})</span>
         <p>{{ post.content }}</p>
         {% if post.mediaUrl is not empty %}
             <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
@@ -8,11 +11,11 @@
     </div>
     <div class="my-3">
         <button class="btn btn-secondary btn-sm" title="Comment"><i class="far fa-comment"></i> 0</button>
-        <button class="btn btn-secondary btn-sm" title="Copyquack"><i class="fas fa-retweet"></i> 0</button>
-        <button class="btn btn-secondary btn-sm" title="Like"><i class="far fa-heart"></i> 0</button>
+        <button class="btn btn-secondary btn-sm tweet-card__repost-btn" title="Copyquack"><i class="fas fa-retweet"></i> 0</button>
+        <button class="btn btn-secondary btn-sm tweet-card__like-btn" title="Like"><i class="far fa-heart"></i> 0</button>
         <button class="btn btn-secondary btn-sm" title="Direct message"><i class="far fa-envelope"></i></button>
         {% if post.sender.id == app.user.id %}
-            <button class="btn btn-danger btn-sm" title="Delete"><i class="far fa-trash-alt"></i></button>
+            <button class="btn btn-danger btn-sm tweet-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
         {% endif %}
     </div>
 </div>

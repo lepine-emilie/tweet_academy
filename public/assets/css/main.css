@@ -2,7 +2,7 @@ body {
     background: #e6ecf0;
 }
 
-main {
+main > .container {
     padding-top: 20px;
     padding-bottom: 20px;
 }

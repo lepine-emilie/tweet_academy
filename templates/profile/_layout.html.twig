@@ -4,61 +4,81 @@
 {% endblock %}
 {% block title %}Profile{% endblock %}
 
+
 {% block body %}
-    <div class="container-fluid">
-        <div class="row">
-            <div id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="https://www.arrowperformancegroup.com/wp-content/uploads/2016/07/slider_concept10-1920x350.jpg" alt="placeholder image">
-            </div>
-            <div class="nav-profile">
-                <div class="container">
-                    <ul id="nav-ul" class="d-flex justify-content-md-between">
-                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_view', {username: user.username}) }}">Quacks</a></li>
-                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_following', {username: user.username}) }}">Following</a></li>
-                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_followers', {username: user.username}) }}">Followers</a></li>
-                        <li id="nav-link" class="nav-link likes"><a href="{{ path('profile_favorites', {username: user.username}) }}">Likes</a></li>
-                        {#                        <li id="nav-link" class="nav-link">Lists<a href="#"></a></li>#}
-                        {#                        <li id="nav-link" class="nav-link">Moments<a href="#"></a></li>#}
-                        {% if app.user.id == user.id %}
-                            <li class="d-flex justify-content-md-right"><button type="button" class="btn btn-primary edit-profile">Edit Profile</button></li>
-                        {% else %}
-                            <li class="d-flex justify-content-md-right"><button type="button" class="btn btn-primary edit-profile">Follow</button></li>
-                        {% endif %}
-                    </ul>
+    <img class="img-fluid" src="https://www.arrowperformancegroup.com/wp-content/uploads/2016/07/slider_concept10-1920x350.jpg" alt="placeholder image">
+    <div class="nav-profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="profile-avatar">
+                        <a href="#">
+                        <img src="{{ asset('assets/img/female.png') }}" alt="Profile picture" class="avatar">
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="profile-avatar">
-                    <img src="{{ asset('assets/img/female.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
-                </div>
-            </div>
-            {# Bottom container #}
-            <div class="container my-2">
-                <div class="row">
-                    <div class="col-lg-3" style="margin-top: 70px;">
-                        {% block profile_left %}
-                            <div class="profile-info">
-                                <li class="screen-name"><strong>{{ user.displayName }}</strong></li>
-                                <li class="username">@{{ user.username }}</li>
-                                <li>Photos and videos
-                                    <ul class="photo-video"></ul>
-                                </li>
-                                </ul>
+                <div class="col-lg-6">
+                    <div class="nav">
+                        <a class="nav-link" href="{{ path('profile_view', {username: user.username}) }}">
+                            <div>
+                                <span>Quacks</span>
+                                <div>{{ (user.posts|length)|number_format }}</div>
                             </div>
-                        {% endblock %}
+                        </a>
+                        <a class="nav-link" href="{{ path('profile_following', {username: user.username}) }}">
+                            <div>
+                                <span>Following</span>
+                                <div>{{ (user.following|length)|number_format }}</div>
+                            </div>
+                        </a>
+                        <a class="nav-link" href="{{ path('profile_followers', {username: user.username}) }}">
+                            <div>
+                                <span>Followers</span>
+                                <div>{{ (user.followers|length)|number_format }}</div>
+                            </div>
+                        </a>
+                        <a class="nav-link" href="{{ path('profile_favorites', {username: user.username}) }}">
+                            <div>
+                                <span>Likes</span>
+                                <div>{{ (user.favorites|length)|number_format }}</div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-lg-6">
-                        {% block profile_center %}
-                        {% endblock %}
-                    </div>
-                    <div class="col-lg-3">
-                        {% block profile_right %}
-                            {{ render(controller('App\\Controller\\CommonController::trends')) }}
-                        {% endblock %}
-                    </div>
+                </div>
+                <div class="col-lg-3 profile-nav-btn-group">
+                    {% if app.user is not empty %}
+                        {% if app.user.id == user.id %}
+                            <button class="btn btn-primary profile-nav-btn">Edit Profile</button>
+                        {% else %}
+                            <button class="btn btn-primary profile-nav-btn">Follow</button>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                {% block profile_left %}
+                    <div class="profile-info">
+                        <div><strong>{{ user.displayName }}</strong></div>
+                        <div><small>@{{ user.username }}</small></div>
+                        {#<div><p>Photos and videos</p>
+                            <ul class="photo-video"></ul>
+                        </div>#}
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="col-lg-6">
+                {% block profile_center %}
+                {% endblock %}
+            </div>
+            <div class="col-lg-3">
+                {% block profile_right %}
+                    {{ render(controller('App\\Controller\\CommonController::trends')) }}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

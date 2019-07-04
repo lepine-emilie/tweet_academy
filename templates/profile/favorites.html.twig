@@ -3,24 +3,18 @@
 {% block title %}Quacks liked by {{ user.displayName }} (@{{ user.username }}) | Ducker{% endblock %}
 
 {% block profile_center %}
-    {% if user.following is not empty %}
+    {% if user.favorites is not empty %}
         <div class="card">
             <div class="card-header">
-                <strong>Following</strong>
+                <strong>Likes</strong>
             </div>
             <div class="list-group list-group-flush">
-                {% for following in user.following %}
-                    <div class="card">
-                        <div class="card-body">
-                            <strong class="card-title">{{ following.user.displayName }}</strong>
-                            <strong class="card-title">(@{{ following.user.username }})</strong>
-                            <p class="card-text"><img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64" alt="Card image cap"></p>
-                        </div>
-                    </div>
+                {% for following in user.favorites %}
+                    [[Liked post]]
                 {% endfor %}
             </div>
         </div>
     {% else %}
-        <p><strong>@{{ user.username }}</strong> is not following anyone</p>
+        <p><strong>@{{ user.username }}</strong> has not liked any Quack !</p>
     {% endif %}
 {% endblock %}

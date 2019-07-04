@@ -1,65 +1,41 @@
-body{
+body {
     margin: 0;
     padding: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-li{
-    list-style-type: none;
-}
-.center, .nav-link, .nav-ul, .center{
-    display: inline;
-}
-main{
-    padding: 0;
-    margin: 0;
-}
-#banner{
-    padding-left: 0;
-    padding-right: 0;
 
-}
-.avatar{
-    transform: translate(-15%,-70%);
-    border-radius: 180px;
+.avatar {
+    transform: translate(0%, -50%);
+    border-radius: 50%;
     border: white 5px solid;
     background-color: #e6ecf0;
+    height: 200px;
+    width: 200px;
 }
-.profile-avatar{
+
+.profile-avatar {
     height: 0;
+    text-align: center;
 }
-.nav-profile{
-    flex: 100%;
+
+.nav-profile {
+    padding: 0.2em;
     background-color: white;
-    border-top: 1px solid rgba(0,0,0,0.25);
-    border-bottom: 1px solid rgba(0,0,0,0.25);
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
-#nav-ul{
-    margin-bottom: 0;
-    margin-left: 20%;
+
+.nav-profile .nav-link {
+    text-align: center;
 }
-.likes{
-    margin-right: 15%;
+
+.profile-nav-btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
-#nav-link {
-    padding-top: 12px;
-    color: #1da1f2;
-}
-.edit-profile{
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.friend-suggestion, .trending{
-    margin-top: 25px;
-    height: 300px;
-    background-color: white;
-    padding: 15px;
-    font-size: smaller;
-}
-.quacks{
-    margin-top: 25px;
-}
-#avatar{
-    border-radius: 180px;
-    border: white 5px solid;
-    background-color: #e6ecf0;
+
+.profile-info {
+    padding-left: 15%;
+    padding-top: 1.5em;
 }
