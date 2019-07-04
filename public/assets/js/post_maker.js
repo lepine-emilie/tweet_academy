@@ -23,7 +23,15 @@ $('.submit-post_maker').click(function () {
             {
                 $('#user_post_content').val('');
                 $('.timeline').prepend(data.htmlTemplate);
+                $($('.card-timeline')[0]).hide();
+                $($('.card-timeline')[0]).css('opacity', '0');
+                animate_timeline();
             }
         }
     });
 });
+function animate_timeline()
+{
+    $($('.card-timeline')[0]).slideDown();
+    $($('.card-timeline')[0]).fadeTo("slow", 1)
+}
