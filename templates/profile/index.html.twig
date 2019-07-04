@@ -1,66 +1,26 @@
-{% extends 'base.html.twig' %}
-{% block stylesheet %}
-    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-{% endblock %}
-{% block title %}Profile{% endblock %}
+{% extends 'profile/_layout.html.twig' %}
 
-{% block body %}
-    <div class="container-fluid">
-        <div class="row">
-            <div id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <img class="img-fluid" src="http://placehold.it/1920x350" alt="placeholder image">
-            </div>
-            <div class="nav-profile">
-                <div class="container">
-                    <ul id="nav-ul" class="d-flex justify-content-md-center">
-                        <li id="nav-link" class="nav-link">Quacks<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Following<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Followers<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Likes<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Lists<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Moments<a href="#"></a></li>
-                        <li><button type="button" class="btn btn-primary edit-profile">Edit Profile</button></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="container">
-                <div class="profile-avatar">
-                    <img src="{{ asset('assets/img/female.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
-                </div>
-            </div>
-            <div class="container">
-                <div class="center d-flex justify-content-between">
-                    <div class="profile-info ">
-                        <ul>
-                            <li class="screen-name"></li>
-                            <li class="username"></li>
-                            <li>Photos and videos
-                                <ul class="photo-video">
+{% block profile_left %}
+    <div class="profile-info ">
+        <ul>
+            <li class="screen-name"></li>
+            <li class="username"></li>
+            <li>Photos and videos
+                <ul class="photo-video">
 
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="quacks">
-                        <h3>Quacks</h3>
-                    </div>
-                    <div class="right-column">
-                        <div class="friend-suggestion">
-                            <h3>Suggestions</h3>
-                            <ul>
-
-                            </ul>
-                        </div>
-                        <div class="trending ">
-                            <h3>Trending</h3>
-                            <ul>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </ul>
+            </li>
+        </ul>
     </div>
+{% endblock %}
 
+{% block profile_center %}
+    <div class="quacks">
+        <h3>Quacks</h3>
+    </div>
+{% endblock %}
+
+{% block profile_right %}
+    {# TODO: Suggestions card #}
+    {{ render(controller('App\\Controller\\CommonController::trends')) }}
 {% endblock %}
