@@ -33,6 +33,14 @@
                 <div class="row">
                     <div class="col-lg-3" style="margin-top: 70px;">
                         {% block profile_left %}
+                            <div class="profile-info">
+                                <li class="screen-name"><strong>{{ user.displayName }}</strong></li>
+                                <li class="username">@{{ user.username }}</li>
+                                <li>Photos and videos
+                                    <ul class="photo-video"></ul>
+                                </li>
+                                </ul>
+                            </div>
                         {% endblock %}
                     </div>
                     <div class="col-lg-6">
