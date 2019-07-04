@@ -9,15 +9,13 @@
 
 {% block center_body %}
     <div class="card">
-        <div class="list-group list-group-flush">
-            <div class="list-group-item list-group-item-primary">
-                {% include 'common/post_maker.html.twig' %}
-            </div>
-            <div class="timeline">
-                {% for post in timeline %}
-                    {% include 'common/post_card.html.twig' with { post: post } only %}
-                {% endfor %}
-            </div>
+        <div class="card-header">
+            {% include 'common/post_maker.html.twig' %}
+        </div>
+        <div class="timeline list-group list-group-flush">
+            {% for post in timeline %}
+                {% include 'common/post_card.html.twig' with { post: post } only %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
