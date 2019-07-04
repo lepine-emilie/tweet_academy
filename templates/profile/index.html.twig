@@ -1,5 +1,7 @@
 {% extends 'profile/_layout.html.twig' %}
 
+{% block title %}{{ user.displayName }} (@{{ user.username }}) | Ducker{% endblock %}
+
 {% block profile_left %}
     <div class="profile-info ">
         <ul>
