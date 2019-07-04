@@ -31,10 +31,8 @@
                     <div class="btn-group">
                         <span class="dropdown-btn nav-item"><img class="dropdown-img-btn" src="{{asset('assets/img/user-placeholder.png') }}"></span>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item">Je suis</button>
-                            <button class="dropdown-item">Une liste</button>
-                            <button class="dropdown-item">Qui se</button>
-                            <button class="dropdown-item">Déroule</button>
+                            <a href="{{ path('settings') }}" class="dropdown-item">Settings</a>
+                            <a href="{{ path('app_logout') }} "class="dropdown-item">Logout</a>
                         </div>
                     </div>
                     <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Quack</span></a>
