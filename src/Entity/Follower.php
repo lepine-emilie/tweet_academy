@@ -57,7 +57,7 @@ class Follower
 
     public function getFollower(): ?User
     {
-        return $this->follower_id;
+        return $this->follower;
     }
 
     public function setFollower(?User $follower): self
