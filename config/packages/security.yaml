@@ -2,12 +2,21 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        db:
+            entity:
+                class: App\Entity\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
+            provider: db
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: home
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator

@@ -38,6 +38,8 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $pwd = hash('ripemd160', $user->getPassword().'vive le projet tweet_academy');
+            $user->setPassword($pwd);
             $manager->persist($user);
             $manager->flush();
             return $this->redirectToRoute('login');
@@ -48,12 +50,11 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/login222", name="login")
      */
     public function log_in()
     {
-        $user = new User();
-        $form = $this->createForm(LoginType::class, $user);
+        $form = $this->createForm(LoginType::class);
         return $this->render('registration/login.html.twig', [
             'formLogin' => $form->createView()
         ]);

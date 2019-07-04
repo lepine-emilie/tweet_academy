@@ -1,3 +1,7 @@
+header {
+    height: 47px;
+    background-color: aqua;
+}
 body {
     background-color: #ffffff;
     display: flex;
