@@ -65,6 +65,11 @@ class User implements UserInterface
     private $followers;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Follower", mappedBy="follower")
+     */
+    private $following;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\ChatConversation", mappedBy="participants")
      */
     private $chatConversations;
@@ -257,6 +262,14 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Follower[]
+     */
+    public function getFollowing(): Collection
+    {
+        return $this->following;
     }
 
     /**

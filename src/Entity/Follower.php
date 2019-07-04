@@ -23,10 +23,10 @@ class Follower
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="following")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $follower_id;
+    private $follower;
 
     /**
      * @ORM\Column(type="datetime")
@@ -55,14 +55,14 @@ class Follower
         return $this;
     }
 
-    public function getFollowerId(): ?User
+    public function getFollower(): ?User
     {
         return $this->follower_id;
     }
 
-    public function setFollowerId(?User $follower_id): self
+    public function setFollower(?User $follower): self
     {
-        $this->follower_id = $follower_id;
+        $this->follower = $follower;
 
         return $this;
     }
