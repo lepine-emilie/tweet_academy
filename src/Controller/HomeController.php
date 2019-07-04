@@ -23,6 +23,9 @@ class HomeController extends AbstractController
     public function index(PostRepository $repository, Request $request,
     UserRepository $userRepository, ObjectManager $em)
     {
+        if ($this->getUser() === null)
+            return $this->redirectToRoute("app_login");
+            
         $posts = $repository->findBy([], ['id' => 'desc', 'submit_time' => 'desc']);
         $post = new Post();
         $form = $this->createForm(UserPostType::class, $post);
