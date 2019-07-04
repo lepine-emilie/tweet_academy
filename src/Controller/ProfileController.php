@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FavoriteRepository;
 use App\Repository\FollowerRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,9 +28,9 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/following", name="profile_following")
      */
-    public function following(string $username, FollowerRepository $repository)
+    public function following(string $username, UserRepository $userRepository, FollowerRepository $repository)
     {
-        $user = $repository->findOneBy(['username' => $username]);
+        $user = $userRepository->findOneBy(['username' => $username]);
 
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
@@ -42,9 +43,24 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/followers", name="profile_followers")
      */
-    public function followers(string $username, FollowerRepository $repository)
+    public function followers(string $username, UserRepository $userRepository, FollowerRepository $repository)
     {
-        $user = $repository->findOneBy(['username' => $username]);
+        $user = $userRepository->findOneBy(['username' => $username]);
+
+        if ($user === null)
+            throw $this->createNotFoundException('The user does not exist');
+
+        return $this->render('profile/followers.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/{username}/likes", name="profile_favorites")
+     */
+    public function favorites(string $username, UserRepository $userRepository, FavoriteRepository $repository)
+    {
+        $user = $userRepository->findOneBy(['username' => $username]);
 
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');

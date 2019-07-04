@@ -13,10 +13,10 @@
             <div class="nav-profile">
                 <div class="container">
                     <ul id="nav-ul" class="d-flex justify-content-md-center">
-                        <li id="nav-link" class="nav-link">Quacks<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Following<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Followers<a href="#"></a></li>
-                        <li id="nav-link" class="nav-link">Likes<a href="#"></a></li>
+                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_view', {username: user.username}) }}">Quacks</a></li>
+                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_following', {username: user.username}) }}">Following</a></li>
+                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_followers', {username: user.username}) }}">Followers</a></li>
+                        <li id="nav-link" class="nav-link"><a href="{{ path('profile_favorites', {username: user.username}) }}">Likes</a></li>
                         <li id="nav-link" class="nav-link">Lists<a href="#"></a></li>
                         <li id="nav-link" class="nav-link">Moments<a href="#"></a></li>
                         <li><button type="button" class="btn btn-primary edit-profile">Edit Profile</button></li>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-lg-3">
                         {% block profile_right %}
-                            zzeze
+                            {{ render(controller('App\\Controller\\CommonController::trends')) }}
                         {% endblock %}
                     </div>
                 </div>

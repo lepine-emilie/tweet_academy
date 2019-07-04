@@ -22,6 +22,7 @@ main{
     transform: translate(-15%,-70%);
     border-radius: 180px;
     border: white 5px solid;
+    background-color: #e6ecf0;
 }
 .profile-avatar{
     height: 0;
