@@ -1,6 +1,6 @@
 {% extends 'profile/_layout.html.twig' %}
 
-{% block title %}People followed by {{ user.displayName }} (@{{ user.username }}) | Ducker{% endblock %}
+{% block title %}Quacks liked by {{ user.displayName }} (@{{ user.username }}) | Ducker{% endblock %}
 
 {% block profile_center %}
     {% if user.following is not empty %}
@@ -14,8 +14,7 @@
                         <div class="card-body">
                             <strong class="card-title">{{ following.user.displayName }}</strong>
                             <strong class="card-title">(@{{ following.user.username }})</strong>
-                            <p class="card-text"><img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64" alt="Card image cap">
-                            </p>
+                            <p class="card-text"><img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64" alt="Card image cap"></p>
                         </div>
                     </div>
                 {% endfor %}
