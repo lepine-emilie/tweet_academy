@@ -1,7 +1,5 @@
 body {
     background-color: #ffffff;
-}
-main {
     display: flex;
     width: 400px;
     margin-right: auto;
