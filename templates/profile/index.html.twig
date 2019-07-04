@@ -5,7 +5,12 @@
 {% block profile_center %}
     <div class="card">
         <div class="card-header">
-            <strong>Quacks</strong>
+            <nav class="nav nav-pills">
+                {% set route = app.request.get('_route') %}
+                <a href="{{ path('profile_view', { username: user.username }) }}" class="nav-link {{ route == 'profile_view' ? 'active' }}">Quacks</a>
+                <a href="#" class="nav-link">Quacks & Replies</a>
+                <a href="#" class="nav-link">Media</a>
+            </nav>
         </div>
         <div class="list-group list-group-flush">
             {% for post in user.posts %}
