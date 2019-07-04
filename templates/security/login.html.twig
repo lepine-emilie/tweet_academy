@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-2.html.twig' %}
 
 {% block title %}Log in{% endblock %}
 
@@ -7,12 +7,12 @@
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please Log in</h1>
+<div class="container form">
+    <h1>Please Log in</h1>
     <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control form-input" placeholder="Username" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" name="password" id="inputPassword" class="form-control form-input" placeholder="Password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -32,5 +32,6 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Log in
     </button>
+</div>
 </form>
 {% endblock %}

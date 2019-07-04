@@ -11,10 +11,11 @@
         {% block stylesheet %}{% endblock %}
     </head>
     <body>
-        <header class="container-fluid">
+        <header>
             <nav class="navbar container">
-                <a href="#">Login</a>
-                <a href="#">Signup</a>
+                <a class="link {{ route == 'signup' ? 'active' }}" href="{{ path('signup')}}">Signup</a>
+                <img src="{{ asset('assets/img/shooting-gallery.png')}}">
+                <a class="link {{ route == 'app_login' ? 'active' }}" href="{{ path('app_login')}}">Login</a>
             </nav>
         </header>
         <main>

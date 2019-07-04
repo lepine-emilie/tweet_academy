@@ -1,9 +1,30 @@
 header {
+    display: flex;
+    padding-top: 3px;
     height: 47px;
-    background-color: aqua;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 body {
     background-color: #ffffff;
+}
+.form {
+    width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.link {
+    height: 35px;
+}
+.navbar img {
+    margin-top: -10px;
+}
+.navbar a:hover {
+    text-decoration: none;
+    border-bottom: solid 2px rgb(29,161,242);
+}
+.navbar a.active {
+    border-bottom: solid 2px rgb(29,161,242);
 }
 h1 {
     color: black;

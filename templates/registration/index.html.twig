@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class"container">
+<div class="container form">
     <h1>Join Ducker today.</h1>
 
     {{ form_start(formSignup) }}
@@ -14,8 +14,9 @@
     {{ form_widget(formSignup.email) }}
     {{ form_widget(formSignup.password) }}
 
-    <button type="submit" class="btn btn-success">Sign up</button>
+    <button type="submit" class="btn btn-lg btn-primary">Sign up</button>
 
     {{ form_end(formSignup) }}
 </div>
+
 {% endblock %}

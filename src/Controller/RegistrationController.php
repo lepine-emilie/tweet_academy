@@ -53,18 +53,8 @@ class RegistrationController extends AbstractController
             );
         }
         return $this->render('registration/index.html.twig', [
-            'formSignup' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/login222", name="login")
-     */
-    public function log_in()
-    {
-        $form = $this->createForm(LoginType::class);
-        return $this->render('registration/login.html.twig', [
-            'formLogin' => $form->createView()
+            'formSignup' => $form->createView(),
+            'route' => 'signup'
         ]);
     }
 }
