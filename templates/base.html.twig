@@ -28,6 +28,7 @@
                         <input class="searchNavBar" type="text" placeholder="Search Ducker">
                         <button class="btn-search-NavBar fas fa-search"></button>
                     </form>
+                    {% if app.user is not empty %}
                     <div class="btn-group">
                         <span class="dropdown-btn nav-item"><img class="dropdown-img-btn" src="{{asset('assets/img/user-placeholder.png') }}"></span>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -36,6 +37,7 @@
                             <a href="{{ path('app_logout') }} "class="dropdown-item">Logout</a>
                         </div>
                     </div>
+                    {% endif %}
                     <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Quack</span></a>
                 </div>
             </nav>
