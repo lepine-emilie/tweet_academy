@@ -74,6 +74,11 @@ class User implements UserInterface
      */
     private $favorites;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Upload", mappedBy="uploader")
+     */
+    private $uploads;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -81,6 +86,7 @@ class User implements UserInterface
         $this->followers = new ArrayCollection();
         $this->chatConversations = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->uploads = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -352,5 +358,36 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return Collection|Upload[]
+     */
+    public function getUploads(): Collection
+    {
+        return $this->uploads;
+    }
+
+    public function addUpload(Upload $upload): self
+    {
+        if (!$this->uploads->contains($upload)) {
+            $this->uploads[] = $upload;
+            $upload->setUploader($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUpload(Upload $upload): self
+    {
+        if ($this->uploads->contains($upload)) {
+            $this->uploads->removeElement($upload);
+            // set the owning side to null (unless already changed)
+            if ($upload->getUploader() === $this) {
+                $upload->setUploader(null);
+            }
+        }
+
+        return $this;
     }
 }
