@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
         {
             $user = new User();
             $user->setUsername($u['u']);
-            $user->setPassword('test');
+            $user->setPassword(hash('ripemd160', 'test' . 'vive le projet tweet_academy'));
             $user->setDisplayName($u['n']);
             $user->setEmail("dev@localhost");
             $manager->persist($user);

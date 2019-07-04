@@ -20,8 +20,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(PostRepository $repository, Request $request,
-    UserRepository $userRepository, ObjectManager $em)
+    public function index(PostRepository $repository, Request $request, UserRepository $userRepository, ObjectManager $em)
     {
         if ($this->getUser() === null)
             return $this->redirectToRoute("app_login");
@@ -36,8 +35,7 @@ class HomeController extends AbstractController
             if (!$form->isValid())
                 return new JsonResponse(["success" => false]);
 
-            $user = $userRepository->findBy(['username' => 'LouisM'])[0];
-            $post->setSender($user);
+            $post->setSender($this->getUser());
             $post->setSubmitTime(new \DateTime());
             $em->persist($post);
             $em->flush();
