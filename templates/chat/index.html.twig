@@ -1,6 +1,6 @@
 {% extends 'layout-2.html.twig' %}
 
-{% block title %}Ducker / Messages{% endblock %}
+{% block title %}Conversations{% endblock %}
 
 {% block left_sidebar %}
     <div class="card">
@@ -28,8 +28,15 @@
             <div class="p-5">
                 <p><strong>Send a message, get a message</strong></p>
                 <p>Direct Messages are private conversations between you and other people on Twitter. Share Tweets, media, and more!</p>
-                <button class="btn btn-primary">Start a conversation</button>
+
+                
+
+                <button id="create" class="btn btn-primary">Start a conversation</button>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/chat.js') }}"></script>
 {% endblock %}
