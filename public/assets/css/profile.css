@@ -4,6 +4,13 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+#banner{
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    height: 350px;
+}
+
 .avatar {
     transform: translate(0%, -50%);
     border-radius: 50%;
@@ -11,6 +18,7 @@ body {
     background-color: #e6ecf0;
     height: 200px;
     width: 200px;
+    cursor: pointer;
 }
 
 .profile-avatar {
