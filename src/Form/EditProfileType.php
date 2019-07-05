@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +16,7 @@ class EditProfileType extends AbstractType
         $builder
             ->add('display_name')
             ->add('email')
-            ->add('birth_date')
+            ->add('birth_date', BirthdayType::class)
             ->add('city')
             ->add('submit', SubmitType::class)
 
