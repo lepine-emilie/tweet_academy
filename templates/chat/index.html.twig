@@ -3,23 +3,30 @@
 {% block title %}Conversations{% endblock %}
 
 {% block left_sidebar %}
-    <div class="card">
-        <div class="card-header">
-            Conversations
-        </div>
+    {% if app.user.chatConversations is not empty %}
+        <div class="card">
+            <div class="card-header">
+                Conversations
+            </div>
 
-        <div class="list-group list-group-flush">
-            {% for i in 1..3 %}
-                <a class="list-group-item list-group-item-action" href="#">
-                    <div class="d-flex w-100 justify-content-between">
-                        <strong class="mb-1">Conversation with Croix V Bâton</strong>
-                    </div>
-                    <p class="mb-1">salut copain :)</p>
-                    <small>Le Canard Jaune, 2 days ago</small>
-                </a>
-            {% endfor %}
+            <div class="list-group list-group-flush">
+                {% for conversation in app.user.chatConversations %}
+                    <a class="list-group-item list-group-item-action" href="#">
+                        <div class="d-flex w-100 justify-content-between">
+                            <strong class="mb-1">{{ conversation.name }}</strong>
+                        </div>
+                        {% if conversation.chatMessages is not empty %}
+                            {% set lastChatMessage = conversation.messages|last %}
+                            <p class="mb-1">{{ lastChatMessage.content }}</p>
+                            <small>{{ lastChatMessage.sender.displayName     }}, 2 days ago</small>
+                        {% else %}
+                            <small>No messages</small>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 
 {% block center_body %}
@@ -38,7 +45,7 @@
 
                 {{ form_end(formChat) }}
 
-                
+
             </div>
         </div>
     </div>
