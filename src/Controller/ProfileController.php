@@ -8,10 +8,12 @@ use App\Repository\FollowerRepository;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Entity\Upload;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\AvatarType;
+use App\Form\BannerType;
+use App\Repository\UploadRepository;
 
 class ProfileController extends AbstractController
 {
