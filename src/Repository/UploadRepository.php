@@ -19,6 +19,22 @@ class UploadRepository extends ServiceEntityRepository
         parent::__construct($registry, Upload::class);
     }
 
+    public function getImages($user)
+    {
+        foreach ($user->getUploads() as $item)
+        {
+            if ($item->getType() === "avatar")
+                $arrayUploads['avatar'] = $item;
+            elseif ($item->getType() === "banner")
+                $arrayUploads['banner'] = $item;
+        }
+        if (!isset($arrayUploads['avatar']))
+            $arrayUploads['avatar'] = null;
+        if (!isset($arrayUploads['banner']))
+            $arrayUploads['banner'] = null;
+        return($arrayUploads);
+    }
+
     // /**
     //  * @return Upload[] Returns an array of Upload objects
     //  */
