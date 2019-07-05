@@ -6,7 +6,7 @@
 
 
 {% block body %}
-    {% if images is not empty and images['banner'] is not empty%}
+    {% if images is not empty and 'banner' in images %}
         <div style="background-image: url('{{ asset('upload/banner/'~ images['banner'].path ) }}')" id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     {% else %}
         <div style="background-image: url('https://www.arrowperformancegroup.com/wp-content/uploads/2016/07/slider_concept10-1920x350.jpg')" id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
