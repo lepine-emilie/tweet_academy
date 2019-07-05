@@ -17,9 +17,9 @@ class EditProfileType extends AbstractType
             ->add('display_name')
             ->add('email')
             ->add('birth_date', BirthdayType::class)
+            ->add('gender', GenderType::class)
             ->add('city')
             ->add('submit', SubmitType::class)
-
         ;
     }
 

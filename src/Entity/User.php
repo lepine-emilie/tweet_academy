@@ -84,6 +84,11 @@ class User implements UserInterface
      */
     private $uploads;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $gender;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -400,6 +405,18 @@ class User implements UserInterface
                 $upload->setUploader(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGender(): ?int
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?int $gender): self
+    {
+        $this->gender = $gender;
 
         return $this;
     }

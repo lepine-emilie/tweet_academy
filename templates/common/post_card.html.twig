@@ -7,7 +7,19 @@
         {% if post.sourcePost is not empty %}
             <span><i class="fas fa-retweet"></i></span>
         {% endif %}
-        <p>{{ post.content }}</p>
+
+        {% if post.sourcePost is empty %}
+            <p>{{ post.content }}</p>
+        {% else %}
+            <div class="card card-body">
+                <div>
+                    <strong>{{ post.sourcePost.sender.displayName }}</strong>
+                    <span>(@{{ post.sourcePost.sender.username }})</span>
+                </div>
+                <span>{{ post.sourcePost.content }}</span>
+            </div>
+        {% endif %}
+
         {% if post.mediaUrl is not empty %}
             <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
         {% endif %}
