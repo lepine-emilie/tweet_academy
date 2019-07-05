@@ -13,7 +13,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class ChatController extends AbstractController
 {
     /**
-     * @Route("/messages", name="messages")
+     * @Route("/conv", name="conv")
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class ChatController extends AbstractController
     }
 
     /**
-     * @Route("/conv", name="conv")
+     * @Route("/messages", name="messages")
      */
     public function chat(Request $request, ObjectManager $manager)
     {
@@ -32,8 +32,6 @@ class ChatController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            $participant = 'test';
-            $manager->addParticipant($participant);
             $manager->persist($chat);
             $manager->flush();
         }
