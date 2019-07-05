@@ -6,79 +6,112 @@
 
 
 {% block body %}
-    <img class="img-fluid" src="https://www.arrowperformancegroup.com/wp-content/uploads/2016/07/slider_concept10-1920x350.jpg" alt="placeholder image">
-    <div class="nav-profile">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="profile-avatar">
-                        <a href="#">
-                        <img src="{{ asset('assets/img/female.png') }}" alt="Profile picture" class="avatar">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="nav">
-                        <a class="nav-link" href="{{ path('profile_view', {username: user.username}) }}">
-                            <div>
-                                <span>Quacks</span>
-                                <div>{{ (user.posts|length)|number_format }}</div>
-                            </div>
-                        </a>
-                        <a class="nav-link" href="{{ path('profile_following', {username: user.username}) }}">
-                            <div>
-                                <span>Following</span>
-                                <div>{{ (user.following|length)|number_format }}</div>
-                            </div>
-                        </a>
-                        <a class="nav-link" href="{{ path('profile_followers', {username: user.username}) }}">
-                            <div>
-                                <span>Followers</span>
-                                <div>{{ (user.followers|length)|number_format }}</div>
-                            </div>
-                        </a>
-                        <a class="nav-link" href="{{ path('profile_favorites', {username: user.username}) }}">
-                            <div>
-                                <span>Likes</span>
-                                <div>{{ (user.favorites|length)|number_format }}</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 profile-nav-btn-group">
-                    {% if app.user is not empty %}
-                        {% if app.user.id == user.id %}
-                            <button class="btn btn-primary profile-nav-btn">Edit Profile</button>
-                        {% else %}
-                            <button class="btn btn-primary profile-nav-btn">Follow</button>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3">
-                {% block profile_left %}
-                    <div class="profile-info">
-                        <div><strong>{{ user.displayName }}</strong></div>
-                        <div><small>@{{ user.username }}</small></div>
-                        {#<div><p>Photos and videos</p>
-                            <ul class="photo-video"></ul>
-                        </div>#}
+            {% if images is not empty %}
+            {% if images['banner'] == null %}
+            <div style="background-image: url('https://www.arrowperformancegroup.com/wp-content/uploads/2016/07/slider_concept10-1920x350.jpg')" id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                {% else %}
+                <div style="background-image: url('{{ asset('upload/banner/'~ images['banner'].path ) }}')" id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    {% endif %}
+                    {% else %}
+                    <div style="background-image: url('https://www.arrowperformancegroup.com/wp-content/uploads/2016/07/slider_concept10-1920x350.jpg')" id="banner" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        {% endif %}
                     </div>
-                {% endblock %}
-            </div>
-            <div class="col-lg-6">
-                {% block profile_center %}
-                {% endblock %}
-            </div>
-            <div class="col-lg-3">
-                {% block profile_right %}
-                    {{ render(controller('App\\Controller\\CommonController::trends')) }}
-                {% endblock %}
+                    <div class="nav-profile">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="profile-avatar">
+                                        {% if images is not empty %}
+                                            {% if images['avatar'] == null %}
+                                                <img src="{{ asset('assets/img/female.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
+                                            {% else %}
+                                                <img src="{{ asset('upload/avatar/'~ images['avatar'].path) }}" height="200" width="200" alt="Profile picture" class="avatar">
+                                            {% endif %}
+                                        {% else %}
+                                            <img src="{{ asset('assets/img/female.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="nav">
+                                        <a class="nav-link" href="{{ path('profile_view', {username: user.username}) }}">
+                                            <div>
+                                                <span>Quacks</span>
+                                                <div>{{ (user.posts|length)|number_format }}</div>
+                                            </div>
+                                        </a>
+                                        <a class="nav-link" href="{{ path('profile_following', {username: user.username}) }}">
+                                            <div>
+                                                <span>Following</span>
+                                                <div>{{ (user.following|length)|number_format }}</div>
+                                            </div>
+                                        </a>
+                                        <a class="nav-link" href="{{ path('profile_followers', {username: user.username}) }}">
+                                            <div>
+                                                <span>Followers</span>
+                                                <div>{{ (user.followers|length)|number_format }}</div>
+                                            </div>
+                                        </a>
+                                        <a class="nav-link" href="{{ path('profile_favorites', {username: user.username}) }}">
+                                            <div>
+                                                <span>Likes</span>
+                                                <div>{{ (user.favorites|length)|number_format }}</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 profile-nav-btn-group">
+                                    {% if app.user is not empty %}
+                                        {% if app.user.id == user.id %}
+                                            <button class="btn btn-primary profile-nav-btn">Edit Profile</button>
+                                        {% else %}
+                                            <button class="btn btn-primary profile-nav-btn">Follow</button>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                {% block profile_left %}
+                                    <div class="profile-info">
+                                        <div><strong>{{ user.displayName }}</strong></div>
+                                        <div><small>@{{ user.username }}</small></div>
+                                        {#<div><p>Photos and videos</p>
+                                            <ul class="photo-video"></ul>
+                                        </div>#}
+                                    </div>
+                                {% endblock %}
+                            </div>
+                            <div class="col-lg-6">
+                                {% block profile_center %}
+                                {% endblock %}
+                            </div>
+                            <div class="col-lg-3">
+                                {% block profile_right %}
+                                    {{ render(controller('App\\Controller\\CommonController::trends')) }}
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    {% if app.user.username ==  user.username %}
+        {{ form_start(formAvatar, {'action': path('uploadAvatar'), 'method': 'POST',
+            attr: {'class': 'd-none formAvatar'}}) }}
+        {{ form_end(formAvatar) }}
+        {{ form_start(formBanner, {'action': path('uploadBanner'), 'method': 'POST',
+            attr: {'class': 'd-none formBanner'}}) }}
+        {{ form_end(formBanner) }}
+    {% endif %}
+{% endblock %}
+{% block javascripts %}
+    <script rel="script" src="{{ asset('assets/js/uploadProfile.js') }}"></script>
 {% endblock %}
