@@ -35,7 +35,8 @@ $(document).on('click', '.post-card__delete-btn', function() {
     $.ajax('/post/' + postId + '/delete', {
         dataType: 'json',
         success: function(data) {
-
+            if (data.success === true)
+                console.log("TODO: transition");
         }
     });
 });

@@ -9,8 +9,8 @@
                 <strong>Likes</strong>
             </div>
             <div class="list-group list-group-flush">
-                {% for following in user.favorites %}
-                    [[Liked post]]
+                {% for favorite in user.favorites %}
+                    {% include 'common/post_card.html.twig' with { post: favorite.post } only %}
                 {% endfor %}
             </div>
         </div>

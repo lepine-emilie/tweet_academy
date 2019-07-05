@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Favorite;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Repository\FavoriteRepository;
 use App\Repository\PostRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Json;
 
 class PostController extends AbstractController
 {
@@ -50,6 +52,40 @@ class PostController extends AbstractController
 
     }
 
-    public function repost() { }
-    public function delete() { }
+    /**
+     * @Route("/post/{id}/repost", name="post_repost_ajax")
+     */
+    public function repost(Post $post, ObjectManager $objectManager)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $newPost = new Post();
+        $newPost->setContent('');
+        $newPost->setSubmitTime(new \DateTime);
+        $newPost->setSourcePost($post);
+        $newPost->setSender($user);
+
+        $user->addPost($newPost);
+        $objectManager->persist($newPost);
+        $objectManager->flush();
+        return new JsonResponse(['success' => true]);
+    }
+
+    /**
+     * @Route("/post/{id}/delete", name="post_delete_ajax")
+     */
+    public function delete(Post $post, ObjectManager $objectManager)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($post->getSender()->getId() === $user->getId())
+        {
+            $objectManager->remove($post);
+            return new JsonResponse(['success' => true]);
+        }
+
+        return new JsonResponse(['success' => false]);
+    }
 }

@@ -4,6 +4,9 @@
             <strong>{{ post.sender.displayName }}</strong>
         </a>
         <span>(@{{ post.sender.username }})</span>
+        {% if post.sourcePost is not empty %}
+            <span><i class="fas fa-retweet"></i></span>
+        {% endif %}
         <p>{{ post.content }}</p>
         {% if post.mediaUrl is not empty %}
             <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
@@ -14,7 +17,7 @@
         <button class="btn btn-secondary btn-sm post-card__repost-btn" title="Copyquack"><i class="fas fa-retweet"></i> 0</button>
         <button class="btn btn-secondary btn-sm post-card__like-btn" title="Like"><i class="far fa-heart"></i> 0</button>
         <button class="btn btn-secondary btn-sm" title="Direct message"><i class="far fa-envelope"></i></button>
-        {% if post.sender.id == app.user.id %}
+        {% if app.user is not empty and post.sender.id == app.user.id %}
             <button class="btn btn-danger btn-sm post-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
         {% endif %}
     </div>

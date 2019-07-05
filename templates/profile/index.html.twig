@@ -3,8 +3,8 @@
 {% block title %}{{ user.displayName }} (@{{ user.username }}) | Ducker{% endblock %}
 
 {% block profile_center %}
-    <div class="card">
-        <div class="card-header">
+    {% if user.posts is not empty %}
+        <div class="mb-2">
             <nav class="nav nav-pills">
                 {% set route = app.request.get('_route') %}
                 <a href="{{ path('profile_view', { username: user.username }) }}" class="nav-link {{ route == 'profile_view' ? 'active' }}">Quacks</a>
@@ -12,10 +12,15 @@
                 <a href="#" class="nav-link">Media</a>
             </nav>
         </div>
-        <div class="list-group list-group-flush">
-            {% for post in user.posts %}
-                {% include 'common/post_card.html.twig' with { post: post } only %}
-            {% endfor %}
+        <div class="card">
+            <div class="list-group list-group-flush">
+                {% for post in user.posts %}
+                    {% include 'common/post_card.html.twig' with { post: post } only %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
+    {% else %}
+        <p><strong>@{{ user.username }}</strong> hasn't Quacked</p>
+        <p>When they do, their Quacks will show up here.</p>
+    {% endif %}
 {% endblock %}
