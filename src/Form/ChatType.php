@@ -9,16 +9,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ChatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class, [
+                'attr' => [
+                    'placeholder' => " Chat title"
+                ]
+            ])
             ->add('conv', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
+                'placeholder' => 'Select your correspondant',
                 'mapped' => false
             ])
         ;
