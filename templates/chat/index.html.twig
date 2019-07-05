@@ -29,9 +29,16 @@
                 <p><strong>Send a message, get a message</strong></p>
                 <p>Direct Messages are private conversations between you and other people on Twitter. Share Tweets, media, and more!</p>
 
-                
+                {{ form_start(formChat) }}
 
-                <button id="create" class="btn btn-primary">Start a conversation</button>
+                {{ form_widget(formChat.name) }}
+                {{ form_widget(formChat.participants) }}
+
+                <button type="submit" id="create" class="btn btn-primary">Start a conversation</button>
+                
+                {{ form_end(formChat) }}
+
+                
             </div>
         </div>
     </div>
