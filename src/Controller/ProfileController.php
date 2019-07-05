@@ -30,7 +30,6 @@ class ProfileController extends AbstractController
         $formAvatar = $this->createForm(AvatarType::class, $upload);
         $formBanner = $this->createForm(BannerType::class, $upload);
         $arrayUploads = $uploadRepository->getImages($user);
-        dump($arrayUploads);
         return $this->render('profile/index.html.twig', [
             'user' => $user,
             'formAvatar' => $formAvatar->createView(),
