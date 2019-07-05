@@ -111,17 +111,19 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
 
-    {% if app.user.username ==  user.username %}
-        {{ form_start(formAvatar, {'action': path('uploadAvatar'), 'method': 'POST',
-            attr: {'class': 'd-none formAvatar'}}) }}
-        {{ form_end(formAvatar) }}
-        {{ form_start(formBanner, {'action': path('uploadBanner'), 'method': 'POST',
-            attr: {'class': 'd-none formBanner'}}) }}
-        {{ form_end(formBanner) }}
+    {#
+    {% if app.user is not empty %}
+        {% if app.user.username ==  user.username %}
+            {{ form_start(formAvatar, {'action': path('uploadAvatar'), 'method': 'POST',
+                attr: {'class': 'd-none formAvatar'}}) }}
+            {{ form_end(formAvatar) }}
+            {{ form_start(formBanner, {'action': path('uploadBanner'), 'method': 'POST',
+                attr: {'class': 'd-none formBanner'}}) }}
+            {{ form_end(formBanner) }}
+        {% endif %}
     {% endif %}
+    #}
 {% endblock %}
 {% block javascripts %}
     <script rel="script" src="{{ asset('assets/js/uploadProfile.js') }}"></script>
