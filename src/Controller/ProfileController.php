@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Form\EditProfileType;
 use App\Repository\FavoriteRepository;
 use App\Repository\FollowerRepository;
 use App\Repository\UserRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
@@ -67,6 +72,27 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/favorites.html.twig', [
             'user' => $user
+        ]);
+    }
+    /**
+     * @Route("/{username}/edit", name="edit_profile")
+     */
+    public function edit_profile(Request $request, ObjectManager $manager)
+
+    {
+        $edit_profile = $this->getUser();
+        $form = $this->createForm(EditProfileType::class, $edit_profile);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()&& $form->isValid()){
+            $manager->persist($edit_profile);
+            $manager->flush();
+
+            return $this->redirectToRoute('profile_view', ["username" => $edit_profile->getUsername()]);
+        }
+        return $this->render('profile/edit.html.twig', [
+            'formEdit' => $form->createView()
         ]);
     }
 }
