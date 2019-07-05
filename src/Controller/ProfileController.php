@@ -115,12 +115,17 @@ class ProfileController extends AbstractController
                               UploadRepository $uploadRepository)
     {
         $user = $userRepository->findOneBy(['username' => $username]);
+        $upload = new Upload();
+        $formAvatar = $this->createForm(AvatarType::class, $upload);
+        $formBanner = $this->createForm(BannerType::class, $upload);
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
         $arrayUploads = $uploadRepository->getImages($this->getUser());
         return $this->render('profile/following.html.twig', [
             'user' => $user,
-            'images' => $arrayUploads
+            'images' => $arrayUploads,
+            'formAvatar' => $formAvatar->createView(),
+            'formBanner' => $formBanner->createView()
         ]);
     }
 
@@ -132,12 +137,17 @@ class ProfileController extends AbstractController
                               UploadRepository $uploadRepository)
     {
         $user = $userRepository->findOneBy(['username' => $username]);
+        $upload = new Upload();
+        $formAvatar = $this->createForm(AvatarType::class, $upload);
+        $formBanner = $this->createForm(BannerType::class, $upload);
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
         $arrayUploads = $uploadRepository->getImages($this->getUser());
         return $this->render('profile/followers.html.twig', [
             'user' => $user,
-            'images' => $arrayUploads
+            'images' => $arrayUploads,
+            'formAvatar' => $formAvatar->createView(),
+            'formBanner' => $formBanner->createView(),
         ]);
     }
 
@@ -149,12 +159,17 @@ class ProfileController extends AbstractController
                               UploadRepository $uploadRepository)
     {
         $user = $userRepository->findOneBy(['username' => $username]);
+        $upload = new Upload();
+        $formAvatar = $this->createForm(AvatarType::class, $upload);
+        $formBanner = $this->createForm(BannerType::class, $upload);
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
         $arrayUploads = $uploadRepository->getImages($this->getUser());
         return $this->render('profile/followers.html.twig', [
             'user' => $user,
-            'images' => $arrayUploads
+            'images' => $arrayUploads,
+            'formAvatar' => $formAvatar->createView(),
+            'formBanner' => $formBanner->createView(),
         ]);
     }
 
