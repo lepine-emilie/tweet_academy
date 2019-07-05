@@ -1,0 +1,11 @@
+{% extends 'layour-3.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+{% endblock %}
+{% form_theme formEdit 'bootstrap_4_layout.html.twig' %}
+{% block center_body %}
+    <h1>Edit Profile</h1>
+    {{ form_start(formEdit) }}
+    {{ form_widget (formEdit) }}
+    {{ form_end(formEdit) }}
+{% endblock %}
