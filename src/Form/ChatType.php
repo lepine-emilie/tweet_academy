@@ -16,9 +16,10 @@ class ChatType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('participants', EntityType::class, [
+            ->add('conv', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'username'
+                'choice_label' => 'username',
+                'mapped' => false
             ])
         ;
     }
