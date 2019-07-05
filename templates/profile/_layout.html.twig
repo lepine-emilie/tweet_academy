@@ -75,6 +75,21 @@
                     <div class="profile-info">
                         <div><strong>{{ user.displayName }}</strong></div>
                         <div><small>@{{ user.username }}</small></div>
+                        {% if user.city is not empty %}
+                            <div><small>{{ user.city }}</small></div>
+                        {% endif %}
+                        {% if user.gender is not empty %}
+                            {% if user.gender  == "0" %}
+                                <div><small>Male</small></div>
+                            {% elseif  user.gender  == "1" %}
+                                <div><small>Female</small></div>
+                            {% elseif  user.gender  == "2" %}
+                                <div><small>Other</small></div>
+                            {% endif %}
+                        {% endif %}
+                        {% if user.birthDate is not empty %}
+                            <div><small>{{ user.birthDate|date("F d Y") }}</small></div>
+                        {% endif %}
                         {#<div><p>Photos and videos</p>
                             <ul class="photo-video"></ul>
                         </div>#}
