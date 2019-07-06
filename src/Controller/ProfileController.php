@@ -192,10 +192,18 @@ class ProfileController extends AbstractController
             $manager->persist($edit_profile);
             $manager->flush();
 
-            return $this->redirectToRoute('profile_view', ["username" => $edit_profile->getUsername()]);
+            return $this->redirectToRoute('profile_view', ["username" =>
+                $edit_profile->getUsername()]);
         }
         return $this->render('profile/edit.html.twig', [
             'formEdit' => $form->createView()
         ]);
+    }
+    /*
+     * @Route("/{username}/follow", name="follow_ajax")
+     */
+    public function follow(){
+            $user = $this->getUser();
+            $to_follow =
     }
 }
