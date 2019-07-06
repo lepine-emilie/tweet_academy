@@ -13,8 +13,10 @@ $('.follow').click( function (e){
     }
     $.ajax({
         url: username+"/follow",
-        success(){
-            $('.button-profile').html("<button class=\"btn btn-primary profile-nav-btn unfollow\">Unfollow</button>\n");
+        success(data){
+            if (data.success === true){
+                $('.button-profile').html("<button class=\"btn btn-primary profile-nav-btn unfollow\">Unfollow</button>\n");
+            }
         }
     })
 });
