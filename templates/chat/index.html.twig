@@ -16,7 +16,12 @@
                 {% for conversation in app.user.chatConversations %}
                     <a class="list-group-item list-group-item-action" href="#">
                         <div class="d-flex w-100 justify-content-between">
-                            <strong class="mb-1">Between {{ conversation.participants[0].username }} <br>and {{ conversation.participants[1].username }}</strong>
+                        {% if conversation.participants[0].username == app.user.username %}
+                            {% set correspondant = conversation.participants[1].username %}
+                        {% else %}
+                            {% set correspondant = conversation.participants[0].username %}
+                        {% endif %}
+                            <strong class="mb-1">With {{ correspondant }}</strong>
                             <strong class="mb-1">{{ conversation.name }}</strong>
                         </div>
                         {% if conversation.chatMessages is not empty %}
