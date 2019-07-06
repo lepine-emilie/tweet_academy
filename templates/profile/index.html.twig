@@ -20,7 +20,22 @@
             </div>
         </div>
     {% else %}
-        <p><strong>@{{ user.username }}</strong> hasn't Quacked</p>
-        <p>When they do, their Quacks will show up here.</p>
+        {% if user.id == app.user.id %}
+            <p><strong>Send your first Tweet</strong></p>
+            <div class="mb-4">
+                <div class="card card-body bg-light">
+                    {{ render(controller('App\\Controller\\CommonController::postMaker')) }}
+                </div>
+            </div>
+        {% else %}
+            <div class="p-2">
+                <p><strong>@{{ user.username }}</strong> hasn't Quacked</p>
+                <p>When they do, their Quacks will show up here.</p>
+            </div>
+        {% endif %}
     {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/post_maker.js') }}"></script>
 {% endblock %}

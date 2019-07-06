@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\UserPostType;
 use App\Repository\FavoriteRepository;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +26,16 @@ class CommonController extends AbstractController
     public function footer()
     {
         return $this->render('common/notafooter.html.twig');
+    }
+
+    public function postMaker()
+    {
+        $post = new Post();
+        $form = $this->createForm(UserPostType::class, $post);
+
+        return $this->render('common/post_maker.html.twig', [
+            'formPost' => $form->createView()
+        ]);
     }
 
     public function postCard(Post $post, PostRepository $postRepository, FavoriteRepository $favoriteRepository)
