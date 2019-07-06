@@ -17,7 +17,7 @@
                 {% for conversation in app.user.chatConversations %}
                     <a class="list-group-item list-group-item-action" href="#">
                         <div class="d-flex w-100 justify-content-between">
-                            <strong class="mb-1">With {{ conversation.participants[0].username }}</strong>
+                            <strong class="mb-1">Between {{ conversation.participants[0].username }} <br>and {{ conversation.participants[1].username }}</strong>
                             <strong class="mb-1">{{ conversation.name }}</strong>
                         </div>
                         {% if conversation.chatMessages is not empty %}
@@ -39,7 +39,7 @@
         <div class="card-body">
             <div class="p-4">
                 <p><strong>Send a message, get a message</strong></p>
-                <p>Direct Messages are private conversations between you and other people on Twitter. Share Tweets, media, and more!</p>
+                <p>Direct Messages are private conversations between you and other people on Ducker. Share Quacks, media, and more !</p>
 
                 {{ form_start(formChat) }}
 
