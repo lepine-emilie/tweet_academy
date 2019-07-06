@@ -14,36 +14,7 @@
 </head>
 <body>
 <header>
-    {# TODO: Separate navbar template #}
-    <nav class="navbar">
-        <div class="container">
-            <div class="d-flex redir-links-nav">
-                {% set route = app.request.get('_route') %}
-                <a class="nav-item nav-link {{ route == 'home' ? 'active' }}" href="{{ path('home')
-                }}"><img src="{{ asset('assets/img/home.png') }}"><span class="p-2">Home</span></a>
-                <a class="nav-item nav-link {{ route == 'notifications' or route == 'mentions' ? 'active' }}" href="{{ path('notifications')}}"><img src="{{ asset('assets/img/alarm.png') }}"><span class="p-2">Notifications</span></a>
-                <a class="nav-item nav-link {{ route == 'messages' ? 'active' }}" href="{{ path('messages') }}"><img src="{{ asset('assets/img/email.png') }}"><span class="p-2">Messages</span></a>
-            </div>
-            <a href="#"><img src="{{ asset('assets/img/shooting-gallery.png')}}"></a>
-            <div class="d-flex justify-content-between right-header">
-                <form class="nav-item nav-link d-flex">
-                    <input class="searchNavBar" type="text" placeholder="Search Ducker">
-                    <button class="btn-search-NavBar fas fa-search"></button>
-                </form>
-                {% if app.user is not empty %}
-                    <div class="btn-group">
-                        <span class="dropdown-btn nav-item"><img class="dropdown-img-btn" src="{{asset('assets/img/user-placeholder.png') }}"></span>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ path('profile_view', { username: app.user.username }) }}" class="dropdown-item">Profile</a>
-                            <a href="{{ path('settings') }}" class="dropdown-item">Settings</a>
-                            <a href="{{ path('app_logout') }} "class="dropdown-item">Logout</a>
-                        </div>
-                    </div>
-                {% endif %}
-                <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Quack</span></a>
-            </div>
-        </div>
-    </nav>
+    {% include 'navbar.html.twig' %}
 </header>
 <main>
     {% block body %}{% endblock %}

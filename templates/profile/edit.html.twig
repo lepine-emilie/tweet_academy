@@ -4,8 +4,12 @@
 {% endblock %}
 {% form_theme formEdit 'bootstrap_4_layout.html.twig' %}
 {% block center_body %}
-    <h1>Edit Profile</h1>
-    {{ form_start(formEdit) }}
-    {{ form_widget (formEdit) }}
-    {{ form_end(formEdit) }}
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Edit Profile</h2>
+        </div>
+        <div class="card-body">
+            {{ form(formEdit) }}
+        </div>
+    </div>
 {% endblock %}
