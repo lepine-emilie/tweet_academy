@@ -5,27 +5,34 @@ header {
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
+
 body {
     background-color: #ffffff;
 }
+
 .form {
     width: 400px;
     margin-right: auto;
     margin-left: auto;
 }
+
 .link {
     height: 35px;
 }
+
 .navbar img {
     margin-top: -10px;
 }
+
 .navbar a:hover {
     text-decoration: none;
-    border-bottom: solid 2px rgb(29,161,242);
+    border-bottom: solid 2px rgb(29, 161, 242);
 }
+
 .navbar a.active {
-    border-bottom: solid 2px rgb(29,161,242);
+    border-bottom: solid 2px rgb(29, 161, 242);
 }
+
 h1 {
     color: black;
     font-size: 27px;
@@ -36,6 +43,7 @@ h1 {
     margin-top: 50px;
     margin-bottom: 24px;
 }
+
 .form-input {
     display: block;
     background-color: #ffffff;
@@ -46,6 +54,7 @@ h1 {
     padding: 12px;
     width: 372px;
 }
+
 .btn {
     background-color: #1da1f2;
     border: 1px solid #1da1f2;

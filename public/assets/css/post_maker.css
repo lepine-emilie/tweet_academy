@@ -2,16 +2,19 @@
     margin-left: 2%;
     width: 100%;
 }
+
 .post_maker textarea {
     resize: none;
     width: 100%;
     font-size: 15px;
     height: 36px;
 }
+
 .post_maker textarea::placeholder {
     font-size: 15px;
     color: #1da1f2;
 }
+
 .quacker-btn-displayer {
     display: none;
 }
