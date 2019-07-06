@@ -63,7 +63,7 @@ class PostController extends AbstractController
         // TODO: delete already reposted
         $existing = $postRepository->findOneBy([
             'sender' => $user,
-            'source_post' => $post
+            'source_post' => $post->getSourcePost() ?? $post
         ]);
 
         if ($existing !== null)
@@ -79,7 +79,7 @@ class PostController extends AbstractController
         $newPost = new Post();
         $newPost->setContent('');
         $newPost->setSubmitTime(new \DateTime);
-        $newPost->setSourcePost($post);
+        $newPost->setSourcePost($post->getSourcePost() ?? $post);
         $newPost->setSender($user);
         $user->addPost($newPost);
         $objectManager->persist($newPost);
