@@ -146,7 +146,7 @@ class ProfileController extends AbstractController
         $formBanner = $this->createForm(BannerType::class, $upload);
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
-        $arrayUploads = $uploadRepository->getImages($this->getUser());
+        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/followers.html.twig', [
             'user' => $user,
             'images' => $arrayUploads,
@@ -168,7 +168,7 @@ class ProfileController extends AbstractController
         $formBanner = $this->createForm(BannerType::class, $upload);
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
-        $arrayUploads = $uploadRepository->getImages($this->getUser());
+        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/favorites.html.twig', [
             'user' => $user,
             'images' => $arrayUploads,
