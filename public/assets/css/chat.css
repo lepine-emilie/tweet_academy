@@ -8,3 +8,9 @@
 .user-inputs {
     margin-top: 20px;
 }
+.date, .author {
+    font-weight: bold;
+}
+.conversations {
+    margin-bottom: 30px;
+}

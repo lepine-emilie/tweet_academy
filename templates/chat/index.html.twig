@@ -8,11 +8,10 @@
 
 {% block left_sidebar %}
     {% if app.user.chatConversations is not empty %}
-        <div class="card">
+        <div class="card conversations">
             <div class="card-header">
                 Conversations
             </div>
-
             <div class="list-group list-group-flush">
                 {% for conversation in app.user.chatConversations %}
                     <a class="list-group-item list-group-item-action" href="#">
