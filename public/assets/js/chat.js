@@ -1,2 +1,2 @@
-$('#create').click(function () {
+$('#send').click(function () {
 });
