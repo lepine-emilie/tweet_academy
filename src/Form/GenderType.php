@@ -21,6 +21,7 @@ class GenderType extends AbstractType
     {
         $resolver->setDefaults([
             'choices' => [
+                '' => null,
                 'Male' => self::GENDER_MALE,
                 'Female' => self::GENDER_FEMALE,
                 'Other' => self::GENDER_OTHER,

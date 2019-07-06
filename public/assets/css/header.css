@@ -2,61 +2,73 @@ header {
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
+
 a {
     outline: none;
 }
+
 header .navbar {
     padding: 0;
 }
+
 .navbar ul, .navbar li {
     list-style: none;
     padding: 0;
 }
+
 .searchNavBar {
     border: none;
 }
+
 .btn-search-NavBar {
     border: none;
     background-color: rgba(0, 0, 0, 0);
 }
+
 .btn-search-NavBar:focus {
     outline-style: none;
 }
+
 .navbar form {
     height: 32px;
     border-radius: 100px;
     border: 2px solid rgba(0, 0, 0, 0.1);
     transition: 0.5s;
 }
+
 .navbar form:focus-within {
     transition: 0.5s;
     border: 2px solid #1da1f2;
 }
+
 .navbar form input::placeholder {
     font-size: 15px;
 }
+
 .btn-tweet {
     height: 34px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 .redir-links-nav {
     padding-top: 3px;
     height: 46px;
 }
-.redir-links-nav a:hover {
-    border-bottom: solid 2px rgb(29,161,242);
-}
+
 .redir-links-nav a.active {
-    border-bottom: solid 2px rgb(29,161,242);
+    border-bottom: solid 2px rgb(29, 161, 242);
 }
+
 .right-header {
     width: 400px;
 }
+
 .dropdown-btn {
     cursor: pointer;
 }
+
 .dropdown-menu {
     display: none;
     margin-top: 10px;

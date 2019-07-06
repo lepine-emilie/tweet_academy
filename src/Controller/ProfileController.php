@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\EditProfileType;
 use App\Repository\FavoriteRepository;
 use App\Repository\FollowerRepository;
@@ -20,25 +21,22 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}", name="profile_view")
      */
-    public function view(string $username, UserRepository $repository,
+    public function view(User $user, UserRepository $repository,
                          UploadRepository $uploadRepository)
     {
-        if ($this->getUser() && $this->getUser()->getUsername() == $username)
-            $user = $this->getUser();
-        else
-            $user = $repository->findOneBy(['username' => $username]);
+        if ($user === $this->getUser())
+        {
+            $upload = new Upload();
+            $formAvatar = $this->createForm(AvatarType::class, $upload);
+            $formBanner = $this->createForm(BannerType::class, $upload);
+        }
 
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
-
-        $upload = new Upload();
-        $formAvatar = $this->createForm(AvatarType::class, $upload);
-        $formBanner = $this->createForm(BannerType::class, $upload);
         $arrayUploads = $uploadRepository->getImages($user);
+
         return $this->render('profile/index.html.twig', [
             'user' => $user,
-            'formAvatar' => $formAvatar->createView(),
-            'formBanner' => $formBanner->createView(),
+            'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
+            'formBanner' => isset($formBanner) ? $formBanner->createView() : null,
             'images' => $arrayUploads
         ]);
     }
@@ -114,66 +112,69 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/following", name="profile_following")
      */
-    public function following(string $username, UserRepository $userRepository,
+    public function following(User $user, UserRepository $userRepository,
                               FollowerRepository $repository,
                               UploadRepository $uploadRepository)
     {
-        $user = $userRepository->findOneBy(['username' => $username]);
-        $upload = new Upload();
-        $formAvatar = $this->createForm(AvatarType::class, $upload);
-        $formBanner = $this->createForm(BannerType::class, $upload);
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
-        $arrayUploads = $uploadRepository->getImages($this->getUser());
+        if ($user === $this->getUser())
+        {
+            $upload = new Upload();
+            $formAvatar = $this->createForm(AvatarType::class, $upload);
+            $formBanner = $this->createForm(BannerType::class, $upload);
+        }
+
+        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/following.html.twig', [
             'user' => $user,
             'images' => $arrayUploads,
-            'formAvatar' => $formAvatar->createView(),
-            'formBanner' => $formBanner->createView()
+            'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
+            'formBanner' => isset($formBanner) ? $formBanner->createView() : null
         ]);
     }
 
     /**
      * @Route("/{username}/followers", name="profile_followers")
      */
-    public function followers(string $username, UserRepository $userRepository,
+    public function followers(User $user, UserRepository $userRepository,
                               FollowerRepository $repository,
                               UploadRepository $uploadRepository)
     {
-        $user = $userRepository->findOneBy(['username' => $username]);
-        $upload = new Upload();
-        $formAvatar = $this->createForm(AvatarType::class, $upload);
-        $formBanner = $this->createForm(BannerType::class, $upload);
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
-        $arrayUploads = $uploadRepository->getImages($this->getUser());
+        if ($user === $this->getUser())
+        {
+            $upload = new Upload();
+            $formAvatar = $this->createForm(AvatarType::class, $upload);
+            $formBanner = $this->createForm(BannerType::class, $upload);
+        }
+
+        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/followers.html.twig', [
             'user' => $user,
             'images' => $arrayUploads,
-            'formAvatar' => $formAvatar->createView(),
-            'formBanner' => $formBanner->createView(),
+            'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
+            'formBanner' => isset($formBanner) ? $formBanner->createView() : null
         ]);
     }
 
     /**
      * @Route("/{username}/likes", name="profile_favorites")
      */
-    public function favorites(string $username, UserRepository $userRepository,
+    public function favorites(User $user, UserRepository $userRepository,
                               FavoriteRepository $repository,
                               UploadRepository $uploadRepository)
     {
-        $user = $userRepository->findOneBy(['username' => $username]);
-        $upload = new Upload();
-        $formAvatar = $this->createForm(AvatarType::class, $upload);
-        $formBanner = $this->createForm(BannerType::class, $upload);
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
-        $arrayUploads = $uploadRepository->getImages($this->getUser());
+        if ($user === $this->getUser())
+        {
+            $upload = new Upload();
+            $formAvatar = $this->createForm(AvatarType::class, $upload);
+            $formBanner = $this->createForm(BannerType::class, $upload);
+        }
+
+        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/favorites.html.twig', [
             'user' => $user,
             'images' => $arrayUploads,
-            'formAvatar' => $formAvatar->createView(),
-            'formBanner' => $formBanner->createView(),
+            'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
+            'formBanner' => isset($formBanner) ? $formBanner->createView() : null
         ]);
     }
 
