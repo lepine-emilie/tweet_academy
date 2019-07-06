@@ -23,9 +23,14 @@ class ProfileController extends AbstractController
     public function view(string $username, UserRepository $repository,
                          UploadRepository $uploadRepository)
     {
-        $user = $repository->findOneBy(['username' => $username]);
+        if ($this->getUser() && $this->getUser()->getUsername() == $username)
+            $user = $this->getUser();
+        else
+            $user = $repository->findOneBy(['username' => $username]);
+
         if ($user === null)
             throw $this->createNotFoundException('The user does not exist');
+
         $upload = new Upload();
         $formAvatar = $this->createForm(AvatarType::class, $upload);
         $formBanner = $this->createForm(BannerType::class, $upload);
@@ -66,7 +71,7 @@ class ProfileController extends AbstractController
             $em->persist($upload);
             $em->flush();
         }
-        return $this->redirectToRoute('profile_view', [
+        return $this->redirectToRoute("profile_view", [
             "username" => $user->getUsername()
         ]);
     }

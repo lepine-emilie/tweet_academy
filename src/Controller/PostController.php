@@ -69,7 +69,12 @@ class PostController extends AbstractController
         $user->addPost($newPost);
         $objectManager->persist($newPost);
         $objectManager->flush();
-        return new JsonResponse(['success' => true]);
+
+        $template = $this->renderView('common/post_card.html.twig', [
+            'post' => $newPost
+        ]);
+
+        return new JsonResponse(['success' => true, 'htmlTemplate' => $template]);
     }
 
     /**
