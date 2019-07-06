@@ -21,9 +21,7 @@
 {% endblock %}
 
 {% block right_sidebar %}
-    <div class="card">
-        <div class="card-body">[Who to follow]</div>
-    </div>
+    {{ render(controller('App\\Controller\\CommonController::suggestions')) }}
     {{ render(controller('App\\Controller\\CommonController::footer')) }}
 {% endblock %}
 

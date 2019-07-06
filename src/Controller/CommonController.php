@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\UserPostType;
 use App\Repository\FavoriteRepository;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,10 +15,7 @@ class CommonController extends AbstractController
 {
     public function miniProfile()
     {
-        return $this->render('common/mini_profile.html.twig', [
-            'post_count' => 69,
-            'followers_count' => 1337
-        ]);
+        return $this->render('common/mini_profile.html.twig');
     }
     public function trends()
     {
@@ -38,20 +37,21 @@ class CommonController extends AbstractController
         ]);
     }
 
-    public function postCard(Post $post, PostRepository $postRepository, FavoriteRepository $favoriteRepository)
+    public function suggestions(UserRepository $userRepository)
     {
-        $repost_count = $postRepository->count([
-            'source_post' => $post
-        ]);
+        $suggestions = [];
 
-        $favorite_count = $favoriteRepository->count([
-            'post' => $post
-        ]);
+        foreach($userRepository->findAll() as $u)
+        {
+            if (count($suggestions) >= 3)
+                break;
 
-        return $this->render('common/post_card_impl.html.twig', [
-            'post' => $post,
-            'repost_count' => $repost_count,
-            'favorite_count' => $favorite_count
+            if ($u->getId() != $this->getUser()->getId() && $u->getFollowers()->isEmpty())
+                array_push($suggestions, $u);
+        }
+
+        return $this->render('common/suggestions.html.twig', [
+            'suggestions' => $suggestions
         ]);
     }
 }

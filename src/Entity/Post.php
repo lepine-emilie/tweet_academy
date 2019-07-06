@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,12 +25,12 @@ class Post
     private $sender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="replies")
      */
     private $parent_post;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="reposts")
      */
     private $source_post;
 
@@ -51,6 +53,28 @@ class Post
      * @ORM\Column(type="datetime")
      */
     private $submit_time;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="post")
+     */
+    private $favorites;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="parent_post")
+     */
+    private $replies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="source_post")
+     */
+    private $reposts;
+
+    public function __construct()
+    {
+        $this->favorites = new ArrayCollection();
+        $this->replies = new ArrayCollection();
+        $this->reposts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +161,100 @@ class Post
     public function setSubmitTime(\DateTimeInterface $submit_time): self
     {
         $this->submit_time = $submit_time;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+            // set the owning side to null (unless already changed)
+            if ($favorite->getPost() === $this) {
+                $favorite->setPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getReplies(): Collection
+    {
+        return $this->replies;
+    }
+
+    public function addReply(Post $post): self
+    {
+        if (!$this->replies->contains($post)) {
+            $this->replies[] = $post;
+            $post->setParentPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(Post $post): self
+    {
+        if ($this->replies->contains($post)) {
+            $this->replies->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getParentPost() === $this) {
+                $post->setParentPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getReposts(): Collection
+    {
+        return $this->reposts;
+    }
+
+    public function addRepost(Post $post): self
+    {
+        if (!$this->reposts->contains($post)) {
+            $this->reposts[] = $post;
+            $post->setSourcePost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepost(Post $post): self
+    {
+        if ($this->reposts->contains($post)) {
+            $this->reposts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getSourcePost() === $this) {
+                $post->setSourcePost(null);
+            }
+        }
 
         return $this;
     }
