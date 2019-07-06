@@ -24,12 +24,15 @@ class ProfileController extends AbstractController
                          UploadRepository $uploadRepository)
     {
         if ($this->getUser() && $this->getUser()->getUsername() == $username)
+        {
             $user = $this->getUser();
+        }
         else
+        {
             $user = $repository->findOneBy(['username' => $username]);
-
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
+            if ($user === null)
+                throw $this->createNotFoundException('The user does not exist');
+        }
 
         $upload = new Upload();
         $formAvatar = $this->createForm(AvatarType::class, $upload);
@@ -118,12 +121,20 @@ class ProfileController extends AbstractController
                               FollowerRepository $repository,
                               UploadRepository $uploadRepository)
     {
-        $user = $userRepository->findOneBy(['username' => $username]);
+        if ($this->getUser() && $this->getUser()->getUsername() == $username)
+        {
+            $user = $this->getUser();
+        }
+        else
+        {
+            $user = $repository->findOneBy(['username' => $username]);
+            if ($user === null)
+                throw $this->createNotFoundException('The user does not exist');
+        }
+
         $upload = new Upload();
         $formAvatar = $this->createForm(AvatarType::class, $upload);
         $formBanner = $this->createForm(BannerType::class, $upload);
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
         $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/following.html.twig', [
             'user' => $user,
@@ -140,12 +151,20 @@ class ProfileController extends AbstractController
                               FollowerRepository $repository,
                               UploadRepository $uploadRepository)
     {
-        $user = $userRepository->findOneBy(['username' => $username]);
+        if ($this->getUser() && $this->getUser()->getUsername() == $username)
+        {
+            $user = $this->getUser();
+        }
+        else
+        {
+            $user = $repository->findOneBy(['username' => $username]);
+            if ($user === null)
+                throw $this->createNotFoundException('The user does not exist');
+        }
+
         $upload = new Upload();
         $formAvatar = $this->createForm(AvatarType::class, $upload);
         $formBanner = $this->createForm(BannerType::class, $upload);
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
         $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/followers.html.twig', [
             'user' => $user,
@@ -162,12 +181,20 @@ class ProfileController extends AbstractController
                               FavoriteRepository $repository,
                               UploadRepository $uploadRepository)
     {
-        $user = $userRepository->findOneBy(['username' => $username]);
+        if ($this->getUser() && $this->getUser()->getUsername() == $username)
+        {
+            $user = $this->getUser();
+        }
+        else
+        {
+            $user = $repository->findOneBy(['username' => $username]);
+            if ($user === null)
+                throw $this->createNotFoundException('The user does not exist');
+        }
+
         $upload = new Upload();
         $formAvatar = $this->createForm(AvatarType::class, $upload);
         $formBanner = $this->createForm(BannerType::class, $upload);
-        if ($user === null)
-            throw $this->createNotFoundException('The user does not exist');
         $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/favorites.html.twig', [
             'user' => $user,
