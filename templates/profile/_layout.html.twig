@@ -62,11 +62,20 @@
                     {% if app.user is not empty %}
                         {% if app.user.id == user.id %}
                             <a href="{{ path('edit_profile', {username: user.username}) }}" class="btn btn-primary profile-nav-btn">Edit Profile</a>
-                        {% elseif %}
-                            <button class="btn btn-primary profile-nav-btn follow">Follow</button>
                         {% else %}
-                            <button class="btn btn-primary profile-nav-btn unfollow">Unfollow</button>
-                        {% endif %}
+                        {% set already_following = 0 %}
+                            {% for f in app.user.following %}
+                                 {% if f.user.id == user.id %}
+                                 {% set already_following = 1 %}
+                                 {% endif %}
+                            {% endfor %}
+
+                            {% if already_following == 0 %}
+                                <button class="btn btn-primary profile-nav-btn follow">Follow</button>
+                            {% else %}
+                                <button class="btn btn-primary profile-nav-btn unfollow">Unfollow</button>
+                            {% endif %}
+                            {% endif %}
                     {% endif %}
                 </div>
             </div>
