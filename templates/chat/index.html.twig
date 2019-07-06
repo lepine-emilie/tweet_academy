@@ -27,7 +27,7 @@
                         {% if conversation.chatMessages is not empty %}
                             {% set lastChatMessage = conversation.chatMessages|last %}
                             <p class="mb-1">{{ lastChatMessage.content }}</p>
-                            <small>{{ lastChatMessage.sender.displayName }}, 2 days ago</small>
+                            <small>{{ lastChatMessage.sender.displayName }}, {{ lastChatMessage.submitTime|date}}</small>
                         {% else %}
                             <small>No messages</small>
                         {% endif %}
