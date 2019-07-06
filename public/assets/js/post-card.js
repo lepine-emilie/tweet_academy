@@ -23,7 +23,15 @@ $(document).on('click', '.post-card__repost-btn', function() {
     $.ajax('/post/' + postId + '/repost', {
         dataType: 'json',
         success: function(data) {
-
+            if (data.success === false)
+                alert("Broken duck");
+            else
+            {
+                $('.timeline').prepend(data.htmlTemplate);
+                $($('.card-timeline')[0]).hide();
+                $($('.card-timeline')[0]).css('opacity', '0');
+                animate_timeline();
+            }
         }
     });
 });
@@ -36,7 +44,10 @@ $(document).on('click', '.post-card__delete-btn', function() {
         dataType: 'json',
         success: function(data) {
             if (data.success === true)
-                console.log("TODO: transition");
+            {
+                $postCard.fadeTo("fast", 0);
+                $postCard.slideUp("fast");
+            }
         }
     });
 });
