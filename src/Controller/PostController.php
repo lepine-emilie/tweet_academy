@@ -55,17 +55,32 @@ class PostController extends AbstractController
     /**
      * @Route("/post/{id}/repost", name="post_repost_ajax")
      */
-    public function repost(Post $post, ObjectManager $objectManager)
+    public function repost(Post $post, PostRepository $postRepository, ObjectManager $objectManager)
     {
         /** @var User $user */
         $user = $this->getUser();
+
+        // TODO: delete already reposted
+        $existing = $postRepository->findOneBy([
+            'sender' => $user,
+            'source_post' => $post
+        ]);
+
+        if ($existing !== null)
+        {
+            $objectManager->remove($existing);
+            $objectManager->flush();
+            return new JsonResponse([
+                'success' => true,
+                'reposted' => false
+            ]);
+        }
 
         $newPost = new Post();
         $newPost->setContent('');
         $newPost->setSubmitTime(new \DateTime);
         $newPost->setSourcePost($post);
         $newPost->setSender($user);
-
         $user->addPost($newPost);
         $objectManager->persist($newPost);
         $objectManager->flush();
@@ -74,7 +89,11 @@ class PostController extends AbstractController
             'post' => $newPost
         ]);
 
-        return new JsonResponse(['success' => true, 'htmlTemplate' => $template]);
+        return new JsonResponse([
+            'success' => true,
+            'reposted' => true,
+            'htmlTemplate' => $template
+        ]);
     }
 
     /**
@@ -88,6 +107,7 @@ class PostController extends AbstractController
         if ($post->getSender()->getId() === $user->getId())
         {
             $objectManager->remove($post);
+            $objectManager->flush();
             return new JsonResponse(['success' => true]);
         }
 
