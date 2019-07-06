@@ -13,9 +13,14 @@
                     {% for follower in user.followers %}
                         <div class="card">
                             <div class="card-body">
-                                <strong class="card-title">{{ follower.follower.displayName }}</strong>
-                                <strong class="card-title">(@{{ follower.follower.username }})</strong>
-                                <p class="card-text"><img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64" alt="Card image cap">
+                                <p class="card-title">
+                                    <strong>{{ follower.follower.displayName }}</strong>
+                                    <span> (@{{ follower.follower.username }})</span>
+                                </p>
+                                <p class="card-text">
+                                    <a href="{{ path('profile_view', { username: follower.follower.username }) }}">
+                                        <img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
+                                    </a>
                                 </p>
                             </div>
                         </div>

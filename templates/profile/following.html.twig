@@ -14,7 +14,10 @@
                         <div class="card-body">
                             <strong class="card-title">{{ following.user.displayName }}</strong>
                             <strong class="card-title">(@{{ following.user.username }})</strong>
-                            <p class="card-text"><img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64" alt="Card image cap">
+                            <p class="card-text">
+                                <a href="{{ path('profile_view', { username: following.user.username }) }}">
+                                    <img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
+                                </a>
                             </p>
                         </div>
                     </div>
