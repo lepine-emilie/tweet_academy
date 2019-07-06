@@ -1,0 +1,36 @@
+<div class="list-group-item list-group-item-action card-timeline post-card" data-post-id="{{ post.id }}">
+    <div>
+        <a href="{{ path('profile_view', { username: post.sender.username }) }}">
+            <strong>{{ post.sender.displayName }}</strong>
+        </a>
+        <span>(@{{ post.sender.username }})</span>
+        {% if post.sourcePost is not empty %}
+            <span><i class="fas fa-retweet"></i></span>
+        {% endif %}
+
+        {% if post.sourcePost is empty %}
+            <p>{{ post.content }}</p>
+        {% else %}
+            <div class="card card-body">
+                <div>
+                    <strong>{{ post.sourcePost.sender.displayName }}</strong>
+                    <span>(@{{ post.sourcePost.sender.username }})</span>
+                </div>
+                <span>{{ post.sourcePost.content }}</span>
+            </div>
+        {% endif %}
+
+        {% if post.mediaUrl is not empty %}
+            <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
+        {% endif %}
+    </div>
+    <div class="my-3">
+        <button class="btn btn-secondary btn-sm" title="Comment"><i class="far fa-comment"></i> 0</button>
+        <button class="btn btn-secondary btn-sm post-card__repost-btn" title="Copyquack"><i class="fas fa-retweet"></i> {{ repost_count }}</button>
+        <button class="btn btn-secondary btn-sm post-card__like-btn" title="Like"><i class="far fa-heart"></i> {{ favorite_count }}</button>
+        <button class="btn btn-secondary btn-sm" title="Direct message"><i class="far fa-envelope"></i></button>
+        {% if app.user is not empty and post.sender.id == app.user.id %}
+            <button class="btn btn-danger btn-sm post-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
+        {% endif %}
+    </div>
+</div>
