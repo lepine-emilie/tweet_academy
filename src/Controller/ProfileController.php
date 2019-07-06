@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Follower;
 use App\Entity\User;
 use App\Form\EditProfileType;
 use App\Repository\FavoriteRepository;
@@ -10,6 +11,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Upload;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\AvatarType;
@@ -200,11 +202,40 @@ class ProfileController extends AbstractController
             'formEdit' => $form->createView()
         ]);
     }
-    /*
+    /**
      * @Route("/{username}/follow", name="follow_ajax")
      */
-//    public function follow(){
-//            $user = $this->getUser();
-//            $to_follow =
-//    }
+    public function follow(User $otherUser, ObjectManager $manager){
+        $user = $this->getUser();
+        $otherUser->getId();
+
+        $follower = new Follower();
+        $follower->setUser($otherUser);
+        $follower->setFollower($user);
+        $follower->setFollowDate(new \DateTime());
+
+        $otherUser->addFollower($follower);
+
+        $manager->persist($follower);
+        $manager->flush();
+
+        return new JsonResponse([]);
+    }
+
+    /**
+     * @Route("/{username}/unfollow", name="unfollow_ajax")
+     */
+    public function unfollow(User $otherUser, ObjectManager $manager, FollowerRepository $followerRepository){
+        $user = $this->getUser();
+        $otherUser->getId();
+
+        $unfollower = $followerRepository->findOneBy(['follower' => $user, 'user'=> $otherUser]);
+
+
+
+        $manager->remove($unfollower);
+        $manager->flush();
+
+        return new JsonResponse([]);
+    }
 }
