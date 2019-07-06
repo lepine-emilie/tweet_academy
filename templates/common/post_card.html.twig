@@ -1,29 +1,27 @@
 <div class="list-group-item list-group-item-action card-timeline post-card" data-post-id="{{ post.id }}">
     <div>
+        {# == Displays when the post has been reposted #}
         {% if post.sourcePost is not empty %}
-            <span><i class="fas fa-retweet"></i>
+            <div><i class="fas fa-retweet"></i>
                 <span>{{ post.sender.displayName }} Copyquacked</span>
-            </span>
-        {% endif %}
-
-        {% if post.sourcePost is empty %}
-            <a href="{{ path('profile_view', { username: post.sender.username }) }}">
-                <strong>{{ post.sender.displayName }}</strong>
-            </a>
-            <span>(@{{ post.sender.username }})</span>
-            <p>{{ post.content }}</p>
-        {% else %}
-            <div>
-                <a href="{{ path('profile_view', { username: post.sourcePost.sender.username }) }}">
-                    <strong>{{ post.sourcePost.sender.displayName }}</strong>
-                </a>
-                <span>(@{{ post.sourcePost.sender.username }})</span>
             </div>
-            <span>{{ post.sourcePost.content }}</span>
         {% endif %}
 
-        {% if post.mediaUrl is not empty %}
-            <img class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/'~ post.mediaUrl) }}">
+        {# This helps prevent duplicating code #}
+        {% set realPost = post.sourcePost ?? post %}
+
+        {# == Displays the post content #}
+        <a href="{{ path('profile_view', { username: realPost.sender.username }) }}">
+            <strong>{{ realPost.sender.displayName }}</strong>
+        </a>
+        <span>(@{{ realPost.sender.username }})</span>
+        <p>{{ realPost.content }}</p>
+
+        {# Displays embedded content if any #}
+        {# TODO: Add video/audio support #}
+
+        {% if realPost.mediaUrl is not empty %}
+            <img class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
         {% endif %}
     </div>
     <div class="my-3">
