@@ -202,8 +202,8 @@ class ProfileController extends AbstractController
     /*
      * @Route("/{username}/follow", name="follow_ajax")
      */
-    public function follow(){
-            $user = $this->getUser();
-            $to_follow =
-    }
+//    public function follow(){
+//            $user = $this->getUser();
+//            $to_follow =
+//    }
 }
