@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset("assets/favicon-32x32.png") }}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("assets/favicon-16x16.png") }}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
-        {% block stylesheet %}{% endblock %}
-    </head>
-    <body>
-        <header>
-            {# TODO: Separate navbar template #}
-            <nav class="navbar container">
-                <div class="d-flex redir-links-nav">
-                    {% set route = app.request.get('_route') %}
-                    <a class="nav-item nav-link {{ route == 'home' ? 'active' }}" href="{{ path('home')
-                    }}"><img src="{{ asset('assets/img/home.png') }}"><span class="p-2">Home</span></a>
-                    <a class="nav-item nav-link {{ route == 'notifications' or route == 'mentions' ? 'active' }}" href="{{ path('notifications')}}"><img src="{{ asset('assets/img/alarm.png') }}"><span class="p-2">Notifications</span></a>
-                    <a class="nav-item nav-link {{ route == 'messages' ? 'active' }}" href="{{ path('messages') }}"><img src="{{ asset('assets/img/email.png') }}"><span class="p-2">Messages</span></a>
-                </div>
-                <a href="#"><img src="{{ asset('assets/img/shooting-gallery.png')}}"></a>
-                <div class="d-flex justify-content-between right-header">
-                    <form class="nav-item nav-link d-flex">
-                        <input class="searchNavBar" type="text" placeholder="Search Ducker">
-                        <button class="btn-search-NavBar fas fa-search"></button>
-                    </form>
-                    {% if app.user is not empty %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset("assets/favicon-32x32.png") }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("assets/favicon-16x16.png") }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
+    {% block stylesheet %}{% endblock %}
+</head>
+<body>
+<header>
+    {# TODO: Separate navbar template #}
+    <nav class="navbar">
+        <div class="container">
+            <div class="d-flex redir-links-nav">
+                {% set route = app.request.get('_route') %}
+                <a class="nav-item nav-link {{ route == 'home' ? 'active' }}" href="{{ path('home')
+                }}"><img src="{{ asset('assets/img/home.png') }}"><span class="p-2">Home</span></a>
+                <a class="nav-item nav-link {{ route == 'notifications' or route == 'mentions' ? 'active' }}" href="{{ path('notifications')}}"><img src="{{ asset('assets/img/alarm.png') }}"><span class="p-2">Notifications</span></a>
+                <a class="nav-item nav-link {{ route == 'messages' ? 'active' }}" href="{{ path('messages') }}"><img src="{{ asset('assets/img/email.png') }}"><span class="p-2">Messages</span></a>
+            </div>
+            <a href="#"><img src="{{ asset('assets/img/shooting-gallery.png')}}"></a>
+            <div class="d-flex justify-content-between right-header">
+                <form class="nav-item nav-link d-flex">
+                    <input class="searchNavBar" type="text" placeholder="Search Ducker">
+                    <button class="btn-search-NavBar fas fa-search"></button>
+                </form>
+                {% if app.user is not empty %}
                     <div class="btn-group">
                         <span class="dropdown-btn nav-item"><img class="dropdown-img-btn" src="{{asset('assets/img/user-placeholder.png') }}"></span>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -37,17 +38,18 @@
                             <a href="{{ path('app_logout') }} "class="dropdown-item">Logout</a>
                         </div>
                     </div>
-                    {% endif %}
-                    <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Quack</span></a>
-                </div>
-            </nav>
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="{{ asset('assets/js/header.js') }}"></script>
-        <script src="{{ asset('assets/js/post-card.js') }}"></script>
-        {% block javascripts %}{% endblock %}
-    </body>
+                {% endif %}
+                <a class="nav-item btn btn-primary btn-tweet" href="#"><span class="text-btn">Quack</span></a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    {% block body %}{% endblock %}
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ asset('assets/js/header.js') }}"></script>
+<script src="{{ asset('assets/js/post-card.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
