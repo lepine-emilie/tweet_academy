@@ -10,6 +10,7 @@ $(document).click(function (e) {
         $('#user_post_content').animate({height: 36}, "fast");
         $('.post_maker-wrapper').animate({height: 52}, "fast");
         $('.quacker-btn-displayer').fadeTo("fast", 0);
+
     }
 });
 $('.submit-post_maker').click(function () {
@@ -21,8 +22,10 @@ $('.submit-post_maker').click(function () {
     $.ajax({
         type: 'POST',
         url: '/',
-        data: $('.post_maker form').serialize(),
+        data: new FormData(document.getElementById("formPostMaker")),
         dataType: 'json',
+        processData: false,
+        contentType: false,
         success: function (data) {
             if (data.success === false)
                 alert("Broken duck");
@@ -42,3 +45,6 @@ function animate_timeline()
     $($('.card-timeline')[0]).slideDown("fast");
     $($('.card-timeline')[0]).fadeTo("fast", 1);
 }
+$('.add-file-post_maker').click(function () {
+    $('.inputUpload').trigger('click');
+});

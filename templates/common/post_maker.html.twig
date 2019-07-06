@@ -5,14 +5,20 @@
 <div class="post_maker-wrapper">
     <div class="d-flex post_maker">
         <span><img src="{{asset('assets/img/user-placeholder.png') }}"></span>
-        {{ form_start(formPost) }}
+        {{ form_start(formPost, {attr: {'id': 'formPostMaker'}}) }}
         {{ form_row(formPost.content) }}
+        <div class="d-none">
+            {{ form_row(formPost.media_url, {attr: {'class': 'inputUpload'}}) }}
+        </div>
         {{ form_end(formPost) }}
     </div>
     <span class="quacker-btn-displayer">
         <span class="d-flex justify-content-between quacker-btn-displayer">
             <span></span>
-            <button class="submit-post_maker btn btn-primary">Quacker</button>
+            <span>
+                <button class="btn add-file-post_maker"><img src="{{ asset('assets/img/paper-clip.png') }}"></button>
+                <button class="submit-post_maker btn btn-primary">Quacker</button>
+            </span>
         </span>
     </span>
 </div>

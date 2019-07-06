@@ -5,10 +5,12 @@ namespace App\Form;
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\File;
 
 class UserPostType extends AbstractType
 {
@@ -32,6 +34,23 @@ class UserPostType extends AbstractType
                         'maxMessage' => 'Your quack can not exceed 140 characters'
                     ])
                 ]
+            ])
+            ->add('media_url', FileType::class, [
+                'required' => true,
+                'attr' => [
+                    'class' => 'inputUpload'
+                ],
+                'constraints' => [
+                    new File([
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpg',
+                            'image/jpeg'
+                        ],
+                        'mimeTypesMessage' =>
+                            "This picture's format is not supported"
+                    ])
+                ],
             ])
         ;
     }

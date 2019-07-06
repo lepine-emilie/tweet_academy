@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\UploadFilePostType;
 use App\Form\UserPostType;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
@@ -29,12 +30,18 @@ class HomeController extends AbstractController
         $post = new Post();
         $form = $this->createForm(UserPostType::class, $post);
         $form->handleRequest($request);
-
         if ($form->isSubmitted())
         {
             if (!$form->isValid())
                 return new JsonResponse(["success" => false]);
-
+            if($form['media_url']->getData() != null)
+            {
+                $file = $form['media_url']->getData();
+                $filename = md5(random_bytes(20));
+                $file->move($this->getParameter('PostUploads_directory'),
+                    $filename);
+                $post->setMediaUrl($filename);
+            }
             $post->setSender($this->getUser());
             $post->setSubmitTime(new \DateTime());
             $em->persist($post);
@@ -45,7 +52,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'timeline' => $posts,
-            'formPost' => $form->createView()
+            'formPost' => $form->createView(),
         ]);
     }
 }

@@ -23,7 +23,7 @@
         {% endif %}
 
         {% if post.mediaUrl is not empty %}
-            <img class="img-fluid rounded mx-auto d-block" src="{{ post.mediaUrl }}">
+            <img class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/'~ post.mediaUrl) }}">
         {% endif %}
     </div>
     <div class="my-3">
