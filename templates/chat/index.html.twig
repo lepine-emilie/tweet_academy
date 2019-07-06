@@ -2,6 +2,10 @@
 
 {% block title %}Conversations{% endblock %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ asset('assets/css/chat.css') }}">
+{% endblock %}
+
 {% block left_sidebar %}
     {% if app.user.chatConversations is not empty %}
         <div class="card">
@@ -18,7 +22,7 @@
                         {% if conversation.chatMessages is not empty %}
                             {% set lastChatMessage = conversation.messages|last %}
                             <p class="mb-1">{{ lastChatMessage.content }}</p>
-                            <small>{{ lastChatMessage.sender.displayName     }}, 2 days ago</small>
+                            <small>{{ lastChatMessage.sender.displayName }}, 2 days ago</small>
                         {% else %}
                             <small>No messages</small>
                         {% endif %}
@@ -44,11 +48,12 @@
                 <button type="submit" id="create" class="btn btn-primary">Start a conversation</button>
 
                 {{ form_end(formChat) }}
-
-
             </div>
         </div>
     </div>
+    <div class="chat">
+    test
+    </div>    
 {% endblock %}
 
 {% block javascripts %}
