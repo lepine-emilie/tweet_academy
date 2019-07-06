@@ -205,21 +205,29 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/follow", name="follow_ajax")
      */
-    public function follow(User $otherUser, ObjectManager $manager){
+    public function follow(User $otherUser, ObjectManager $manager,
+                           FollowerRepository $followerRepository){
         $user = $this->getUser();
         $otherUser->getId();
+        $unfollower = $followerRepository->findOneBy(['follower' => $user,
+            'user'=> $otherUser]);
 
-        $follower = new Follower();
-        $follower->setUser($otherUser);
-        $follower->setFollower($user);
-        $follower->setFollowDate(new \DateTime());
+        if ($otherUser != $user && $unfollower === null){
+            $follower = new Follower();
+            $follower->setUser($otherUser);
+            $follower->setFollower($user);
+            $follower->setFollowDate(new \DateTime());
 
-        $otherUser->addFollower($follower);
+            $otherUser->addFollower($follower);
 
-        $manager->persist($follower);
-        $manager->flush();
+            $manager->persist($follower);
+            $manager->flush();
 
-        return new JsonResponse([]);
+            return new JsonResponse(["success"=>true]);
+        }
+        else{
+            return new JsonResponse(["success"=>false]);
+        }
     }
 
     /**
@@ -230,8 +238,6 @@ class ProfileController extends AbstractController
         $otherUser->getId();
 
         $unfollower = $followerRepository->findOneBy(['follower' => $user, 'user'=> $otherUser]);
-
-
 
         $manager->remove($unfollower);
         $manager->flush();
