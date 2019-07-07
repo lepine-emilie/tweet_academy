@@ -3,7 +3,7 @@
         {# == Displays when the post has been reposted #}
         {% if post.sourcePost is not empty %}
             <div><i class="fas fa-retweet"></i>
-                <span>{{ post.sender.displayName }} Copyquacked</span>
+                <span><a href="{{ path('profile_view', { username: post.sender.username }) }}">{{ post.sender.displayName }}</a> Copyquacked</span>
             </div>
         {% endif %}
 

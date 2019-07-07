@@ -102,7 +102,7 @@
                             {% endif %}
                         {% endif %}
                         {% if user.birthDate is not empty %}
-                            <div><small><i class="fas fa-birthday-cake"></i> {{ user.birthDate|date("F d Y") }}</small></div>
+                            <div><small><i class="fas fa-birthday-cake"></i> {{ user.birthDate|date("F j, Y") }}</small></div>
                         {% endif %}
                         {#<div><p>Photos and videos</p>
                             <ul class="photo-video"></ul>
