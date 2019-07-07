@@ -1,4 +1,4 @@
-<div class="list-group-item list-group-item-action card-timeline post-card" data-post-id="{{ post.id }}">
+<div class="list-group-item list-group-item-action card-timeline post-card" data-post-id="{{ post.id }}" itemscope itemtype="http://schema.org/SocialMediaPosting">
     <div>
         {# == Displays when the post has been reposted #}
         {% if post.sourcePost is not empty %}
@@ -11,17 +11,19 @@
         {% set realPost = post.sourcePost ?? post %}
 
         {# == Displays the post content #}
-        <a href="{{ path('profile_view', { username: realPost.sender.username }) }}">
-            <strong>{{ realPost.sender.displayName }}</strong>
-        </a>
-        <span>(@{{ realPost.sender.username }})</span>
-        <p>{{ realPost.content }}</p>
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a href="{{ path('profile_view', { username: realPost.sender.username }) }}">
+                <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
+            </a>
+            <span>(@{{ realPost.sender.username }})</span>
+        </div>
+        <p itemprop="text">{{ realPost.content }}</p>
 
         {# Displays embedded content if any #}
         {# TODO: Add video/audio support #}
 
         {% if realPost.mediaUrl is not empty %}
-            <img class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
+            <img itemprop="image" class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
         {% endif %}
     </div>
     <div class="my-3">
