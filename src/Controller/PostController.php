@@ -43,12 +43,12 @@ class PostController extends AbstractController
             $notification->setUser($realPost->getSender());
             $notification->setNotificationType(Notification::TYPE_LIKE);
             $notification->setNotificationData([
-                'post' => $realPost,
-                'user' => $user
+                'post_id' => $realPost->getId(),
+                'user_id' => $user->getId()
             ]);
             $notification->setIsRead(false);
-            $objectManager->persist($notification);
 
+            $objectManager->persist($notification);
             $objectManager->persist($entry);
             $objectManager->flush();
             return new JsonResponse(['favorite' => true]);
@@ -94,6 +94,17 @@ class PostController extends AbstractController
         $newPost->setSourcePost($post->getSourcePost() ?? $post);
         $newPost->setSender($user);
         $user->addPost($newPost);
+
+        $notification = new Notification();
+        $notification->setUser($newPost->getSourcePost()->getSender());
+        $notification->setNotificationType(Notification::TYPE_REPOST);
+        $notification->setNotificationData([
+            'user_id' => $user->getId(),
+            'post_id' => $newPost->getSourcePost()->getId()
+        ]);
+        $notification->setIsRead(false);
+
+        $objectManager->persist($notification);
         $objectManager->persist($newPost);
         $objectManager->flush();
 

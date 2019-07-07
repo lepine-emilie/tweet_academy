@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Follower;
+use App\Entity\Notification;
 use App\Entity\User;
 use App\Form\EditProfileType;
 use App\Repository\FavoriteRepository;
@@ -218,8 +219,18 @@ class ProfileController extends AbstractController
             $follower->setFollower($user);
             $follower->setFollowDate(new \DateTime());
 
+            $notification = new Notification();
+            $notification->setUser($otherUser);
+            $notification->setNotificationType(Notification::TYPE_FOLLOW);
+            $notification->setNotificationData([
+                'user_id' => $user->getId()
+            ]);
+            $notification->setIsRead(false);
+
+            $otherUser->addNotification($notification);
             $otherUser->addFollower($follower);
 
+            $manager->persist($notification);
             $manager->persist($follower);
             $manager->flush();
 
