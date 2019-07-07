@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="container">
         <div class="d-flex redir-links-nav">
-            {% set route = app.request.get('_route') %}
+            {% set route = route_fwd %}
             <a class="nav-item nav-link {{ route == 'home' ? 'active' }}" href="{{ path('home')
             }}"><img src="{{ asset('assets/img/home.png') }}"><span class="p-2">Home</span></a>
             {% if app.user is not empty %}

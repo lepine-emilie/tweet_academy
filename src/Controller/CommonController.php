@@ -56,7 +56,7 @@ class CommonController extends AbstractController
         ]);
     }
 
-    public function navBar(NotificationRepository $notificationRepository)
+    public function navBar(string $routeForward, NotificationRepository $notificationRepository)
     {
             $notificationCount = $notificationRepository->count([
                 'user' => $this->getUser(),
@@ -65,6 +65,7 @@ class CommonController extends AbstractController
 
 
         return $this->render('navbar.html.twig', [
+            'route_fwd' => $routeForward,
             'pending_notification_count' => $notificationCount ?? 0
         ]);
     }

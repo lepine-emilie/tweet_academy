@@ -14,7 +14,9 @@
 </head>
 <body>
 <header>
-    {{ render(controller('App\\Controller\\CommonController::navBar')) }}
+    {{ render(controller('App\\Controller\\CommonController::navBar', {
+        routeForward: app.request.get('_route')
+    })) }}
 </header>
 <main>
     {% block body %}{% endblock %}
