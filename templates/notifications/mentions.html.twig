@@ -6,14 +6,12 @@
     {% if notifications is empty %}
         <div class="card-body">
             <p>Nothing to see here — yet</p>
-            <p>When someone mentions you in a Tweet, you'll see it here</p>
+            <p>When someone mentions you in a Quack, you'll see it here</p>
         </div>
     {% else %}
         <div class="list-group list-group-flush">
             {% for n in notifications %}
-                <div class="list-group-item">
-                    <p>Notification</p>
-                </div>
+                {% include 'notifications/_card_data.html.twig' with { notification: n } only %}
             {% endfor %}
         </div>
     {% endif %}

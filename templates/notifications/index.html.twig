@@ -10,11 +10,7 @@
     {% else %}
         <div class="list-group list-group-flush">
             {% for n in notifications %}
-                {% for i in 0..3 %}
-                    <div class="list-group-item">
-                        <p>Notification test {{ i }}</p>
-                    </div>
-                {% endfor %}
+                {% include 'notifications/_card_data.html.twig' with { notification: n } only %}
             {% endfor %}
         </div>
     {% endif %}

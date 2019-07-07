@@ -5,6 +5,14 @@
             <p>@{{ app.user.username }}</p>
         </a>
     </div>
-    <p><strong>{{ (app.user.posts|length)|number_format }}</strong> Quacks</p>
-    <p><strong>{{ (app.user.followers|length)|number_format }}</strong> Followers</p>
+    <div class="d-flex">
+        <div>
+            <div><strong>{{ (app.user.posts|length)|number_format }}</strong></div>
+            <div>Quacks</div>
+        </div>
+        <div class="mx-2">
+            <div><strong>{{ (app.user.followers|length)|number_format }}</strong></div>
+            <div>Followers</div>
+        </div>
+    </div>
 </div>

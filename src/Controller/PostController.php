@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Favorite;
+use App\Entity\Notification;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Repository\FavoriteRepository;
@@ -37,6 +38,17 @@ class PostController extends AbstractController
             $entry->setUser($user);
             $user->addFavorite($entry);
 
+            $notification = new Notification();
+            // TODO: Assign the notification to the author
+            $notification->setUser($user);
+            $notification->setNotificationType(Notification::TYPE_LIKE);
+            $notification->setNotificationData([
+                'post' => $post,
+                'user' => $user
+            ]);
+            $notification->setIsRead(false);
+
+            $objectManager->persist($notification);
             $objectManager->persist($entry);
             $objectManager->flush();
             return new JsonResponse(['favorite' => true]);

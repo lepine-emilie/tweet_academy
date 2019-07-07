@@ -9,6 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Notification
 {
+    public const TYPE_MENTION = 1;
+    public const TYPE_FOLLOW = 2;
+    public const TYPE_REPOST = 3;
+    public const TYPE_LIKE = 4;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
