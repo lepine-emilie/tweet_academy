@@ -15,6 +15,7 @@ class NotificationsController extends AbstractController
     public function index(NotificationRepository $repository)
     {
         $notifications = $repository->findBy([
+            'user' => $this->getUser(),
             'is_read' => false
         ]);
 
@@ -29,6 +30,7 @@ class NotificationsController extends AbstractController
     public function mentions(NotificationRepository $repository)
     {
         $notifications = $repository->findBy([
+            'user' => $this->getUser(),
             'notification_type' => Notification::TYPE_MENTION,
             'is_read' => false
         ]);
