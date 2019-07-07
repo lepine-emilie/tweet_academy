@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-    {% include 'navbar.html.twig' %}
+    {{ render(controller('App\\Controller\\CommonController::navBar')) }}
 </header>
 <main>
     {% block body %}{% endblock %}

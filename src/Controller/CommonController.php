@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\UserPostType;
 use App\Repository\FavoriteRepository;
+use App\Repository\NotificationRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,6 +53,19 @@ class CommonController extends AbstractController
 
         return $this->render('common/suggestions.html.twig', [
             'suggestions' => $suggestions
+        ]);
+    }
+
+    public function navBar(NotificationRepository $notificationRepository)
+    {
+            $notificationCount = $notificationRepository->count([
+                'user' => $this->getUser(),
+                'is_read' => false
+            ]);
+
+
+        return $this->render('navbar.html.twig', [
+            'pending_notification_count' => $notificationCount ?? 0
         ]);
     }
 }

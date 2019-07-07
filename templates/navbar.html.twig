@@ -5,7 +5,13 @@
             <a class="nav-item nav-link {{ route == 'home' ? 'active' }}" href="{{ path('home')
             }}"><img src="{{ asset('assets/img/home.png') }}"><span class="p-2">Home</span></a>
             {% if app.user is not empty %}
-                <a class="nav-item nav-link {{ route == 'notifications' or route == 'mentions' ? 'active' }}" href="{{ path('notifications')}}"><img src="{{ asset('assets/img/alarm.png') }}"><span class="p-2">Notifications</span></a>
+                <a class="nav-item nav-link {{ route == 'notifications' or route == 'mentions' ? 'active' }}" href="{{ path('notifications')}}">
+                    <img src="{{ asset('assets/img/alarm.png') }}">
+                    <span class="p-2">Notifications</span>
+                    {% if pending_notification_count > 0 %}
+                        <span class="badge badge-primary">{{ pending_notification_count }}</span>
+                    {% endif %}
+                </a>
                 <a class="nav-item nav-link {{ route == 'messages' ? 'active' }}" href="{{ path('messages') }}"><img src="{{ asset('assets/img/email.png') }}"><span class="p-2">Messages</span></a>
             {% endif %}
         </div>

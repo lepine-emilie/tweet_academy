@@ -23,9 +23,10 @@ class PostController extends AbstractController
      */
     public function like(Post $post, FavoriteRepository $favoriteRepository, ObjectManager $objectManager)
     {
+        $realPost = $post->getSourcePost() ?? $post;
         $favorite = $favoriteRepository->findBy([
             'user' => $this->getUser(),
-            'post' => $post
+            'post' => $realPost
         ]);
 
         /** @var \App\Entity\User $user */
@@ -34,21 +35,20 @@ class PostController extends AbstractController
         if (empty($favorite))
         {
             $entry = new Favorite();
-            $entry->setPost($post);
+            $entry->setPost($realPost);
             $entry->setUser($user);
             $user->addFavorite($entry);
 
             $notification = new Notification();
-            // TODO: Assign the notification to the author
-            $notification->setUser($user);
+            $notification->setUser($realPost->getSender());
             $notification->setNotificationType(Notification::TYPE_LIKE);
             $notification->setNotificationData([
-                'post' => $post,
+                'post' => $realPost,
                 'user' => $user
             ]);
             $notification->setIsRead(false);
-
             $objectManager->persist($notification);
+
             $objectManager->persist($entry);
             $objectManager->flush();
             return new JsonResponse(['favorite' => true]);
