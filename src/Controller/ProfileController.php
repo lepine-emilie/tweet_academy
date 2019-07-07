@@ -60,7 +60,8 @@ class ProfileController extends AbstractController
                     $upload = $user->getUploads()[$key];
                     $lastPic = $this->getParameter('Avatar_directory') .
                         '/' . $upload->getPath();
-                    unlink($lastPic);
+                    if(file_exists($lastPic))
+                        unlink($lastPic);
                 }
             $file = $formAvatar['path']->getData();
             $filename = md5(random_bytes(20));
@@ -95,7 +96,8 @@ class ProfileController extends AbstractController
                     $upload = $user->getUploads()[$key];
                     $lastPic = $this->getParameter('Banner_directory').
                         '/'.$upload->getPath();
-                    unlink($lastPic);
+                    if (file_exists($lastPic))
+                        unlink($lastPic);
                 }
             $file = $formBanner['path']->getData();
             $filename = md5(random_bytes(20));
