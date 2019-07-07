@@ -5,24 +5,28 @@
 {% block profile_center %}
     {% if user.following is not empty %}
         <div class="card">
-            <div class="card-header">
-                <strong>Following</strong>
-            </div>
-            <div class="list-group list-group-flush">
-                {% for following in user.following %}
-                    <div class="card">
-                        <div class="card-body">
-                            <strong class="card-title">{{ following.user.displayName }}</strong>
-                            <strong class="card-title">(@{{ following.user.username }})</strong>
-                            <p class="card-text">
-                                <a href="{{ path('profile_view', { username: following.user.username }) }}">
-                                    <img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
-                                </a>
-                            </p>
+                <div class="card-header">
+                    <strong>Following</strong>
+                </div>
+                <div class="list-group list-group-flush">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% for following in user.following %}
+                                <div class="card col-4">
+                                    <div class="card-body picture-follow">
+                                        <a href="{{ path('profile_view', { username: following.user.username }) }}">
+                                            <img alt="avatar" id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
+                                        </a>
+                                        <p class="card-body name-follow">
+                                            <h6>{{ following.user.displayName }}<br></h6>
+                                            <h6 class="card-subtitle mb-2 text-muted">@{{ following.user.username }}</h6>
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
         </div>
     {% else %}
         <p><strong>@{{ user.username }}</strong> is not following anyone</p>

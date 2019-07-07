@@ -4,27 +4,31 @@
 
 {% block profile_center %}
     {% if user.followers is not empty %}
-        <div class="card">
-            <div class="card-header">
-                <strong>Followers</strong>
-            </div>
-            <div class="list-group list-group-flush">
-                <div class="card-group">
-                    {% for follower in user.followers %}
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="card-title">
-                                    <strong>{{ follower.follower.displayName }}</strong>
-                                    <span> (@{{ follower.follower.username }})</span>
-                                </p>
-                                <p class="card-text">
-                                    <a href="{{ path('profile_view', { username: follower.follower.username }) }}">
-                                        <img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
-                                    </a>
-                                </p>
-                            </div>
+        <div class="card-group">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Followers</strong>
+                </div>
+                <div class="list-group list-group-flush">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% for follower in user.followers %}
+                                <div class="card col-4">
+                                    <div class="card-body col-12">
+                                        <p class="card-title col-12">
+                                            <a href="{{ path('profile_view', { username: follower.follower.username }) }}">
+                                                <img id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
+                                            </a>
+                                        </p>
+                                        <p class="col-12">
+                                            <strong>{{ follower.follower.displayName }}<br></strong>
+                                            <small> @{{ follower.follower.username }}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
