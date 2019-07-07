@@ -5,10 +5,8 @@
 {% block left_sidebar %}
     <div class="list-group">
         <a href="{{ path('settings_account') }}" class="list-group-item list-group-item-action">Account</a>
-
-        {% for i in 0..8 %}
-            <a href="#" class="list-group-item list-group-item-action">Link</a>
-        {% endfor %}
+        <a href="{{ path('settings_account') }}" class="list-group-item list-group-item-action">Privacy</a>
+        <a href="{{ path('settings_account') }}" class="list-group-item list-group-item-action">Password</a>
     </div>
 {% endblock %}
 
