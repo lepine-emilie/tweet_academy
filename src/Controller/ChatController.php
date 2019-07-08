@@ -5,29 +5,19 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\ChatConversation;
+use App\Repository\ChatMessageRepository;
 use App\Form\ChatType;
-use App\Form\UserType;
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\DBAL\Driver\Connection;
 
 
 class ChatController extends AbstractController
 {
     /**
-     * @Route("/conv", name="conv")
-     */
-    public function index()
-    {
-        return $this->render('chat/index.html.twig', [
-            'controller_name' => 'ChatController',
-        ]);
-    }
-
-    /**
      * @Route("/messages", name="messages")
      */
-    public function chat(Request $request, ObjectManager $manager)
+    public function chat(Request $request, ObjectManager $manager, ChatMessageRepository $chatMessageRepository)
     {
         $conv = new ChatConversation();
         $form = $this->createForm(ChatType::class, $conv);
@@ -41,7 +31,7 @@ class ChatController extends AbstractController
         }
         return $this->render('chat/index.html.twig', [
             'formChat' => $form->createView(),
-            'route' => 'messages'
+            'messages' => $chatMessageRepository->getLastMessages()
         ]);
     }
 }

@@ -27,7 +27,7 @@
                         {% if conversation.chatMessages is not empty %}
                             {% set lastChatMessage = conversation.chatMessages|last %}
                             <p class="mb-1">{{ lastChatMessage.content }}</p>
-                            <small>{{ lastChatMessage.sender.displayName }}, {{ lastChatMessage.submitTime|date}}</small>
+                            <small>{{ lastChatMessage.sender.username }}, {{ lastChatMessage.submitTime|date}}</small>
                         {% else %}
                             <small>No messages</small>
                         {% endif %}
@@ -57,24 +57,19 @@
         </div>
     </div>
     <div class="p-4 chat card">
+        {% for m in messages %}
         <div class="message">
-            <span class="date">23:22</span>
-            <span class="author">LD : </span>
-            <span class="content">lorem glolorem glolorem glolorem glolorem glo</span>
+            <span class="date">{{ m.submitTime|date('H:m') }}</span>
+            <span class="author">@{{ m.sender.username }} :</span>
+            <span class="content">{{ m.content }}</span>
         </div>
-        <div class="message">
-            <span class="date">23:22</span>
-            <span class="author">LD : </span>
-            <span class="content">lorem glolorem glolorem glolorem glolorem glo</span>
-        </div>
-        <div class="message">
-            <span class="date">23:22</span>
-            <span class="author">LD : </span>
-            <span class="content">lorem glolorem glolorem glolorem glolorem glo</span>
-        </div>
+        {% endfor %}
+        
         <div class="user-inputs">
-            <input type="text" id="content" name="content">
-            <button type="submit" id"send" class="btn btn-primary">Send</button>
+            <form>
+                <input type="text" id="content" name="content">
+                <button type="submit" id"send" class="btn btn-primary">Send</button>
+            </form>
         </div>
     </div>
 {% endblock %}
