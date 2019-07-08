@@ -52,7 +52,7 @@ class CommonController extends AbstractController
             if (count($suggestions) >= 3)
                 break;
 
-            if ($my_followers->contains($u) === false)
+            if ($u->getId() != $user->getId() && $my_followers->contains($u) === false)
                 array_push($suggestions, $u);
         }
 
