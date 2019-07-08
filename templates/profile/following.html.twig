@@ -17,10 +17,10 @@
                                         <a href="{{ path('profile_view', { username: following.user.username }) }}">
                                             <img alt="avatar" id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
                                         </a>
-                                        <p class="card-body name-follow">
+                                        <p class="card-body name-follow"></p>
                                             <h6>{{ following.user.displayName }}<br></h6>
                                             <h6 class="card-subtitle mb-2 text-muted">@{{ following.user.username }}</h6>
-                                        </p>
+
                                     </div>
                                 </div>
                             {% endfor %}
