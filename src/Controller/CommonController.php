@@ -43,7 +43,7 @@ class CommonController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $my_followers = $user->getFollowers();
+        $my_followers = $user->getFollowing();
 
         $suggestions = [];
 
