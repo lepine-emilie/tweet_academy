@@ -1,31 +1,24 @@
 <div class="list-group-item">
-        {% set EntityType = 'App\\Entity\\Notification' %}
-        {% set json = notification.notificationData %}
-        {% if notification.notificationType == constant(EntityType ~ '::TYPE_MENTION') %}
-                <p>User <strong>@Username</strong> mentioned you in a Quack</p>
-                <div class="card card-body">
-                        <p>Post data</p>
-                </div>
-        {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_FOLLOW') %}
-                <p>User <strong>@Username</strong> started to follow you</p>
-        {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_LIKE') %}
-                <p>User <strong>@Username</strong> liked your Quack</p>
-                <div class="card card-body">
-                        <p>Post data</p>
-                </div>
-        {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_REPOST') %}
-                <p>One of your Quack has been reposted by <strong>@Username</strong></p>
-                <div class="card card-body">
-                        <p>Post data</p>
-                </div>
-        {% else %}
-                <p>Unknown notification type</p>
-        {% endif %}
-
-    <div class="my-2">
-    <button class="btn btn-success btn-sm">
-        <i class="fas fa-check"></i>
-        <span>Mark as read</span>
-    </button>
-    </div>
+    {% set EntityType = 'App\\Entity\\Notification' %}
+    {% set json = notification.notificationData %}
+    {% if notification.notificationType == constant(EntityType ~ '::TYPE_MENTION') %}
+        <p>User <strong>@Username</strong> mentioned you in a Quack</p>
+        <div class="card card-body">
+            <p>Post data</p>
+        </div>
+    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_FOLLOW') %}
+        <p>User <strong>@Username</strong> started to follow you</p>
+    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_LIKE') %}
+        <p>User <strong>@Username</strong> liked your Quack</p>
+        <div class="card card-body">
+            <p>Post data</p>
+        </div>
+    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_REPOST') %}
+        <p>One of your Quack has been reposted by <strong>@Username</strong></p>
+        <div class="card card-body">
+            <p>Post data</p>
+        </div>
+    {% else %}
+        <p>Unknown notification type</p>
+    {% endif %}
 </div>
