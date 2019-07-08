@@ -14,7 +14,7 @@
         </div>
         <div class="card">
             <div class="list-group list-group-flush">
-                {% for post in user.posts %}
+                {% for post in posts %}
                     {% include 'common/post_card.html.twig' with { post: post } only %}
                 {% endfor %}
             </div>

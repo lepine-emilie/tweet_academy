@@ -4,20 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Follower;
 use App\Entity\Notification;
+use App\Entity\Upload;
 use App\Entity\User;
+use App\Form\AvatarType;
+use App\Form\BannerType;
 use App\Form\EditProfileType;
 use App\Repository\FavoriteRepository;
 use App\Repository\FollowerRepository;
+use App\Repository\PostRepository;
+use App\Repository\UploadRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Upload;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\AvatarType;
-use App\Form\BannerType;
-use App\Repository\UploadRepository;
 
 class ProfileController extends AbstractController
 {
@@ -25,7 +27,8 @@ class ProfileController extends AbstractController
      * @Route("/{username}", name="profile_view")
      */
     public function view(User $user, UserRepository $repository,
-                         UploadRepository $uploadRepository)
+                         UploadRepository $uploadRepository,
+                         PostRepository $postRepository)
     {
         if ($user === $this->getUser())
         {
@@ -35,12 +38,14 @@ class ProfileController extends AbstractController
         }
 
         $arrayUploads = $uploadRepository->getImages($user);
+        $posts = $postRepository->findBy(['sender' => $user], ['submit_time' => 'DESC']);
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,
             'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
             'formBanner' => isset($formBanner) ? $formBanner->createView() : null,
-            'images' => $arrayUploads
+            'images' => $arrayUploads,
+            'posts' => $posts
         ]);
     }
 
@@ -54,13 +59,15 @@ class ProfileController extends AbstractController
         $upload->setUploader($user);
         $formAvatar = $this->createForm(AvatarType::class, $upload);
         $formAvatar->handleRequest($request);
-        if ($formAvatar->isSubmitted() && $formAvatar->isValid()) {
+        if ($formAvatar->isSubmitted() && $formAvatar->isValid())
+        {
             foreach ($user->getUploads() as $key => $item)
-                if ($item->getType() === "avatar") {
+                if ($item->getType() === "avatar")
+                {
                     $upload = $user->getUploads()[$key];
                     $lastPic = $this->getParameter('Avatar_directory') .
                         '/' . $upload->getPath();
-                    if(file_exists($lastPic))
+                    if (file_exists($lastPic))
                         unlink($lastPic);
                 }
             $file = $formAvatar['path']->getData();
@@ -94,8 +101,8 @@ class ProfileController extends AbstractController
                 if ($item->getType() === "banner")
                 {
                     $upload = $user->getUploads()[$key];
-                    $lastPic = $this->getParameter('Banner_directory').
-                        '/'.$upload->getPath();
+                    $lastPic = $this->getParameter('Banner_directory') .
+                        '/' . $upload->getPath();
                     if (file_exists($lastPic))
                         unlink($lastPic);
                 }
@@ -194,7 +201,8 @@ class ProfileController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()&& $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $manager->persist($edit_profile);
             $manager->flush();
 
@@ -205,21 +213,24 @@ class ProfileController extends AbstractController
             'formEdit' => $form->createView()
         ]);
     }
+
     /**
      * @Route("/{username}/follow", name="follow_ajax")
      */
     public function follow(User $otherUser, ObjectManager $manager,
-                           FollowerRepository $followerRepository){
+                           FollowerRepository $followerRepository)
+    {
         $user = $this->getUser();
         $otherUser->getId();
         $unfollower = $followerRepository->findOneBy(['follower' => $user,
-            'user'=> $otherUser]);
+            'user' => $otherUser]);
 
-        if ($otherUser != $user && $unfollower === null){
+        if ($otherUser != $user && $unfollower === null)
+        {
             $follower = new Follower();
             $follower->setUser($otherUser);
             $follower->setFollower($user);
-            $follower->setFollowDate(new \DateTime());
+            $follower->setFollowDate(new DateTime());
 
             $notification = new Notification();
             $notification->setUser($otherUser);
@@ -236,21 +247,23 @@ class ProfileController extends AbstractController
             $manager->persist($follower);
             $manager->flush();
 
-            return new JsonResponse(["success"=>true]);
+            return new JsonResponse(["success" => true]);
         }
-        else{
-            return new JsonResponse(["success"=>false]);
+        else
+        {
+            return new JsonResponse(["success" => false]);
         }
     }
 
     /**
      * @Route("/{username}/unfollow", name="unfollow_ajax")
      */
-    public function unfollow(User $otherUser, ObjectManager $manager, FollowerRepository $followerRepository){
+    public function unfollow(User $otherUser, ObjectManager $manager, FollowerRepository $followerRepository)
+    {
         $user = $this->getUser();
         $otherUser->getId();
 
-        $unfollower = $followerRepository->findOneBy(['follower' => $user, 'user'=> $otherUser]);
+        $unfollower = $followerRepository->findOneBy(['follower' => $user, 'user' => $otherUser]);
 
         $manager->remove($unfollower);
         $manager->flush();
