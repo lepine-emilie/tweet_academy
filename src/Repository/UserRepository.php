@@ -47,4 +47,12 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function search_user( string $search_info){
+        $this->createQueryBuilder("u")
+            ->where("u.username like :search_info")
+            ->setParameter("search_info", "%$search_info%")
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
