@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Notification;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Form\UserPostType;
@@ -40,6 +41,10 @@ class CommonController extends AbstractController
 
     public function suggestions(UserRepository $userRepository)
     {
+        /** @var User $user */
+        $user = $this->getUser();
+        $my_followers = $user->getFollowers();
+
         $suggestions = [];
 
         foreach($userRepository->findAll() as $u)
@@ -47,7 +52,7 @@ class CommonController extends AbstractController
             if (count($suggestions) >= 3)
                 break;
 
-            if ($u->getId() != $this->getUser()->getId() && $u->getFollowers()->isEmpty())
+            if ($my_followers->contains($u) === false)
                 array_push($suggestions, $u);
         }
 
@@ -67,6 +72,25 @@ class CommonController extends AbstractController
         return $this->render('navbar.html.twig', [
             'route_fwd' => $routeForward,
             'pending_notification_count' => $notificationCount ?? 0
+        ]);
+    }
+
+    public function notificationCard(Notification $n,
+                                     UserRepository $userRepository,
+                                     PostRepository $postRepository)
+    {
+        $json = $n->getNotificationData();
+
+        if (array_key_exists('user_id', $json))
+            $user = $userRepository->find($json['user_id']);
+
+        if (array_key_exists('post_id', $json))
+            $post = $postRepository->find($json['post_id']);
+
+        return $this->render('notifications/_card_data.html.twig', [
+            'notification' => $n,
+            'user' => $user ?? null,
+            'post' => $post ?? null
         ]);
     }
 }

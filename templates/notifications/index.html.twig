@@ -9,8 +9,10 @@
         </div>
     {% else %}
         <div class="list-group list-group-flush">
-            {% for n in notifications %}
-                {% include 'notifications/_card_data.html.twig' with { notification: n } only %}
+            {% for notification in notifications %}
+                {{ render(controller('App\\Controller\\CommonController::notificationCard', {
+                    n: notification
+                })) }}
             {% endfor %}
         </div>
     {% endif %}

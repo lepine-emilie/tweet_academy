@@ -2,21 +2,33 @@
     {% set EntityType = 'App\\Entity\\Notification' %}
     {% set json = notification.notificationData %}
     {% if notification.notificationType == constant(EntityType ~ '::TYPE_MENTION') %}
-        <p>User <strong>@Username</strong> mentioned you in a Quack</p>
+        <p>User <strong>@{{ user.username }}</strong> mentioned you in a Quack</p>
         <div class="card card-body">
-            <p>Post data</p>
+            <div>
+                <strong>{{ post.sender.displayName }}</strong>
+                <span>(@{{ post.sender.username }}</span>
+            </div>
+            <p>{{ post.content }}</p>
         </div>
     {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_FOLLOW') %}
-        <p>User <strong>@Username</strong> started to follow you</p>
+        <p>User <a href="{{ path('profile_view', { username: user.username }) }}"><strong>@{{ user.username }}</strong></a> started to follow you</p>
     {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_LIKE') %}
-        <p>User <strong>@Username</strong> liked your Quack</p>
+        <p>User <strong>@{{ user.username }}</strong> liked your Quack</p>
         <div class="card card-body">
-            <p>Post data</p>
+            <div>
+                <strong>{{ post.sender.displayName }}</strong>
+                <span>(@{{ post.sender.username }}</span>
+            </div>
+            <p>{{ post.content }}</p>
         </div>
     {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_REPOST') %}
-        <p>One of your Quack has been reposted by <strong>@Username</strong></p>
+        <p>One of your Quack has been reposted by <strong>@{{ user.username }}</strong></p>
         <div class="card card-body">
-            <p>Post data</p>
+            <div>
+                <strong>{{ post.sender.displayName }}</strong>
+                <span>(@{{ post.sender.username }}</span>
+            </div>
+            <p>{{ post.content }}</p>
         </div>
     {% else %}
         <p>Unknown notification type</p>
