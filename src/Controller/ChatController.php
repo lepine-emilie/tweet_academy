@@ -38,9 +38,9 @@ class ChatController extends AbstractController
     }
 
     /**
-     * @Route("/conversation", name="conversation")
+     * @Route("/conversations/{id}", name="conversations")
      */
-    public function conversation(Request $request, ObjectManager $manager, ChatMessageRepository $chatMessageRepository)
+    public function conversation(ChatConversation $chatConversation, Request $request, ObjectManager $manager, ChatMessageRepository $chatMessageRepository)
     {
         $messages = new ChatMessage();
         $formMsg = $this->createForm(ChatMessageType::class, $messages);
