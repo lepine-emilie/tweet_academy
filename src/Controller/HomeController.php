@@ -37,7 +37,9 @@ class HomeController extends AbstractController
             if($form['media_url']->getData() != null)
             {
                 $file = $form['media_url']->getData();
-                $filename = md5(random_bytes(20));
+                $filename = md5(random_bytes(20)) .
+                    ".".pathinfo($file->getClientOriginalName(),
+                        PATHINFO_EXTENSION);
                 $file->move($this->getParameter('PostUploads_directory'),
                     $filename);
                 $post->setMediaUrl($filename);
