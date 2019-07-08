@@ -1,6 +1,5 @@
 .chat {
     background-color: #fff;
-    margin-top: 30px;
 }
 #create {
     margin-top: 20px;
@@ -13,4 +12,10 @@
 }
 .conversations {
     margin-bottom: 30px;
+}
+#message_content {
+    resize: none;
+}
+#chat_message_content {
+    margin-top: 15px;
 }
