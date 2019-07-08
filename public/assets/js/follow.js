@@ -1,4 +1,4 @@
-$('.follow').click( function (e){
+$(document).on("click", ".follow",( function (e){
     e.preventDefault();
     var username = window.location.pathname;
 
@@ -19,8 +19,8 @@ $('.follow').click( function (e){
             }
         }
     })
-});
-$('.unfollow').click(function (e) {
+}));
+$(document).on("click", ".unfollow",(function (e) {
     e.preventDefault();
     var username = window.location.pathname;
 
@@ -39,4 +39,15 @@ $('.unfollow').click(function (e) {
             $('.button-profile').html("<button class=\"btn btn-primary profile-nav-btn follow\">Follow</button>\n");
         }
     })
-});
+}));
+$(document).on("click", ".follow-home",(function (e) {
+    e.preventDefault();
+    var username = $(this).attr("data-user-id");
+    var self = $(this);
+    $.ajax({
+        url: username+"/follow",
+        success(){
+            self.parent(".list-item").fadeOut(300);
+        }
+    })
+}));
