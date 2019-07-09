@@ -24,7 +24,23 @@
         </div>
         <div class="card-body">
             <div class="list-group list-group-flush">
-
+                <div class="container-fluid">
+                    <div class="row">
+                {% for res in results %}
+                    <div class="card col-4">
+                        <div class="card-body picture-follow">
+                            <a href="{{ path('profile_view', { username: res.username }) }}">
+                                <img alt="avatar" id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
+                            </a>
+                            <p class="card-body name-follow">
+                            <h6>{{ res.displayName }}<br></h6>
+                            <h6 class="card-subtitle mb-2 text-muted"> @{{ res.username }}</h6>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                </div>
             </div>
         </div>
     </div>
