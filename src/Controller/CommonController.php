@@ -46,15 +46,19 @@ class CommonController extends AbstractController
         $my_followers = $user->getFollowing();
 
         $suggestions = [];
+        //$suggestions = $userRepository->getNonFollowedByUser($user);
 
-        foreach($userRepository->findAll() as $u)
+        /*foreach($userRepository->findAll() as $u)
         {
             if (count($suggestions) >= 3)
                 break;
 
-            if ($u->getId() != $user->getId() && $my_followers->contains($u) === false)
+            if ($u->getId() === $user->getId())
+                continue;
+
+            if (false === $my_followers->containsKey($u->getId()))
                 array_push($suggestions, $u);
-        }
+        }*/
 
         return $this->render('common/suggestions.html.twig', [
             'suggestions' => $suggestions
@@ -63,11 +67,10 @@ class CommonController extends AbstractController
 
     public function navBar(string $routeForward, NotificationRepository $notificationRepository)
     {
-            $notificationCount = $notificationRepository->count([
-                'user' => $this->getUser(),
-                'is_read' => false
-            ]);
-
+        $notificationCount = $notificationRepository->count([
+            'user' => $this->getUser(),
+            'is_read' => false
+        ]);
 
         return $this->render('navbar.html.twig', [
             'route_fwd' => $routeForward,

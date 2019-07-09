@@ -19,9 +19,9 @@ class ChatConversation
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=32, nullable=true)
      */
-    private $name;
+    private $name = null;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="chatConversations")

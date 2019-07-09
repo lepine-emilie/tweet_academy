@@ -4,24 +4,28 @@
 
 {% block body %}
 
-<div class="container form">
-    <h1>Join Ducker today.</h1>
+    <div class="container form">
+        <div class="row">
+            <div class="col-12">
+                <h1>Join Ducker today.</h1>
 
-    {{ form_start(formSignup) }}
+                {{ form_start(formSignup) }}
 
-    {{ form_errors(formSignup.display_name) }}
-    {{ form_widget(formSignup.display_name) }}
+                {{ form_errors(formSignup.display_name) }}
+                {{ form_widget(formSignup.display_name) }}
 
-    {{ form_errors(formSignup.username) }}
-    {{ form_widget(formSignup.username) }}
+                {{ form_errors(formSignup.username) }}
+                {{ form_widget(formSignup.username) }}
 
-    {{ form_errors(formSignup.email) }}
-    {{ form_widget(formSignup.email) }}
+                {{ form_errors(formSignup.email) }}
+                {{ form_widget(formSignup.email) }}
 
-    {{ form_errors(formSignup.password) }}
-    {{ form_widget(formSignup.password) }}
+                {{ form_errors(formSignup.password) }}
+                {{ form_widget(formSignup.password) }}
 
-    {{ form_end(formSignup) }}
-</div>
+                {{ form_end(formSignup) }}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
