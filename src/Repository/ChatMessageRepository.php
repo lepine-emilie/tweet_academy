@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\ChatMessage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\ChatConversation;
 
 /**
  * @method ChatMessage|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,9 +49,11 @@ class ChatMessageRepository extends ServiceEntityRepository
     }
     */
 
-    public function getLastMessages()
+    public function getLastMessages(ChatConversation $conv)
     {
         return $this->createQueryBuilder('cm')
+                ->where("cm.conversation = :conv")
+                ->setParameter("conv", $conv)
                 ->setMaxResults(20)
                 ->getQuery()
                 ->getResult();

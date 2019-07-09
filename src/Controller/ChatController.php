@@ -38,7 +38,7 @@ class ChatController extends AbstractController
     }
 
     /**
-     * @Route("/conversations/{id}", name="conversations")
+     * @Route("/conversations/{id}", name="conversation_view")
      */
     public function conversation(ChatConversation $chatConversation, Request $request, ObjectManager $manager, ChatMessageRepository $chatMessageRepository)
     {
@@ -48,18 +48,18 @@ class ChatController extends AbstractController
 
         if ($formMsg->isSubmitted() && $formMsg->isValid())
         {
-            $messages->getConversation();
+            $messages->setConversation($chatConversation);
             $messages->setSender($this->getUser());
             $messages->getContent($formMsg->get('content')->getData());
             $messages->setSubmitTime(new \DateTime());
             $manager->persist($messages);
             $manager->flush();
         }
-        else {
+
             return $this->render('chat/conversation.html.twig', [
             'formMessages'=> $formMsg->createView(),
-            'messages' => $chatMessageRepository->getLastMessages()
+            'messages' => $chatMessageRepository->getLastMessages($chatConversation)
             ]);
-        }
+        
     }
 }

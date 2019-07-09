@@ -14,7 +14,7 @@
             </div>
             <div class="list-group list-group-flush">
                 {% for conversation in app.user.chatConversations %}
-                    <a class="list-group-item list-group-item-action" href="#">
+                    <a class="list-group-item list-group-item-action" href="{{ path('conversation_view', { id: conversation.id }) }}">
                         <div class="d-flex w-100 justify-content-between">
                         {% if conversation.participants[0].username == app.user.username %}
                             {% set correspondant = conversation.participants[1].username %}
