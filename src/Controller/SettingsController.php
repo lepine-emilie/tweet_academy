@@ -22,4 +22,20 @@ class SettingsController extends AbstractController
     {
         return $this->render('settings/account.html.twig');
     }
+
+    /**
+     * @Route("/settings/privacy", name="settings_account")
+     */
+    public function privacySettings()
+    {
+        return $this->render('settings/account.html.twig');
+    }
+
+    /**
+     * @Route("/settings/password", name="settings_password")
+     */
+    public function passwordSettings()
+    {
+        return $this->render('settings/account.html.twig');
+    }
 }
