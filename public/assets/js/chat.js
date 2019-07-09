@@ -12,3 +12,4 @@ $('#send').click(function( event ) {
         }
     });
 });
+$('.start_conv')

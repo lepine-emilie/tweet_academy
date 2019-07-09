@@ -33,6 +33,7 @@
                         {% endif %}
                     </a>
                 {% endfor %}
+                <form action="{{ path('messages') }}"><button class="btn btn-primary start_conv">Start a conversation</button></form>
             </div>
         </div>
     {% endif %}
@@ -66,7 +67,8 @@
                 </div>
         {% endfor %}
         {{ form_start(formMessages, {attr: {'id': 'formMessages'}}) }}
-
+                
+        {{ form_errors(formMessages.content) }}
         {{ form_widget(formMessages.content) }}
 
         <button type="submit" id="create" class="btn btn-primary">Send</button>
