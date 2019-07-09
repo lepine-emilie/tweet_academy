@@ -36,3 +36,11 @@
     margin-bottom: 50px;
     font-size: 30px;
 }
+.start_conv {
+    display: flex;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
