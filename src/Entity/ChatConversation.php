@@ -23,7 +23,7 @@ class ChatConversation
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Length(max="20")
      */
-    private $name;
+    private $name = null;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="chatConversations")
