@@ -18,8 +18,9 @@ class ChatType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'attr' => [
-                    'placeholder' => " Chat title"
-                ]
+                    'placeholder' => " Chat title (optional)"
+                ],
+                'required' => false
             ])
             ->add('conv', EntityType::class, [
                 'class' => User::class,
