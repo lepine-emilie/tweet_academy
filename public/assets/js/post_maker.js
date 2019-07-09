@@ -32,6 +32,7 @@ $('.submit-post_maker').click(function () {
             else
             {
                 $('#user_post_content').val('');
+                $('#user_post_media_url').val('');
                 $('.timeline').prepend(data.htmlTemplate);
                 $($('.card-timeline')[0]).hide();
                 $($('.card-timeline')[0]).css('opacity', '0');
