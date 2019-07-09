@@ -40,22 +40,28 @@
 
 {% block center_body %}
     <div class="p-4 chat card">
+        {% if conversation.participants[0].username == app.user.username %}
+            {% set correspondant = conversation.participants[1].username %}
+        {% else %}
+            {% set correspondant = conversation.participants[0].username %}
+        {% endif %}
+        <h1 class="chat_title">Conversation with {{ correspondant }}</h1>
         {% for m in messages %}
                 <div class="message">
                     {% if m.sender == app.user %}
-                    <span class="date_user"> {{ m.submitTime|date('H:i') }}</span>
+                        <span class="date_user"> {{ m.submitTime|date('H:i') }}</span>
                     {% else %}
-                    <span class="date">{{ m.submitTime|date('H:i') }}</span>
+                        <span class="date">{{ m.submitTime|date('H:i') }}</span>
                     {% endif %}
                     {% if m.sender == app.user %}
-                    <span class="author_user"> : </span>
+                        <span class="author_user"> : </span>
                     {% else %}
-                    <span class="author">@{{ m.sender.username }} :</span>
+                        <span class="author">@{{ m.sender.username }} :</span>
                     {% endif %}
                     {% if m.sender == app.user %}
-                    <span class="content_user"> {{ m.content }}</span>
+                        <span class="content_user"> {{ m.content }}</span>
                     {% else %}
-                    <span class="content">{{ m.content }}</span>
+                        <span class="content">{{ m.content }}</span>
                     {% endif %}
                 </div>
         {% endfor %}

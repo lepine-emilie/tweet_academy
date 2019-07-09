@@ -58,6 +58,7 @@ class ChatController extends AbstractController
 
             return $this->render('chat/conversation.html.twig', [
             'formMessages'=> $formMsg->createView(),
+            'conversation' => $chatConversation,
             'messages' => $chatMessageRepository->getLastMessages($chatConversation)
             ]);
         

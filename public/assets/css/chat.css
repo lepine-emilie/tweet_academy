@@ -3,6 +3,8 @@
 }
 #create {
     margin-top: 20px;
+    padding-right: 35px;
+    padding-left: 35px;
 }
 .user-inputs {
     margin-top: 20px;
@@ -25,4 +27,12 @@
 .author_user {
     margin-right:3px;
     margin-left:3px;
+}
+.chat_title {
+    display: flex;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    font-size: 30px;
 }
