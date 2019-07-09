@@ -7,7 +7,7 @@
 .user-inputs {
     margin-top: 20px;
 }
-.date, .author {
+.date, .author, .author_user, .date_user {
     font-weight: bold;
 }
 .conversations {
@@ -18,4 +18,11 @@
 }
 #chat_message_content {
     margin-top: 15px;
+}
+.content_user,  .author_user, .date_user{
+    float: right;
+}
+.author_user {
+    margin-right:3px;
+    margin-left:3px;
 }

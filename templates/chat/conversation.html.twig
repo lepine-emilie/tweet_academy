@@ -41,11 +41,23 @@
 {% block center_body %}
     <div class="p-4 chat card">
         {% for m in messages %}
-            <div class="message">
-                <span class="date">{{ m.submitTime|date('H:m') }}</span>
-                <span class="author">@{{ m.sender.username }} :</span>
-                <span class="content">{{ m.content }}</span>
-            </div>
+                <div class="message">
+                    {% if m.sender == app.user %}
+                    <span class="date_user"> {{ m.submitTime|date('H:i') }}</span>
+                    {% else %}
+                    <span class="date">{{ m.submitTime|date('H:i') }}</span>
+                    {% endif %}
+                    {% if m.sender == app.user %}
+                    <span class="author_user"> : </span>
+                    {% else %}
+                    <span class="author">@{{ m.sender.username }} :</span>
+                    {% endif %}
+                    {% if m.sender == app.user %}
+                    <span class="content_user"> {{ m.content }}</span>
+                    {% else %}
+                    <span class="content">{{ m.content }}</span>
+                    {% endif %}
+                </div>
         {% endfor %}
         {{ form_start(formMessages, {attr: {'id': 'formMessages'}}) }}
 

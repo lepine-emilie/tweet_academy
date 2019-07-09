@@ -30,11 +30,11 @@ class ChatController extends AbstractController
             $manager->persist($conv);
             $manager->flush();
         }
-        else {
+        
             return $this->render('chat/index.html.twig', [
             'formChat' => $form->createView()
             ]);
-        }
+        
     }
 
     /**
