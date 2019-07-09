@@ -4,12 +4,15 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
@@ -20,12 +23,27 @@ class UserType extends AbstractType
                 'attr' => [
                     'placeholder' => "Full name",
                     'class' => "form-input"
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 1,
+                        'max' => 24
+                    ])
                 ]
             ])
             ->add('username', TextType::class, [
                 'attr' => [
                     'placeholder' => "Username",
                     'class' => "form-input"
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 3,
+                        'max' => 16
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[A-Za-z0-9_]+$/'
+                    ])
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -43,6 +61,7 @@ class UserType extends AbstractType
                     'class' => "form-input"
                 ]
             ])
+            ->add('sign_up', SubmitType::class)
         ;
     }
 

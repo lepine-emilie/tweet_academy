@@ -9,12 +9,17 @@
 
     {{ form_start(formSignup) }}
 
+    {{ form_errors(formSignup.display_name) }}
     {{ form_widget(formSignup.display_name) }}
-    {{ form_widget(formSignup.username) }}
-    {{ form_widget(formSignup.email) }}
-    {{ form_widget(formSignup.password) }}
 
-    <button type="submit" class="btn btn-lg btn-primary">Sign up</button>
+    {{ form_errors(formSignup.username) }}
+    {{ form_widget(formSignup.username) }}
+
+    {{ form_errors(formSignup.email) }}
+    {{ form_widget(formSignup.email) }}
+
+    {{ form_errors(formSignup.password) }}
+    {{ form_widget(formSignup.password) }}
 
     {{ form_end(formSignup) }}
 </div>
