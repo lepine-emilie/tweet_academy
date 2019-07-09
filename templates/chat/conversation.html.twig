@@ -39,22 +39,21 @@
 {% endblock %}
 
 {% block center_body %}
-    <div class="card">
-        <div class="card-body">
-            <div class="p-4">
-                <p><strong>Send a message, get a message</strong></p>
-                <p>Direct Messages are private conversations between you and other people on Ducker. Share Quacks, media, and more !</p>
-
-                {{ form_start(formChat) }}
-
-                {{ form_widget(formChat.name) }}
-                {{ form_widget(formChat.conv) }}
-
-                <button type="submit" id="create" class="btn btn-primary">Start a conversation</button>
-
-                {{ form_end(formChat) }}
+    <div class="p-4 chat card">
+        {% for m in messages %}
+            <div class="message">
+                <span class="date">{{ m.submitTime|date('H:m') }}</span>
+                <span class="author">@{{ m.sender.username }} :</span>
+                <span class="content">{{ m.content }}</span>
             </div>
-        </div>
+        {% endfor %}
+        {{ form_start(formMessages, {attr: {'id': 'formMessages'}}) }}
+
+        {{ form_widget(formMessages.content) }}
+
+        <button type="submit" id="create" class="btn btn-primary">Send</button>
+
+        {{ form_end(formMessages) }}
     </div>
 {% endblock %}
 

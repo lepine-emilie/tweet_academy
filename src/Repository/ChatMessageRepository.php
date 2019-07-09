@@ -47,7 +47,7 @@ class ChatMessageRepository extends ServiceEntityRepository
         ;
     }
     */
-    
+
     public function getLastMessages()
     {
         return $this->createQueryBuilder('cm')
