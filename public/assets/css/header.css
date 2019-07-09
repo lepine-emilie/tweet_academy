@@ -75,3 +75,11 @@ header .navbar {
     border-radius: 10px;
     box-shadow: 3px 2px 15px rgba(0, 0, 0, 0.1);
 }
+
+.navbar .nav-link {
+    color: #8899a6;
+}
+
+.navbar .nav-link.active {
+    color: rgb(29, 161, 242);
+}
