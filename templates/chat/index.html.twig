@@ -47,7 +47,10 @@
 
                 {{ form_start(formChat) }}
 
+                {{ form_errors(formChat.name) }}
                 {{ form_widget(formChat.name) }}
+                
+                {{ form_errors(formChat.conv) }}
                 {{ form_widget(formChat.conv) }}
 
                 <button type="submit" id="create" class="btn btn-primary">Start a conversation</button>
