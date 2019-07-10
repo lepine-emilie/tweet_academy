@@ -18,3 +18,7 @@
 .quacker-btn-displayer {
     display: none;
 }
+
+.button-div-actu {
+    cursor: pointer;
+}

@@ -12,6 +12,9 @@
         <div class="card-header">
             {% include 'common/post_maker.html.twig' %}
         </div>
+        <div class="button-div-actu card-body">
+            <span class="new_posts_btn"></span>
+        </div>
         <div class="timeline list-group list-group-flush">
             {% for post in timeline %}
                 {% include 'common/post_card.html.twig' with { post: post } only %}
@@ -28,4 +31,5 @@
 {% block javascripts %}
     <script src="{{ asset('assets/js/post_maker.js') }}"></script>
     <script src="{{ asset('assets/js/follow.js') }}"></script>
+    <script src="{{ asset('assets/js/newPosts.js') }}"></script>
 {% endblock %}
