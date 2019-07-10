@@ -29,14 +29,18 @@ $('.timeline').prepend("<div class='" +
 })();
 $('.button-div-actu').click(async function () {
     waiting_quacks = 0;
-    $('.button-div-actu').fadeTo('fast', '0');
-    $('.button-div-actu').slideUp('fast');
-    await sleep(0.3);
+    $('.button-div-actu').animate({opacity: 0}, '100', function () {
+        $('.new_posts_btn').html('<div class="spinner-border text-primary"' +
+            ' role="status"></div>');
+    });
+    $('.button-div-actu').delay('100').fadeTo('fast', '1');
+    await sleep(1);
     $($('.wrapper_new-posts')[0]).slideDown('fast');
     $($('.wrapper_new-posts')[0]).css('opacity', '0');
     $($('.wrapper_new-posts')[0]).fadeTo('fast', 1);
     $('.timeline').prepend("<div class='" +
         " wrapper_new-posts'></div>");
+    $('.button-div-actu').slideUp('fast');
 });
 function sleep(secs)
 {
