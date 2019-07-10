@@ -1,7 +1,7 @@
 .chat {
     background-color: #fff;
 }
-#create {
+#create, #send {
     margin-top: 20px;
     padding-right: 35px;
     padding-left: 35px;
