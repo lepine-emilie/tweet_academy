@@ -28,7 +28,6 @@ $('.timeline').prepend("<div class='" +
     loopActualisation();
 })();
 $('.button-div-actu').click(async function () {
-    console.log('you clicked');
     waiting_quacks = 0;
     $('.button-div-actu').fadeTo('fast', '0');
     $('.button-div-actu').slideUp('fast');
