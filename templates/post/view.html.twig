@@ -32,5 +32,12 @@
                 <button class="btn btn-danger btn-sm post-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
             {% endif %}
         </div>
+        <div class="card card-body">
+            {%  include 'common/post_maker.html.twig' %}
+        </div>
     </div>
+
+{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('assets/js/post_maker.js') }}"></script>
 {% endblock %}

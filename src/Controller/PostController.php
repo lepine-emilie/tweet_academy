@@ -6,12 +6,14 @@ use App\Entity\Favorite;
 use App\Entity\Notification;
 use App\Entity\Post;
 use App\Entity\User;
+use App\Form\UserPostType;
 use App\Repository\FavoriteRepository;
 use App\Repository\PostRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Json;
@@ -140,11 +142,14 @@ class PostController extends AbstractController
     /**
      * @Route("/post/{id}/view_post", name="view_post")
      */
-    public function view_post(Post $post){
+    public function view_post(Post $post, Request $request){
 
+        $form = $this->createForm(UserPostType::class, $post);
+        $form->handleRequest($request);
 
         return $this->render("/post/view.html.twig", [
-            'post' => $post
-        ]);
+            'post' => $post,
+            'formPost' => $form->createView(),
+            ]);
     }
 }
