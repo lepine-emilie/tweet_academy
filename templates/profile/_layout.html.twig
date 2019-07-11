@@ -5,13 +5,11 @@
 {% block title %}Profile{% endblock %}
 
 {% block user_stylesheet %}
-    <style>
-        {% if user.themeColor is not empty %}
-            <style>
-                {% include 'user_theme.css.twig' with { primaryColor: user.themeColor } %}
-            </style>
-        {% endif %}
-    </style>
+    {% if user.themeColor is not empty %}
+        <style>
+            {% include 'user_theme.css.twig' with { primaryColor: app.user.themeColor } %}
+        </style>
+    {% endif %}
 {% endblock %}
 
 {% block body %}
