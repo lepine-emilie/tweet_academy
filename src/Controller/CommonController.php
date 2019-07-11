@@ -43,22 +43,8 @@ class CommonController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $my_followers = $user->getFollowing();
-
-        $suggestions = [];
         //$suggestions = $userRepository->getNonFollowedByUser($user);
-
-        /*foreach($userRepository->findAll() as $u)
-        {
-            if (count($suggestions) >= 3)
-                break;
-
-            if ($u->getId() === $user->getId())
-                continue;
-
-            if (false === $my_followers->containsKey($u->getId()))
-                array_push($suggestions, $u);
-        }*/
+        $suggestions = [];
 
         return $this->render('common/suggestions.html.twig', [
             'suggestions' => $suggestions
