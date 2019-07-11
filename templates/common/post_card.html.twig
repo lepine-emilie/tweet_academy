@@ -27,11 +27,11 @@
             <img itemprop="image" class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
         {% endif %}
     </div>
-    <div class="my-3">
-        <button class="btn btn-secondary btn-sm" title="Comment">
+    <a class="my-3">
+        <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-secondary btn-sm" title="Comment">
             <i class="far fa-comment"></i>
             <span>{{ realPost.replies|length }}</span>
-        </button>
+        </a>
         <button class="btn btn-secondary btn-sm post-card__repost-btn" title="Copyquack">
             <i class="fas fa-retweet"></i>
             <span>{{ realPost.reposts|length }}</span>
