@@ -7,7 +7,7 @@
 {% block user_stylesheet %}
     {% if user.themeColor is not empty %}
         <style>
-            {% include 'user_theme.css.twig' with { primaryColor: app.user.themeColor } %}
+            {% include 'user_theme.css.twig' with { primaryColor: user.themeColor } %}
         </style>
     {% endif %}
 {% endblock %}
