@@ -136,4 +136,15 @@ class PostController extends AbstractController
 
         return new JsonResponse(['success' => false]);
     }
+
+    /**
+     * @Route("/post/{id}/view_post", name="view_post")
+     */
+    public function view_post(Post $post){
+
+
+        return $this->render("/post/view.html.twig", [
+            'post' => $post
+        ]);
+    }
 }
