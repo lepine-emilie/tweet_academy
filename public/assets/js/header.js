@@ -8,3 +8,8 @@ $(document).click(function (e) {
         $('.dropdown-menu').hide();
     }
 });
+$('.logo-click').click(function (e) {
+    e.preventDefault();
+    var audioElement = new Audio('http://www.animal-sounds.org/farm/Duck-quacking%20animals039.wav');
+    audioElement.play();
+});

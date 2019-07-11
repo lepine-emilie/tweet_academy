@@ -15,7 +15,7 @@
                 <a class="nav-item nav-link {{ route == 'messages' ? 'active' }}" href="{{ path('messages') }}"><img alt="" src="{{ asset('assets/img/email.png') }}"><span class="p-2">Messages</span></a>
             {% endif %}
         </div>
-        <a href="#"><img alt="logo" src="{{ asset('assets/img/shooting-gallery.png')}}"></a>
+        <span class="logo-click"><img alt="logo" src="{{ asset('assets/img/shooting-gallery.png')}}"></span>
         <div class="d-flex justify-content-between right-header">
             <form class="nav-item nav-link d-flex" method="get" action="{{ path("search_home") }}">
                 <input class="searchNavBar" name="search-info" type="text" placeholder="Search Ducker">
