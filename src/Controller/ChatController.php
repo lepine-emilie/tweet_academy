@@ -11,7 +11,7 @@ use App\Form\ChatType;
 use App\Form\ChatMessageType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ChatController extends AbstractController
 {
@@ -54,13 +54,17 @@ class ChatController extends AbstractController
             $messages->setSubmitTime(new \DateTime());
             $manager->persist($messages);
             $manager->flush();
+            return new JsonResponse([
+                "time" => date_format($messages->getSubmitTime(), "H:i"),
+                "message" => $messages->getContent()
+                ]);
         }
-
+        else{
             return $this->render('chat/conversation.html.twig', [
             'formMessages'=> $formMsg->createView(),
             'conversation' => $chatConversation,
             'messages' => $chatMessageRepository->getLastMessages($chatConversation)
             ]);
-        
+        }
     }
 }

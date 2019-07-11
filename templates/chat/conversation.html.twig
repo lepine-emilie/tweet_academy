@@ -47,6 +47,7 @@
             {% set correspondant = conversation.participants[0].username %}
         {% endif %}
         <h1 class="chat_title">Conversation with {{ correspondant }}</h1>
+        <div class="chat_conversation">
         {% for m in messages %}
                 <div class="message">
                     {% if m.sender == app.user %}
@@ -66,12 +67,13 @@
                     {% endif %}
                 </div>
         {% endfor %}
+        </div>
         {{ form_start(formMessages, {attr: {'id': 'formMessages'}}) }}
                 
         {{ form_errors(formMessages.content) }}
         {{ form_widget(formMessages.content) }}
 
-        <button type="submit" id="create" class="btn btn-primary">Send</button>
+        <button type="submit" id="send" class="btn btn-primary">Send</button>
 
         {{ form_end(formMessages) }}
     </div>
