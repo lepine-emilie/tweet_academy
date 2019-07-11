@@ -1,0 +1,33 @@
+.btn.btn-primary {
+    background-color: {{ primaryColor|raw }};
+    border-color: {{ primaryColor|raw }};
+}
+
+.navbar .nav-link.active {
+    color: {{ primaryColor|raw }};
+    border-bottom-color: {{ primaryColor|raw }};
+}
+
+#profile-nav a.nav-link {
+    color: {{ primaryColor|raw }};
+}
+
+#user_post_content::placeholder {
+    color: {{ primaryColor|raw }};
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle
+{
+    background-color: {{ primaryColor|raw }};
+    border-color: {{ primaryColor|raw }};
+}
+
+.nav-pills .nav-link.active
+{
+    background-color: {{ primaryColor|raw }};
+}
+
+.trend-list__link, .trend-list__link:hover
+{
+    color: {{ primaryColor|raw }};
+}

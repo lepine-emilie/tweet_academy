@@ -89,6 +89,11 @@ class User implements UserInterface
      */
     private $gender;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $theme_color;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -417,6 +422,18 @@ class User implements UserInterface
     public function setGender(?int $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getThemeColor(): ?string
+    {
+        return $this->theme_color;
+    }
+
+    public function setThemeColor(?string $theme_color): self
+    {
+        $this->theme_color = $theme_color;
 
         return $this;
     }

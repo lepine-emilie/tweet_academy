@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="{{ preload(asset('assets/css/main.css'), { as: 'style' }) }}">
     <link rel="stylesheet" href="{{ preload(asset('assets/css/header.css'), { as: 'style' }) }}">
     {% block stylesheet %}{% endblock %}
+    {% block user_stylesheet %}
+        {% if app.user is not empty and app.user.themeColor is not empty %}
+            <style>
+                {% include 'user_theme.css.twig' with { primaryColor: app.user.themeColor } %}
+            </style>
+        {% endif %}
+    {% endblock %}
 </head>
 <body>
 <header>

@@ -8,8 +8,8 @@
             <nav class="nav nav-pills">
                 {% set route = app.request.get('_route') %}
                 <a href="{{ path('profile_view', { username: user.username }) }}" class="nav-link {{ route == 'profile_view' ? 'active' }}">Quacks</a>
-                <a href="#" class="nav-link">Quacks & Replies</a>
-                <a href="#" class="nav-link">Media</a>
+                <a href="#" class="nav-link disabled">Quacks & Replies</a>
+                <a href="#" class="nav-link disabled">Media</a>
             </nav>
         </div>
         <div class="card">
@@ -20,7 +20,7 @@
             </div>
         </div>
     {% else %}
-        {% if user.id == app.user.id %}
+        {% if app.user is not empty and user.id == app.user.id %}
             <p><strong>Send your first Tweet</strong></p>
             <div class="mb-4">
                 <div class="card card-body bg-light">

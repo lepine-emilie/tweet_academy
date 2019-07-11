@@ -4,6 +4,15 @@
 {% endblock %}
 {% block title %}Profile{% endblock %}
 
+{% block user_stylesheet %}
+    <style>
+        {% if user.themeColor is not empty %}
+            <style>
+                {% include 'user_theme.css.twig' with { primaryColor: user.themeColor } %}
+            </style>
+        {% endif %}
+    </style>
+{% endblock %}
 
 {% block body %}
 
@@ -32,29 +41,29 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="nav">
+                    <div id="profile-nav" class="nav">
                         <a class="nav-link" href="{{ path('profile_view', {username: user.username}) }}">
                             <div>
                                 <span>Quacks</span>
-                                <div>{{ (user.posts|length)|number_format }}</div>
+                                <div><strong>{{ (user.posts|length)|number_format }}</strong></div>
                             </div>
                         </a>
                         <a class="nav-link" href="{{ path('profile_following', {username: user.username}) }}">
                             <div>
                                 <span>Following</span>
-                                <div>{{ (user.following|length)|number_format }}</div>
+                                <div><strong>{{ (user.following|length)|number_format }}</strong></div>
                             </div>
                         </a>
                         <a class="nav-link" href="{{ path('profile_followers', {username: user.username}) }}">
                             <div>
                                 <span>Followers</span>
-                                <div>{{ (user.followers|length)|number_format }}</div>
+                                <div><strong>{{ (user.followers|length)|number_format }}</strong></div>
                             </div>
                         </a>
                         <a class="nav-link" href="{{ path('profile_favorites', {username: user.username}) }}">
                             <div>
                                 <span>Likes</span>
-                                <div>{{ (user.favorites|length)|number_format }}</div>
+                                <div><strong>{{ (user.favorites|length)|number_format }}</strong></div>
                             </div>
                         </a>
                     </div>
