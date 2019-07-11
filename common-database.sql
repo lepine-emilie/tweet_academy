@@ -25,7 +25,7 @@ CREATE TABLE follower
 CREATE TABLE chat_conversation
 (
     id   INT AUTO_INCREMENT NOT NULL,
-    name VARCHAR(255) DEFAULT NULL,
+    name VARCHAR(20) DEFAULT NULL,
     PRIMARY KEY (id)
 ) DEFAULT CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci
@@ -48,6 +48,25 @@ CREATE TABLE favorite
     INDEX IDX_68C58ED9A76ED395 (user_id),
     INDEX IDX_68C58ED94B89032C (post_id),
     PRIMARY KEY (id)
+) DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci
+  ENGINE = InnoDB;
+CREATE TABLE hashtag
+(
+    id        INT AUTO_INCREMENT NOT NULL,
+    name      VARCHAR(255)       NOT NULL,
+    use_count INT                NOT NULL,
+    PRIMARY KEY (id)
+) DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci
+  ENGINE = InnoDB;
+CREATE TABLE post_hashtag
+(
+    hashtag_id INT NOT NULL,
+    post_id    INT NOT NULL,
+    INDEX IDX_675D9D52FB34EF56 (hashtag_id),
+    INDEX IDX_675D9D524B89032C (post_id),
+    PRIMARY KEY (hashtag_id, post_id)
 ) DEFAULT CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci
   ENGINE = InnoDB;
@@ -84,13 +103,16 @@ CREATE TABLE post
 CREATE TABLE user
 (
     id           INT AUTO_INCREMENT NOT NULL,
-    username     VARCHAR(32)        NOT NULL,
-    display_name VARCHAR(64)        NOT NULL,
-    email        VARCHAR(255)       NOT NULL,
+    username     VARCHAR(16)        NOT NULL,
+    display_name VARCHAR(24)        NOT NULL,
+    email        VARCHAR(180)       NOT NULL,
     password     VARCHAR(255)       NOT NULL,
     birth_date   DATE         DEFAULT NULL,
     city         VARCHAR(255) DEFAULT NULL,
     gender       SMALLINT     DEFAULT NULL,
+    theme_color  VARCHAR(255) DEFAULT NULL,
+    UNIQUE INDEX UNIQ_8D93D649F85E0677 (username),
+    UNIQUE INDEX UNIQ_8D93D649E7927C74 (email),
     PRIMARY KEY (id)
 ) DEFAULT CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci
@@ -120,7 +142,11 @@ ALTER TABLE chat_participant
 ALTER TABLE favorite
     ADD CONSTRAINT FK_68C58ED9A76ED395 FOREIGN KEY (user_id) REFERENCES user (id);
 ALTER TABLE favorite
-    ADD CONSTRAINT FK_68C58ED94B89032C FOREIGN KEY (post_id) REFERENCES post (id);
+    ADD CONSTRAINT FK_68C58ED94B89032C FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE;
+ALTER TABLE post_hashtag
+    ADD CONSTRAINT FK_675D9D52FB34EF56 FOREIGN KEY (hashtag_id) REFERENCES hashtag (id) ON DELETE CASCADE;
+ALTER TABLE post_hashtag
+    ADD CONSTRAINT FK_675D9D524B89032C FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE;
 ALTER TABLE chat_message
     ADD CONSTRAINT FK_FAB3FC169AC0396 FOREIGN KEY (conversation_id) REFERENCES chat_conversation (id);
 ALTER TABLE chat_message
@@ -128,8 +154,8 @@ ALTER TABLE chat_message
 ALTER TABLE post
     ADD CONSTRAINT FK_5A8A6C8DF624B39D FOREIGN KEY (sender_id) REFERENCES user (id);
 ALTER TABLE post
-    ADD CONSTRAINT FK_5A8A6C8D39C1776A FOREIGN KEY (parent_post_id) REFERENCES post (id);
+    ADD CONSTRAINT FK_5A8A6C8D39C1776A FOREIGN KEY (parent_post_id) REFERENCES post (id) ON DELETE CASCADE;
 ALTER TABLE post
-    ADD CONSTRAINT FK_5A8A6C8D256BB44 FOREIGN KEY (source_post_id) REFERENCES post (id);
+    ADD CONSTRAINT FK_5A8A6C8D256BB44 FOREIGN KEY (source_post_id) REFERENCES post (id) ON DELETE CASCADE;
 ALTER TABLE notification
     ADD CONSTRAINT FK_BF5476CAA76ED395 FOREIGN KEY (user_id) REFERENCES user (id);
