@@ -16,18 +16,22 @@
     color: {{ primaryColor|raw }};
 }
 
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle
-{
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
     background-color: {{ primaryColor|raw }};
     border-color: {{ primaryColor|raw }};
 }
 
-.nav-pills .nav-link.active
-{
+.nav-pills .nav-link.active {
     background-color: {{ primaryColor|raw }};
 }
 
-.trend-list__link, .trend-list__link:hover
-{
+.mini-user-profile a, .mini-user-profile a:hover,
+.post-card__author-name, .post-card__author-name:hover,
+.trend-list__link, .trend-list__link:hover,
+.nav.nav-pills a:not(.disabled):not(.active), .nav.nav-pills a:hover:not(.active) {
     color: {{ primaryColor|raw }};
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: {{ primaryColor|raw }};
 }

@@ -12,7 +12,7 @@
 
         {# == Displays the post content #}
         <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <a href="{{ path('profile_view', { username: realPost.sender.username }) }}">
+            <a class="post-card__author-name" href="{{ path('profile_view', { username: realPost.sender.username }) }}">
                 <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
             </a>
             <span>(@{{ realPost.sender.username }})</span>
