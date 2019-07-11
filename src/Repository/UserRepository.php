@@ -22,15 +22,15 @@ class UserRepository extends ServiceEntityRepository
     public function getNonFollowedByUser(User $user)
     {
         /*$qb = $this->createQueryBuilder('u');
-        $qb->where($qb->expr()->not($qb->expr()->exists(
-            $this->createQueryBuilder("u2")
+        return $qb->where($qb->expr()->not($qb->expr()->exists(
+            $this->_em->createQueryBuilder()
+                ->select('f')
                 ->from("App:Follower", "f")
-                ->where("f.user = u")
                 ->where("f.follower = :follower")
         )))
-            ->setParameter("follower", $user);
-
-        return $qb->getQuery()->getResult();*/
+            ->setParameter("follower", $user)
+            ->getQuery()
+            ->getResult();*/
     }
 
     // /**

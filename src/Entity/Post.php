@@ -26,11 +26,13 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="replies")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $parent_post;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="reposts")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $source_post;
 
