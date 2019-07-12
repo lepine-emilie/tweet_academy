@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Hashtag;
+use App\Repository\HashtagRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,16 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    /**
-     * @Route("/search", name="search")
-     */
-    public function index()
-    {
-        return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
-        ]);
-    }
-
     /**
      * @Route("/search_results", name="search_home")
      */
@@ -36,6 +28,25 @@ class SearchController extends AbstractController
             "results"=>$result,
             "search_info"=>$_GET['search_term'],
             "search_type"=>$type
+        ]);
+    }
+
+    /**
+     * @Route("/hashtag/{name}", name="hashtag_search")
+     */
+    public function hashtag_search(string $name, HashtagRepository $repository)
+    {
+        $hashtag = $repository->findOneBy([
+            'name' => '#' . $name
+        ]);
+
+        if ($hashtag == null)
+            throw $this->createNotFoundException();
+
+        return $this->render('search/index.html.twig', [
+            "results" => $hashtag->getPosts(),
+            'search_info' => $name,
+            'search_type' => 'post'
         ]);
     }
 }
