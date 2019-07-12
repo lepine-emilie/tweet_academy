@@ -8,34 +8,7 @@
 
 {% block left_sidebar %}
     {% if app.user.chatConversations is not empty %}
-        <div class="card conversations">
-            <div class="card-header">
-                Conversations
-            </div>
-            <div class="list-group list-group-flush">
-                {% for conversation in app.user.chatConversations %}
-                    <a class="list-group-item list-group-item-action" href="{{ path('conversation_view', { id: conversation.id }) }}">
-                        <div class="d-flex w-100 justify-content-between">
-                        {% if conversation.participants[0].username == app.user.username %}
-                            {% set correspondant = conversation.participants[1].username %}
-                        {% else %}
-                            {% set correspondant = conversation.participants[0].username %}
-                        {% endif %}
-                            <strong class="mb-1">With {{ correspondant }}</strong>
-                            <strong class="mb-1">{{ conversation.name }}</strong>
-                        </div>
-                        {% if conversation.chatMessages is not empty %}
-                            {% set lastChatMessage = conversation.chatMessages|last %}
-                            <p class="mb-1">{{ lastChatMessage.content }}</p>
-                            <small>{{ lastChatMessage.sender.username }}, {{ lastChatMessage.submitTime|date}}</small>
-                        {% else %}
-                            <small>No messages</small>
-                        {% endif %}
-                    </a>
-                {% endfor %}
-                <form action="{{ path('messages') }}"><button class="btn btn-primary start_conv">Start a conversation</button></form>
-            </div>
-        </div>
+        {% include 'chat/conversation_list.html.twig' with { currentConversation: conversation.id } %}
     {% endif %}
 {% endblock %}
 
