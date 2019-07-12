@@ -35,6 +35,15 @@ class PostRepository extends ServiceEntityRepository
         return($QB);
     }
 
+    public function search_post($search_info){
+        return $this->createQueryBuilder("u")
+            ->where("u.content like :search_info")
+            ->setParameter("search_info", "%$search_info%")
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */
