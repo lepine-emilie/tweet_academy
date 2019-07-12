@@ -23,3 +23,12 @@ img.mini-avatar-64 {
     height: 64px;
     width: 64px;
 }
+
+.mini-user-profile {
+    position: sticky;
+    top: 20px;
+}
+.trends {
+    position: sticky;
+    top: 174px;
+}
