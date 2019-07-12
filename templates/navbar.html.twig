@@ -25,7 +25,7 @@
                 <div class="btn-group">
                     <span class="dropdown-btn nav-item">
                         {% if app.user is not empty and app.user.avatarPath is empty %}
-                            {% set avatarUrl = asset('assets/img/female.png') %}
+                            {% set avatarUrl = asset('assets/img/user-placeholder.png') %}
                         {% else %}
                             {% set avatarUrl = asset('upload/avatar/'~ app.user.avatarPath) %}
                         {% endif %}

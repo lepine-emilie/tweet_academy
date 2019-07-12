@@ -28,7 +28,7 @@
                 <div class="col-lg-3">
                     <div class="profile-avatar">
                         {% if user.avatarPath is empty %}
-                            <img src="{{ asset('assets/img/female.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
+                            <img src="{{ asset('assets/img/user-placeholder.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
                         {% else %}
                             <img src="{{ asset('upload/avatar/'~ user.avatarPath) }}" height="200" width="200" alt="Profile picture" class="avatar">
                         {% endif %}

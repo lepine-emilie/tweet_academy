@@ -18,7 +18,7 @@
                                         {% if following.user is not empty and following.user.avatarPath is not empty %}
                                             {% set avatarUrl = asset('upload/avatar/'~ following.user.avatarPath) %}
                                         {% else %}
-                                            {% set avatarUrl = asset('assets/img/female.png') %}
+                                            {% set avatarUrl = asset('assets/img/user-placeholder.png') %}
                                         {% endif %}
                                         <img alt="Profile picture of @{{ following.user.username }}" src="{{ avatarUrl }}" class="mini-avatar-64">
                                     </a>
