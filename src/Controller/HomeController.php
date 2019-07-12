@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Hashtag;
 use App\Entity\Post;
 use App\Form\UploadFilePostType;
 use App\Form\UserPostType;
+use App\Repository\HashtagRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -22,7 +24,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(PostRepository $repository, Request $request, UserRepository $userRepository, ObjectManager $em)
+    public function index(PostRepository $repository, Request $request,
+                          UserRepository $userRepository, ObjectManager $em,
+                          HashtagRepository $hashtagRepository)
     {
         if ($this->getUser() === null)
             return $this->redirectToRoute("app_login");
@@ -35,6 +39,9 @@ class HomeController extends AbstractController
         {
             if (!$form->isValid())
                 return new JsonResponse(["success" => false]);
+            $post->setSender($this->getUser());
+            $post->setSubmitTime(new \DateTime());
+            $em->persist($post);
             if($form['media_url']->getData() != null)
             {
                 $file = $form['media_url']->getData();
@@ -45,9 +52,31 @@ class HomeController extends AbstractController
                     $filename);
                 $post->setMediaUrl($filename);
             }
-            $post->setSender($this->getUser());
-            $post->setSubmitTime(new \DateTime());
-            $em->persist($post);
+            if (preg_match('/#([A-Za-z0-9])\w+/',
+                $form['content']->getData()))
+            {
+                $matches = [];
+                preg_match_all('/#([A-Za-z0-9])\w+/',
+                    $form['content']->getData(), $matches);
+                $matches[0] = array_unique($matches[0]);
+                foreach ($matches[0] as $key => $valTag)
+                {
+                    if ($hashtagRepository->findOneBy(['name' => $valTag]) !== null)
+                    {
+                        $hashtag = $hashtagRepository->findOneBy(['name' => $valTag]);
+                        $hashtag->setUseCount($hashtag->getUseCount()+1);
+                        $hashtag->addPost($post);
+                    }
+                    else
+                    {
+                        $hashtag = new Hashtag();
+                        $hashtag->setName($valTag);
+                        $hashtag->setUseCount(1);
+                        $hashtag->addPost($post);
+                        $em->persist($hashtag);
+                    }
+                }
+            }
             $em->flush();
             $view = $this->renderView("common/post_card.html.twig", ['post' => $post]);
             return new JsonResponse(["success" => true, 'htmlTemplate' => $view]);

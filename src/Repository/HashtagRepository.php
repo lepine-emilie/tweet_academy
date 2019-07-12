@@ -19,6 +19,26 @@ class HashtagRepository extends ServiceEntityRepository
         parent::__construct($registry, Hashtag::class);
     }
 
+    public function does_it_exist($name)
+    {
+        $DB = $this->createQueryBuilder('u')
+            ->select('u.id')
+            ->where("u.name = '".$name."'")
+            ->getQuery()
+            ->getResult();
+        return $DB;
+    }
+
+    public function incrementTag($name)
+    {
+        $DB = $this->createQueryBuilder('u')
+            ->update()
+            ->set('u.use_count', 'u.use_count + 1')
+            ->where("u.name = '".$name."'")
+            ->getQuery()
+            ->execute();
+    }
+
     // /**
     //  * @return Hashtag[] Returns an array of Hashtag objects
     //  */
