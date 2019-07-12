@@ -440,4 +440,18 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getAvatarPath(): ?string
+    {
+        foreach($this->getUploads() as $u)
+            if ($u->getType() === 'avatar')
+                return $u->getPath();
+    }
+
+    public function getCoverPath(): ?string
+    {
+        foreach($this->getUploads() as $u)
+            if ($u->getType() === 'banner')
+                return $u->getPath();
+    }
 }

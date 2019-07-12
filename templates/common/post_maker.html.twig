@@ -4,7 +4,13 @@
 
 <div class="post_maker-wrapper">
     <div class="d-flex post_maker">
-        <span><img src="{{asset('assets/img/user-placeholder.png') }}"></span>
+        <span>
+            {% if app.user.avatarPath is empty %}
+                <img src="{{ asset('assets/img/user-placeholder.png') }}" height="32" width="32" alt="Profile picture" class="mini-avatar">
+                        {% else %}
+                <img src="{{ asset('upload/avatar/'~ app.user.avatarPath) }}" height="32" width="32" alt="Profile picture" class="mini-avatar">
+            {% endif %}
+        </span>
         {{ form_start(formPost, {attr: {'id': 'formPostMaker'}}) }}
         {{ form_row(formPost.content) }}
         <div class="d-none">

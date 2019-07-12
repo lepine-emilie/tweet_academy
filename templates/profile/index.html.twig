@@ -21,7 +21,7 @@
         </div>
     {% else %}
         {% if app.user is not empty and user.id == app.user.id %}
-            <p><strong>Send your first Tweet</strong></p>
+            <p><strong>Send your first Quack</strong></p>
             <div class="mb-4">
                 <div class="card card-body bg-light">
                     {{ render(controller('App\\Controller\\CommonController::postMaker')) }}

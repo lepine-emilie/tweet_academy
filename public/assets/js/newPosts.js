@@ -3,7 +3,7 @@ $('.button-div-actu').hide();
 $('.timeline').prepend("<div class='" +
     " wrapper_new-posts'></div>");
 (async function loopActualisation(){
-    await sleep(15);
+    await sleep(5);
     $.post(
         '/actualisation',
         function (data) {
@@ -14,10 +14,10 @@ $('.timeline').prepend("<div class='" +
                     $($('.wrapper_new-posts')[0]).prepend(value);
                 }
                 waiting_quacks += data.htmlTemplate.length;
-                let quack = 'Quacks';
-                if (waiting_quacks === 1)
-                    quack = 'Quack';
-                $('.new_posts_btn').html("Show "+waiting_quacks+" new "+ quack);
+                let quack = waiting_quacks === 1 ? 'Quack' : 'Quacks';
+                $('.new_posts_btn')
+                    .addClass("text-primary")
+                    .html("Show "+waiting_quacks+" new "+ quack);
                 $('.button-div-actu').slideDown('fast');
                 $('.button-div-actu').css('opacity', '0');
                 $('.button-div-actu').fadeTo('fast', '1');
