@@ -443,15 +443,19 @@ class User implements UserInterface
 
     public function getAvatarPath(): ?string
     {
-        foreach($this->getUploads() as $u)
+        foreach ($this->getUploads() as $u)
             if ($u->getType() === 'avatar')
                 return $u->getPath();
+
+        return null;
     }
 
     public function getCoverPath(): ?string
     {
-        foreach($this->getUploads() as $u)
+        foreach ($this->getUploads() as $u)
             if ($u->getType() === 'banner')
                 return $u->getPath();
+
+        return null;
     }
 }

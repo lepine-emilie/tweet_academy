@@ -14,7 +14,7 @@
 
 {% block body %}
 
-    {% if user.coverPath is not empty %}
+    {% if user is not empty and user.coverPath is not empty %}
         {% set cover_url = asset('upload/banner/' ~ user.coverPath) %}
     {% else %}
         {% set cover_url = asset('assets/img/cover-placeholder.jpg') %}

@@ -1,23 +1,25 @@
-body
-{
+body {
     background: #e6ecf0;
 }
 
-main > .container
-{
+main > .container {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.btn-primary
-{
+.btn-primary {
     background-color: #1da1f2;
     border-radius: 20px;
 }
 
-img.mini-avatar
-{
+img.mini-avatar {
     border-radius: 50%;
     height: 32px;
     width: 32px;
+}
+
+img.mini-avatar-64 {
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
 }

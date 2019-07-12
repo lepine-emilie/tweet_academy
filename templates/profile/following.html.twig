@@ -5,30 +5,37 @@
 {% block profile_center %}
     {% if user.following is not empty %}
         <div class="card">
-                <div class="card-header">
-                    <strong>Following</strong>
-                </div>
-                <div class="list-group list-group-flush">
-                    <div class="container-fluid">
-                        <div class="row">
-                            {% for following in user.following %}
-                                <div class="card col-4">
-                                    <div class="card-body picture-follow">
-                                        <a href="{{ path('profile_view', { username: following.user.username }) }}">
-                                            <img alt="avatar" id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
-                                        </a>
-                                        <p class="card-body name-follow"></p>
-                                            <h6>{{ following.user.displayName }}<br></h6>
-                                            <h6 class="card-subtitle mb-2 text-muted">@{{ following.user.username }}</h6>
+            <div class="card-header">
+                <strong>Following</strong>
+            </div>
+            <div class="list-group list-group-flush">
+                <div class="container-fluid">
+                    <div class="row">
+                        {% for following in user.following %}
+                            <div class="card col-4">
+                                <div class="card-body picture-follow">
+                                    <a href="{{ path('profile_view', { username: following.user.username }) }}">
+                                        {% if following.user is not empty and following.user.avatarPath is not empty %}
+                                            {% set avatarUrl = asset('upload/avatar/'~ following.user.avatarPath) %}
+                                        {% else %}
+                                            {% set avatarUrl = asset('assets/img/female.png') %}
+                                        {% endif %}
+                                        <img alt="Profile picture of @{{ following.user.username }}" src="{{ avatarUrl }}" class="mini-avatar-64">
+                                    </a>
+                                    <p class="card-body name-follow"></p>
+                                    <h6>{{ following.user.displayName }}<br></h6>
+                                    <h6 class="card-subtitle mb-2 text-muted">@{{ following.user.username }}</h6>
 
-                                    </div>
                                 </div>
-                            {% endfor %}
-                        </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
+            </div>
         </div>
     {% else %}
-        <p><strong>@{{ user.username }}</strong> is not following anyone</p>
+        <div class="p-2">
+            <p><strong>@{{ user.username }}</strong> is not following anyone</p>
+        </div>
     {% endif %}
 {% endblock %}

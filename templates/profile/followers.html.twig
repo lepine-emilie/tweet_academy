@@ -16,11 +16,16 @@
                             <div class="card col-4">
                                 <div class="card-body picture-follow">
                                     <a href="{{ path('profile_view', { username: follower.follower.username }) }}">
-                                        <img alt="avatar" id="avatar" src="{{ asset('assets/img/female.png') }}" height="64" width="64">
+                                        {% if follower.follower is not empty and follower.follower.avatarPath is not empty %}
+                                            {% set avatarUrl = asset('upload/avatar/'~ follower.follower.avatarPath) %}
+                                        {% else %}
+                                            {% set avatarUrl = asset('assets/img/female.png') %}
+                                        {% endif %}
+                                        <img alt="Profile picture of {{ follower.follower.username }}" src="{{ avatarUrl }}" class="mini-avatar-64" height="64" width="64">
                                     </a>
                                     <p class="card-body name-follow">
-                                        <h6>{{ follower.follower.displayName }}<br></h6>
-                                        <h6 class="card-subtitle mb-2 text-muted"> @{{ follower.follower.username }}</h6>
+                                    <h6>{{ follower.follower.displayName }}<br></h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"> @{{ follower.follower.username }}</h6>
                                     </p>
                                 </div>
                             </div>
@@ -30,6 +35,8 @@
             </div>
         </div>
     {% else %}
-        <p><strong>@{{ user.username }}</strong> has no followers</p>
+        <div class="p-2">
+            <p><strong>@{{ user.username }}</strong> has no followers</p>
+        </div>
     {% endif %}
 {% endblock %}
