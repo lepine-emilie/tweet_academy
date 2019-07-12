@@ -12,10 +12,6 @@ $(document).click(function (e) {
         $('.quacker-btn-displayer').fadeTo("fast", 0);
     }
 });
-function tagRegexChecker()
-{
-    let regex = /#([A-Za-z0-9])\w+/g;
-}
 $('.submit-post_maker').click(function () {
     if ($('.post_maker textarea').val().length > 140)
     {
@@ -39,33 +35,12 @@ $('.submit-post_maker').click(function () {
                 $('.timeline').prepend(data.htmlTemplate);
                 $($('.card-timeline')[0]).hide();
                 $($('.card-timeline')[0]).css('opacity', '0');
-                checkForTags();
+                checkForTagsPost();
                 animate_timeline();
             }
         }
     });
 });
-function checkForTags()
-{
-    let regex = /#([A-Za-z0-9])\w+/g;
-    if (regex.test($($('.card-timeline')[0]).find('p').html()))
-    {
-        let tags = $($('.card-timeline')[0]).find('p').html().match(regex);
-        $.each(tags, function (index, tag) {
-            let firstIndex =$($('.card-timeline')[0]).find('p').html()
-                .indexOf(tag);
-            let endIndex = firstIndex + tag.length;
-            let firstpart=$($('.card-timeline')[0]).find('p').html()
-                .substr(0, firstIndex);
-            let secpart= $($('.card-timeline')[0]).find('p').html()
-                .substr(endIndex);
-            let toMofify=$($('.card-timeline')[0]).find('p').html()
-                .substr(firstIndex, tag.length);
-            $($('.card-timeline')[0]).find('p')
-                .html(firstpart+"<a href='#'>"+toMofify+"</a>"+secpart);
-        });
-    }
-}
 function animate_timeline()
 {
     $($('.card-timeline')[0]).slideDown("fast");
