@@ -56,10 +56,11 @@
 }
 .date_user {
     float: right;
-    margin-left: 10px;
+    margin-left: 13px;
+    color: rgb(238, 238, 238);
 }
-.author {
-    margin-right: 10px;
+.content_user {
+    color: white;
 }
 .chat_title {
     display: flex;
