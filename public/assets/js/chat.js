@@ -9,12 +9,11 @@ $('#send').click(function( event ) {
         processData: false,
         contentType: false,
         success: function (data) {
-
-            var msg  = $("<div class='message'></div>")
+            var msg  = $("<div class='message_user'></div>")
                 .append(
                     $("<span></span>")
                         .addClass("date")
-                        .text(data.time + ": "),
+                        .text(data.time + " : "),
                     $("<span></span>")
                         .addClass("content")
                         .text(data.message)

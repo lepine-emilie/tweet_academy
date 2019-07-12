@@ -21,8 +21,8 @@
 #chat_message_content {
     margin-top: 15px;
 }
-.content_user,  .author_user, .date_user{
-    float: right;
+.message_user {
+    text-align: right;
 }
 .author_user {
     margin-right:3px;
