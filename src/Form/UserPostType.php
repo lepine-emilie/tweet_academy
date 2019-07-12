@@ -45,7 +45,9 @@ class UserPostType extends AbstractType
                         'mimeTypes' => [
                             'image/png',
                             'image/jpg',
-                            'image/jpeg'
+                            'image/jpeg',
+                            'image/gif',
+                            'image/webp'
                         ],
                         'mimeTypesMessage' =>
                             "This picture's format is not supported"
