@@ -1,15 +1,13 @@
-<div class="d-none d-md-block trends">
-    <div class="card trends-list">
-        <div class="card-header">
-            <strong>Trends</strong>
-        </div>
-        <div class="card-body">
-            {% for i in 0..4 %}
-                <div>
-                    <a class="trend-list__link" href="{{ path('hashtag_search', { name: 'BalanceTonCanard' }) }}">#BalanceTonCanard</a>
-                    <p>69 Quacks</p>
-                </div>
-            {% endfor %}
-        </div>
+<div class="card trends trends-list">
+    <div class="card-header">
+        <strong>Trends</strong>
+    </div>
+    <div class="card-body">
+        {% for i in 0..4 %}
+            <div>
+                <a class="trend-list__link" href="{{ path('hashtag_search', { name: 'BalanceTonCanard' }) }}">#BalanceTonCanard</a>
+                <p>69 Quacks</p>
+            </div>
+        {% endfor %}
     </div>
 </div>
