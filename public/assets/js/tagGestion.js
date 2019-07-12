@@ -24,7 +24,8 @@ function makechanges(key, tag)
     let toMofify=$('.timeline').find('p')[key].innerHTML
         .substr(firstIndex, tag.length);
     $('.timeline').find('p')[key]
-        .innerHTML = firstpart+"<a href='#'>"+toMofify+"</a>"+secpart;
+        .innerHTML = firstpart+"<a href='/hashtag/"+toMofify.substr(1)+
+        "'>"+toMofify+"</a>"+secpart;
 }
 function checkForTagsActu()
 {
@@ -52,7 +53,8 @@ function makechangesActu(key, tag)
     let toMofify=$($('.wrapper_new-posts')[0]).find('p')[key].innerHTML
         .substr(firstIndex, tag.length);
     $($('.wrapper_new-posts')[0]).find('p')[key]
-        .innerHTML = firstpart+"<a href='#'>"+toMofify+"</a>"+secpart;
+        .innerHTML = firstpart+"<a href='/hashtag/"+toMofify.substr(1)+
+        "'>"+toMofify+"</a>"+secpart;
 }
 function checkForTagsPost()
 {
@@ -80,5 +82,6 @@ function makechangesPost(key, tag)
     let toMofify=$($('.card-timeline')[0]).find('p')[key].innerHTML
         .substr(firstIndex, tag.length);
     $($('.card-timeline')[0]).find('p')[key]
-        .innerHTML = firstpart+"<a href='#'>"+toMofify+"</a>"+secpart;
+        .innerHTML = firstpart+"<a href='/hashtag/"+toMofify.substr(1)+
+        "'>"+toMofify+"</a>"+secpart;
 }
