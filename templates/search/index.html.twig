@@ -18,8 +18,8 @@
     <div class="card">
         <div class="card-header">
             <nav class="nav nav-pills">
-                <a href="{{ path('search_home',{search_type: "post", search_term: search_info}) }}" class="nav-item nav-link active">Latest</a>
-                <a href="{{ path('search_home',{search_type: "people", search_term: search_info}) }}" class="nav-item nav-link">People</a>
+                <a href="{{ path('search_home',{search_type: "post", search_term: search_info}) }}" class="nav-item nav-link {{ search_type == 'post' ? 'active' }}">Latest</a>
+                <a href="{{ path('search_home',{search_type: "people", search_term: search_info}) }}" class="nav-item nav-link {{ search_type == 'people' ? 'active' }}">People</a>
             </nav>
         </div>
 
