@@ -18,11 +18,11 @@ $('#send').click(function( event ) {
                         .addClass("message_user_container")
                         .append(
                     $("<span></span>")
-                        .addClass("content")
-                        .text(data.message),
-                    $("<span></span>")
                         .addClass("date_user")
-                        .text(" : " + data.time)
+                        .text(" : " + data.time),
+                    $("<span></span>")
+                        .addClass("content")
+                        .text(data.message)
                 )))
                 .appendTo(".chat_conversation");
 
