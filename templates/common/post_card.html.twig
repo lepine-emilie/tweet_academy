@@ -12,6 +12,12 @@
 
         {# == Displays the post content #}
         <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            {% if realPost.sender is not empty and realPost.sender.avatarPath is not empty %}
+                {% set avatarUrl = asset('upload/avatar/'~ realPost.sender.avatarPath) %}
+            {% else %}
+                {% set avatarUrl = asset('assets/img/user-placeholder.png') %}
+            {% endif %}
+            <img src="{{ avatarUrl }}" class="mini-avatar" height="32px" width="32px">
             <a class="post-card__author-name" href="{{ path('profile_view', { username: realPost.sender.username }) }}">
                 <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
             </a>
