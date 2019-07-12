@@ -7,11 +7,11 @@ $(document).on('click', '.post-card__like-btn', function() {
         dataType: 'json',
         success: function(data) {
             if (data.favorite === true)
-                $(self).removeClass('btn-secondary')
-                    .addClass('btn-danger');
+                $(self).removeClass('btn-outline-secondary')
+                    .addClass('btn-outline-danger');
             else
-                $(self).removeClass('btn-danger')
-                    .addClass('btn-secondary');
+                $(self).removeClass('btn-outline-danger')
+                    .addClass('btn-outline-secondary');
         }
     });
 });

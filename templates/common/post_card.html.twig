@@ -11,7 +11,7 @@
         {% set realPost = post.sourcePost ?? post %}
 
         {# == Displays the post content #}
-        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="mb-2" itemprop="author" itemscope itemtype="http://schema.org/Person">
             {% if realPost.sender is not empty and realPost.sender.avatarPath is not empty %}
                 {% set avatarUrl = asset('upload/avatar/'~ realPost.sender.avatarPath) %}
             {% else %}
@@ -34,21 +34,21 @@
         {% endif %}
     </div>
     <div class="my-3">
-        <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-secondary btn-sm" title="Comment">
+        <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm" title="Comment">
             <i class="far fa-comment"></i>
             <span>{{ realPost.replies|length }}</span>
         </a>
-        <button class="btn btn-secondary btn-sm post-card__repost-btn" title="Copyquack">
+        <button class="btn btn-outline-secondary btn-sm post-card__repost-btn" title="Copyquack">
             <i class="fas fa-retweet"></i>
             <span>{{ realPost.reposts|length }}</span>
         </button>
-        <button class="btn btn-secondary btn-sm post-card__like-btn" title="Like">
+        <button class="btn btn-outline-secondary btn-sm post-card__like-btn" title="Like">
             <i class="far fa-heart"></i>
             <span>{{ realPost.favorites|length }}</span>
         </button>
-        <button class="btn btn-secondary btn-sm" title="Direct message">
+        {#<button class="btn btn-outline-secondary btn-sm" title="Direct message">
             <i class="far fa-envelope"></i>
-        </button>
+        </button>#}
         {% if app.user is not empty and post.sender.id == app.user.id %}
             <button class="btn btn-danger btn-sm post-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
         {% endif %}
