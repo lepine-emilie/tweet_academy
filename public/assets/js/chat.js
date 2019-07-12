@@ -1,6 +1,11 @@
+$(function () {
+    $('.chat_conversation').scrollTop(1E10);
+});
+      
 $('#send').click(function( event ) {
     event.preventDefault();
     var url = window.location.href;
+    
     $.ajax({
         type: 'POST',
         url: url,
@@ -19,7 +24,7 @@ $('#send').click(function( event ) {
                         .append(
                     $("<span></span>")
                         .addClass("date_user")
-                        .text(" : " + data.time),
+                        .text(data.time),
                     $("<span></span>")
                         .addClass("content_user")
                         .text(data.message)
@@ -27,6 +32,7 @@ $('#send').click(function( event ) {
                 .appendTo(".chat_conversation");
 
             $('#chat_message_content').val('');
+            $('.chat_conversation').scrollTop(1E10);
         }
     });
 });

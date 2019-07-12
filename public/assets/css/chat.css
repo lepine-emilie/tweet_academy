@@ -14,12 +14,18 @@
 }
 .conversations {
     margin-bottom: 30px;
+    position: sticky;
+    top: 20px;
 }
 #message_content {
     resize: none;
 }
 #chat_message_content {
     margin-top: 15px;
+}
+.chat_conversation {
+    overflow-y: scroll;
+    max-height: 600px;
 }
 .message {
 
