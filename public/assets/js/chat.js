@@ -21,7 +21,7 @@ $('#send').click(function( event ) {
                         .addClass("content")
                         .text(data.message),
                     $("<span></span>")
-                        .addClass("date")
+                        .addClass("date_user")
                         .text(" : " + data.time)
                 )))
                 .appendTo(".chat_conversation");
