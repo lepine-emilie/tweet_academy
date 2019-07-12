@@ -30,7 +30,7 @@ class HomeController extends AbstractController
     {
         if ($this->getUser() === null)
             return $this->redirectToRoute("app_login");
-            
+
         $posts = $repository->findBy([], ['id' => 'desc', 'submit_time' => 'desc']);
         $post = new Post();
         $form = $this->createForm(UserPostType::class, $post);
@@ -42,11 +42,11 @@ class HomeController extends AbstractController
             $post->setSender($this->getUser());
             $post->setSubmitTime(new \DateTime());
             $em->persist($post);
-            if($form['media_url']->getData() != null)
+            if ($form['media_url']->getData() != null)
             {
                 $file = $form['media_url']->getData();
                 $filename = md5(random_bytes(20)) .
-                    ".".pathinfo($file->getClientOriginalName(),
+                    "." . pathinfo($file->getClientOriginalName(),
                         PATHINFO_EXTENSION);
                 $file->move($this->getParameter('PostUploads_directory'),
                     $filename);
@@ -64,7 +64,7 @@ class HomeController extends AbstractController
                     if ($hashtagRepository->findOneBy(['name' => $valTag]) !== null)
                     {
                         $hashtag = $hashtagRepository->findOneBy(['name' => $valTag]);
-                        $hashtag->setUseCount($hashtag->getUseCount()+1);
+                        $hashtag->setUseCount($hashtag->getUseCount() + 1);
                         $hashtag->addPost($post);
                     }
                     else
@@ -86,6 +86,7 @@ class HomeController extends AbstractController
             'formPost' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/actualisation", name="actualisation")
      */

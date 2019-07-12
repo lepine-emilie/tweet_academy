@@ -26,7 +26,7 @@ class PostRepository extends ServiceEntityRepository
             ->select('u.id')
             ->where("u.submit_time > :date")
             ->andWhere("u.sender != '".$id."'")
-            ->setParameter('date', new \DateTime('-15 seconds',
+            ->setParameter('date', new \DateTime('-5 seconds',
                 new \DateTimeZone('Europe/Paris')))
             ->getQuery()
             ->getResult(AbstractQuery::HYDRATE_ARRAY);

@@ -57,7 +57,7 @@ class PostController extends AbstractController
         }
         else
         {
-            foreach($favorite as $f)
+            foreach ($favorite as $f)
                 $objectManager->remove($f);
 
             $objectManager->flush();
@@ -142,14 +142,14 @@ class PostController extends AbstractController
     /**
      * @Route("/post/{id}/view_post", name="view_post")
      */
-    public function view_post(Post $post, Request $request){
-
+    public function view_post(Post $post, Request $request)
+    {
         $form = $this->createForm(UserPostType::class, $post);
         $form->handleRequest($request);
 
         return $this->render("/post/view.html.twig", [
             'post' => $post,
             'formPost' => $form->createView(),
-            ]);
+        ]);
     }
 }
