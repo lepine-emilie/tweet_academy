@@ -53,8 +53,8 @@
                 <div class="message_user">
                     <div class="message_user_manager">
                         <div class="message_user_container">
-                            <span class="content">{{ m.content }}</span>
                             <span class="date_user">: {{ m.submitTime|date('H:i') }}</span>
+                            <span class="content">{{ m.content }}</span>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="message_manager">
                         <div class="message_container">
                             <span class="date">{{ m.submitTime|date('H:i') }}</span>
-                            <span class="author">@{{ m.sender.username }} :</span>
+                            <span class="author"><a href="{{ path('profile_view', { username: m.sender.username }) }}">@{{ m.sender.username }}</a> :</span>
                             <span class="content">{{ m.content }}</span>
                         </div>
                     </div>
