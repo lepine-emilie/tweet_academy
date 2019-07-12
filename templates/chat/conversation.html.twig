@@ -51,15 +51,22 @@
         {% for m in messages %}
             {% if m.sender == app.user %}
                 <div class="message_user">
-                <span class="content"> {{ m.content }}</span>
-                <span class="author"> : </span>
-                <span class="date"> {{ m.submitTime|date('H:i') }}</span>
+                    <div class="message_user_manager">
+                        <div class="message_user_container">
+                            <span class="content">{{ m.content }}</span>
+                            <span class="date_user">: {{ m.submitTime|date('H:i') }}</span>
+                        </div>
+                    </div>
                 </div>
             {% else %}
                 <div class="message">
-                <span class="date">{{ m.submitTime|date('H:i') }}</span>
-                <span class="author">@{{ m.sender.username }} :</span>
-                <span class="content">{{ m.content }}</span>
+                    <div class="message_manager">
+                        <div class="message_container">
+                            <span class="date">{{ m.submitTime|date('H:i') }}</span>
+                            <span class="author">@{{ m.sender.username }} :</span>
+                            <span class="content">{{ m.content }}</span>
+                        </div>
+                    </div>
                 </div>
             {% endif %}      
         {% endfor %}

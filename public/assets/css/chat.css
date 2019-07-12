@@ -1,45 +1,90 @@
 .chat {
     background-color: #fff;
 }
+
 #create, #send {
-    margin-top: 20px;
+    margin-top: 40px;
     padding-right: 35px;
     padding-left: 35px;
 }
+
 .user-inputs {
-    margin-top: 20px;
+    margin-top: 40px;
 }
-.date, .author, .author_user, .date_user {
+
+.date, .author, .date_user {
     font-weight: bold;
 }
+
 .conversations {
     margin-bottom: 30px;
 }
+
 #message_content {
     resize: none;
 }
+
 #chat_message_content {
     margin-top: 15px;
 }
+
+.message {
+
+}
+
+.message_manager {
+    display: flex;
+}
+
+.message_container {
+    background-color: #e6ecf0;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px 30px 30px 0px;
+}
+
 .message_user {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
-.author_user {
-    margin-right:3px;
-    margin-left:3px;
+
+.message_user_manager {
+    display: flex;
 }
+
+.message_user_container {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #1da1f2;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px 30px 0px 30px;
+    max-width: 500px;
+
+}
+
+.date_user {
+    float: right;
+    margin-left: 3px;
+}
+
 .chat_title {
     display: flex;
-    margin-right:auto;
-    margin-left:auto;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 15px;
     margin-bottom: 50px;
     font-size: 30px;
 }
+
 .start_conv {
     display: flex;
-    margin-right:auto;
-    margin-left:auto;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 10px;
     margin-bottom: 10px;
     text-decoration: none;

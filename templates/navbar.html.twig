@@ -23,7 +23,14 @@
             </form>
             {% if app.user is not empty %}
                 <div class="btn-group">
-                    <span class="dropdown-btn nav-item"><img alt="avatar" class="dropdown-img-btn" src="{{asset('assets/img/user-placeholder.png') }}"></span>
+                    <span class="dropdown-btn nav-item">
+                        {% if app.user is not empty and app.user.avatarPath is empty %}
+                            {% set avatarUrl = asset('assets/img/female.png') %}
+                        {% else %}
+                            {% set avatarUrl = asset('upload/avatar/'~ app.user.avatarPath) %}
+                        {% endif %}
+                        <img alt="avatar" class="dropdown-img-btn" height="32px" width="32px" style="border-radius: 50%;" src="{{ avatarUrl }}">
+                    </span>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="{{ path('profile_view', { username: app.user.username }) }}" class="dropdown-item">Profile</a>
                         <a href="{{ path('settings') }}" class="dropdown-item">Settings</a>

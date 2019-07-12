@@ -11,13 +11,19 @@ $('#send').click(function( event ) {
         success: function (data) {
             var msg  = $("<div class='message_user'></div>")
                 .append(
+                    $("<div></div>")
+                        .addClass("message_user_manager")
+                        .append(
+                    $("<div></div>")
+                        .addClass("message_user_container")
+                        .append(
                     $("<span></span>")
-                        .addClass("date")
-                        .text(data.time + " : "),
+                        .addClass("date_user")
+                        .text(" : " + data.time),
                     $("<span></span>")
                         .addClass("content")
                         .text(data.message)
-                )
+                )))
                 .appendTo(".chat_conversation");
 
             $('#chat_message_content').val('');

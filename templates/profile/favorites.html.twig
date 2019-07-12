@@ -15,6 +15,8 @@
             </div>
         </div>
     {% else %}
-        <p><strong>@{{ user.username }}</strong> has not liked any Quack !</p>
+        <div class="p-2">
+            <p><strong>@{{ user.username }}</strong> has not liked any Quack !</p>
+        </div>
     {% endif %}
 {% endblock %}

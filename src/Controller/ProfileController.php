@@ -16,6 +16,7 @@ use App\Repository\UploadRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,14 +38,15 @@ class ProfileController extends AbstractController
             $formBanner = $this->createForm(BannerType::class, $upload);
         }
 
-        $arrayUploads = $uploadRepository->getImages($user);
-        $posts = $postRepository->findBy(['sender' => $user], ['submit_time' => 'DESC']);
+        $posts = $postRepository->findBy(
+            ['sender' => $user],
+            ['submit_time' => 'DESC']
+        );
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,
             'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
             'formBanner' => isset($formBanner) ? $formBanner->createView() : null,
-            'images' => $arrayUploads,
             'posts' => $posts
         ]);
     }
@@ -135,10 +137,8 @@ class ProfileController extends AbstractController
             $formBanner = $this->createForm(BannerType::class, $upload);
         }
 
-        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/following.html.twig', [
             'user' => $user,
-            'images' => $arrayUploads,
             'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
             'formBanner' => isset($formBanner) ? $formBanner->createView() : null
         ]);
@@ -158,10 +158,8 @@ class ProfileController extends AbstractController
             $formBanner = $this->createForm(BannerType::class, $upload);
         }
 
-        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/followers.html.twig', [
             'user' => $user,
-            'images' => $arrayUploads,
             'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
             'formBanner' => isset($formBanner) ? $formBanner->createView() : null
         ]);
@@ -181,10 +179,8 @@ class ProfileController extends AbstractController
             $formBanner = $this->createForm(BannerType::class, $upload);
         }
 
-        $arrayUploads = $uploadRepository->getImages($user);
         return $this->render('profile/favorites.html.twig', [
             'user' => $user,
-            'images' => $arrayUploads,
             'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
             'formBanner' => isset($formBanner) ? $formBanner->createView() : null
         ]);
@@ -257,17 +253,22 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{username}/unfollow", name="unfollow_ajax")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function unfollow(User $otherUser, ObjectManager $manager, FollowerRepository $followerRepository)
     {
-        $user = $this->getUser();
-        $otherUser->getId();
+        $entry = $followerRepository->findOneBy([
+            'follower' => $this->getUser(),
+            'user' => $otherUser
+        ]);
 
-        $unfollower = $followerRepository->findOneBy(['follower' => $user, 'user' => $otherUser]);
+        if ($entry !== null)
+        {
+            $manager->remove($entry);
+            $manager->flush();
+            return new JsonResponse(['success' => true]);
+        }
 
-        $manager->remove($unfollower);
-        $manager->flush();
-
-        return new JsonResponse([]);
+        return new JsonResponse(['success' => false]);
     }
 }

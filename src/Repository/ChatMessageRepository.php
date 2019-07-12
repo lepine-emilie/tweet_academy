@@ -54,6 +54,7 @@ class ChatMessageRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('cm')
                 ->where("cm.conversation = :conv")
                 ->setParameter("conv", $conv)
+                ->orderBy("cm.submit_time", "DESC")
                 ->setMaxResults(20)
                 ->getQuery()
                 ->getResult();
