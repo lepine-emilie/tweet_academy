@@ -22,35 +22,39 @@
                 <a href="{{ path('search_home',{search_type: "people", search_term: search_info}) }}" class="nav-item nav-link">People</a>
             </nav>
         </div>
-        <div class="card-body">
-            <div class="list-group list-group-flush">
+
+        {% if search_type == "people" %}
+            <div class="card-body">
                 <div class="container-fluid">
                     <div class="row">
                         {% for res in results %}
-                            {% if search_type == "people" %}
-                                <div class="card col-4">
-                                    <div class="card-body picture-follow">
-                                        <a href="{{ path('profile_view', { username: res.username }) }}">
-                                            {% if res is not empty and res.avatarPath is not empty %}
-                                                {% set avatarUrl = asset('upload/avatar/'~ res.avatarPath) %}
-                                            {% else %}
-                                                {% set avatarUrl = asset('assets/img/user-placeholder.png') %}
-                                            {% endif %}
-                                            <img alt="Profile picture of @{{ res.username }}" src="{{ avatarUrl }}" class="mini-avatar-64">
-                                        </a>
-                                        <p class="card-body name-follow">
-                                        <h6>{{ res.displayName }}<br></h6>
-                                        <h6 class="card-subtitle mb-2 text-muted"> @{{ res.username }}</h6>
-                                        </p>
-                                    </div>
+                            <div class="card col-4">
+                                <div class="card-body picture-follow">
+                                    <a href="{{ path('profile_view', { username: res.username }) }}">
+                                        {% if res is not empty and res.avatarPath is not empty %}
+                                            {% set avatarUrl = asset('upload/avatar/'~ res.avatarPath) %}
+                                        {% else %}
+                                            {% set avatarUrl = asset('assets/img/user-placeholder.png') %}
+                                        {% endif %}
+                                        <img alt="Profile picture of @{{ res.username }}" src="{{ avatarUrl }}" class="mini-avatar-64">
+                                    </a>
+                                    <p class="card-body name-follow">
+                                    <h6>{{ res.displayName }}<br></h6>
+                                    <h6 class="card-subtitle mb-2 text-muted"> @{{ res.username }}</h6>
+                                    </p>
                                 </div>
-                            {% elseif search_type == "post" %}
-                                {% include "common/post_card.html.twig" with {post: res} %}
-                            {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-        </div>
+        {% elseif search_type == "post" %}
+            <div class="timeline list-group list-group-flush">
+                {% for res in results %}
+                    {% include "common/post_card.html.twig" with {post: res} %}
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
+
 {% endblock %}
