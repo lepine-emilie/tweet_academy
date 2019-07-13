@@ -21,6 +21,16 @@ class UserRepository extends ServiceEntityRepository
 
     public function getNonFollowedByUser(User $user)
     {
+//        $qb = $this->createQueryBuilder('u');
+//        return $qb->where($qb->expr()->not($qb->expr()->exists(
+//            $this->_em->createQueryBuilder()
+//                ->select('f')
+//                ->from("App:Follower", "f")
+//                ->where("f.follower = :follower")
+//        )))
+//            ->setParameter("follower", $user)
+//            ->getQuery()
+//            ->getResult();
 //        $query = $entityManager->createQuery(
 //            'SELECT * FROM users inner join followers on users.id = followers.follower_id where followers.users.id NOT LIKE '
 //        )->setParameter('user',$user);
@@ -64,16 +74,5 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
-    }
-
-    public function getCompletionInt($name)
-    {
-        $QB = $this->createQueryBuilder('u')
-            ->select('u.username')
-            ->where("u.username LIKE '".$name."%'")
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult();
-        return($QB);
     }
 }
