@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Follower;
 use App\Entity\Notification;
+use App\Entity\Post;
 use App\Entity\Upload;
 use App\Entity\User;
 use App\Form\AvatarType;
@@ -27,11 +28,34 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}", name="profile_view")
      */
-    public function view(User $user, UserRepository $repository,
-                         UploadRepository $uploadRepository,
-                         PostRepository $postRepository)
+    public function view(User $user, PostRepository $postRepository)
     {
-        if ($user === $this->getUser())
+        if ($user->getId() === $this->getUser()->getId())
+        {
+            $upload = new Upload();
+            $formAvatar = $this->createForm(AvatarType::class, $upload);
+            $formBanner = $this->createForm(BannerType::class, $upload);
+        }
+
+        $posts = $postRepository->findBy(
+            ['sender' => $user, 'parent_post' => null],
+            ['submit_time' => 'DESC']
+        );
+
+        return $this->render('profile/index.html.twig', [
+            'user' => $user,
+            'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
+            'formBanner' => isset($formBanner) ? $formBanner->createView() : null,
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * @Route("/{username}/with_replies", name="profile_view_replies")
+     */
+    public function view_replies(User $user, PostRepository $postRepository)
+    {
+        if ($user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);
@@ -42,6 +66,35 @@ class ProfileController extends AbstractController
             ['sender' => $user],
             ['submit_time' => 'DESC']
         );
+
+        return $this->render('profile/index.html.twig', [
+            'user' => $user,
+            'formAvatar' => isset($formAvatar) ? $formAvatar->createView() : null,
+            'formBanner' => isset($formBanner) ? $formBanner->createView() : null,
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * @Route("/{username}/media", name="profile_view_media")
+     */
+    public function view_media(User $user, PostRepository $postRepository)
+    {
+        if ($user->getId() === $this->getUser()->getId())
+        {
+            $upload = new Upload();
+            $formAvatar = $this->createForm(AvatarType::class, $upload);
+            $formBanner = $this->createForm(BannerType::class, $upload);
+        }
+
+        $qb = $postRepository->createQueryBuilder('p');
+        $posts = $qb
+            ->where('p.sender = :user')
+            ->andWhere($qb->expr()->isNotNull('p.media_url'))
+            ->orderBy('p.submit_time', 'DESC')
+            ->setParameter(':user', $user)
+            ->getQuery()
+            ->getResult();
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,

@@ -8,8 +8,8 @@
             <nav class="nav nav-pills">
                 {% set route = app.request.get('_route') %}
                 <a href="{{ path('profile_view', { username: user.username }) }}" class="nav-link {{ route == 'profile_view' ? 'active' }}">Quacks</a>
-                <a href="#" class="nav-link disabled">Quacks & Replies</a>
-                <a href="#" class="nav-link disabled">Media</a>
+                <a href="{{ path('profile_view_replies', { username: user.username }) }}" class="nav-link {{ route == 'profile_view_replies' ? 'active' }}">Quacks & Replies</a>
+                <a href="{{ path('profile_view_media', { username: user.username }) }}" class="nav-link {{ route == 'profile_view_media' ? 'active' }}">Media</a>
             </nav>
         </div>
         <div class="card">

@@ -43,7 +43,7 @@
             <img itemprop="image" class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
         {% endif %}
     </div>
-    <div>
+    <div class="pt-2">
         <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm" title="Comment">
             <i class="far fa-comment"></i>
             <span>{{ realPost.replies|length }}</span>
