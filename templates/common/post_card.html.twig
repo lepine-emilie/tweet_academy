@@ -6,6 +6,11 @@
                 <i class="fas fa-retweet"></i>
                 <span><a href="{{ path('profile_view', { username: post.sender.username }) }}">{{ post.sender.displayName }}</a> Copyquacked</span>
             </div>
+        {% elseif post.parentPost is not empty %}
+            <div class="post-card__repost-info">
+                <i class="fas fa-reply"></i>
+                <span>Replying to <a href="{{ path('profile_view', { username: post.parentPost.sender.username }) }}">@{{ post.parentPost.sender.username }}</a></span>
+            </div>
         {% endif %}
 
         {# This helps prevent duplicating code #}
