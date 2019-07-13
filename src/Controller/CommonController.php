@@ -51,7 +51,7 @@ class CommonController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        //$suggestions = $userRepository->getNonFollowedByUser($user);
+//        $suggestions = $userRepository->getNonFollowedByUser($user);
         $suggestions = [];
 
         return $this->render('common/suggestions.html.twig', [

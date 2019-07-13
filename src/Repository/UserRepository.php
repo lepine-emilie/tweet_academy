@@ -18,19 +18,14 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
-    
+
     public function getNonFollowedByUser(User $user)
     {
-        /*$qb = $this->createQueryBuilder('u');
-        return $qb->where($qb->expr()->not($qb->expr()->exists(
-            $this->_em->createQueryBuilder()
-                ->select('f')
-                ->from("App:Follower", "f")
-                ->where("f.follower = :follower")
-        )))
-            ->setParameter("follower", $user)
-            ->getQuery()
-            ->getResult();*/
+//        $query = $entityManager->createQuery(
+//            'SELECT * FROM users inner join followers on users.id = followers.follower_id where followers.users.id NOT LIKE '
+//        )->setParameter('user',$user);
+//
+//        $products = $query->getResult();
     }
 
     // /**
