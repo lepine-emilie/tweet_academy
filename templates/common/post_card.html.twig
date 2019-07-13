@@ -64,7 +64,7 @@
         {% endif %}
 
         <div class="text-right post-card__send-time">
-            Sent on {{ post.submitTime|date }}
+            {{ post.submitTime|time_diff }}
         </div>
     </div>
 </div>

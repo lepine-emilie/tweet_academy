@@ -22,3 +22,24 @@
 .button-div-actu {
     cursor: pointer;
 }
+
+/* miniUserProfileChanges */
+.suggestions {
+    margin-top: 15px;
+}
+
+.suggestions .card-body {
+    margin: auto;
+    padding: 5px;
+    width: 50%;
+}
+
+.mini_user_card {
+    font-size: 15px;
+}
+
+.suggestions img {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}

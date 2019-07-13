@@ -106,6 +106,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/uploadAvatar", name="uploadAvatar")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function uploadAvatar(Request $request, ObjectManager $em)
     {
@@ -142,6 +143,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/uploadBanner", name="uploadBanner")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function uploadBanner(Request $request, ObjectManager $em)
     {
@@ -179,9 +181,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/following", name="profile_following")
      */
-    public function following(User $user, UserRepository $userRepository,
-                              FollowerRepository $repository,
-                              UploadRepository $uploadRepository)
+    public function following(User $user)
     {
         if ($user === $this->getUser())
         {
@@ -200,9 +200,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/followers", name="profile_followers")
      */
-    public function followers(User $user, UserRepository $userRepository,
-                              FollowerRepository $repository,
-                              UploadRepository $uploadRepository)
+    public function followers(User $user)
     {
         if ($user === $this->getUser())
         {
@@ -221,9 +219,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/{username}/likes", name="profile_favorites")
      */
-    public function favorites(User $user, UserRepository $userRepository,
-                              FavoriteRepository $repository,
-                              UploadRepository $uploadRepository)
+    public function favorites(User $user)
     {
         if ($user === $this->getUser())
         {
@@ -241,6 +237,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{username}/edit", name="edit_profile")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function edit_profile(Request $request, ObjectManager $manager)
 
@@ -265,6 +262,7 @@ class ProfileController extends AbstractController
 
     /**
      * @Route("/{username}/follow", name="follow_ajax")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function follow(User $otherUser, ObjectManager $manager,
                            FollowerRepository $followerRepository)

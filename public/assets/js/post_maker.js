@@ -12,6 +12,54 @@ $(document).click(function (e) {
         $('.quacker-btn-displayer').fadeTo("fast", 0);
     }
 });
+$('.post_maker textarea').keyup(function () {
+    $('.suggestions').html('');
+    let regex = /@([A-Za-z0-9])\w+/g;
+    let myVal = $('.post_maker textarea').val();
+    let revVal = myVal.split('').reverse().join('');
+    let spaceKey = revVal.indexOf((' '));
+    let myCutString = revVal.substr(0, spaceKey);
+    if (spaceKey === -1)
+        myCutString = revVal;
+    myCutString = myCutString.split('').reverse().join('');
+    console.log(myCutString);
+    if (regex.test(myCutString))
+    {
+        $.post(
+            "/completionSuggest",
+            {
+                'entry': myCutString
+            },
+            function (data) {
+                if (data.success === true)
+                {
+                    let content = "";
+                    for (let value of data.htmlTemplate) {
+                        content += value;
+                    }
+                    $('.suggestions').html(content);
+                }
+                else
+                {
+                    console.log("Broken duck");
+                }
+            },
+            'json'
+        );
+    }
+});
+$(document).on('click' , '.mini_user_card', function () {
+    let username = $(this).find('.username').html();
+    let myVal = $('.post_maker textarea').val();
+    let revVal = myVal.split('').reverse().join('');
+    let spaceKey = revVal.indexOf((' '));
+    let cuttedVal = revVal.substr(spaceKey);
+    if (spaceKey === -1)
+        cuttedVal = '';
+    cuttedVal = cuttedVal.split('').reverse().join('');
+    $('.post_maker textarea').val(cuttedVal + username);
+    $('.suggestions').html('');
+});
 $('.submit-post_maker').click(function () {
     if ($('.post_maker textarea').val().length > 140)
     {
@@ -35,6 +83,7 @@ $('.submit-post_maker').click(function () {
                 $('.timeline').prepend(data.htmlTemplate);
                 $($('.card-timeline')[0]).hide();
                 $($('.card-timeline')[0]).css('opacity', '0');
+                $('.suggestions').html('');
                 animate_timeline();
             }
         }

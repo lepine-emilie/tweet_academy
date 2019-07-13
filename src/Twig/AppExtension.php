@@ -3,6 +3,8 @@ namespace App\Twig;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -10,9 +12,11 @@ class AppExtension extends AbstractExtension
 {
     /** @var UserRepository $userRepository */
     private $userRepository;
+    private $sfRouter;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(RouterInterface $router, UserRepository $userRepository)
     {
+        $this->sfRouter = $router;
         $this->userRepository = $userRepository;
     }
 
@@ -44,9 +48,13 @@ class AppExtension extends AbstractExtension
 
                 if ($user !== null)
                 {
+                    $url = $this->sfRouter->generate('profile_view', [
+                        'username' => $matches[1][$i]
+                    ]);
+
                     $postContent = str_replace(
                         $match,
-                        "<a href='/" . $matches[1][$i] . "'>$match</a>",
+                        "<a href='" . $url . "'>$match</a>",
                         $postContent);
                 }
             }
