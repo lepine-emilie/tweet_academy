@@ -12,7 +12,6 @@ $(document).click(function (e) {
         $('.quacker-btn-displayer').fadeTo("fast", 0);
     }
 });
-
 $('.post_maker textarea').keyup(function () {
     $('.suggestions').html('');
     let regex = /@([A-Za-z0-9])\w+/g;
@@ -60,7 +59,6 @@ $(document).on('click' , '.mini_user_card', function () {
     cuttedVal = cuttedVal.split('').reverse().join('');
     $('.post_maker textarea').val(cuttedVal + username + ' ');
     $('.suggestions').html('');
-    $('.post_maker textarea').focus().click();
 });
 $('.submit-post_maker').click(function () {
     if ($('.post_maker textarea').val().length > 140)
@@ -70,7 +68,7 @@ $('.submit-post_maker').click(function () {
     }
     $.ajax({
         type: 'POST',
-        url: '/',
+        url: '/post/submit',
         data: new FormData(document.getElementById("formPostMaker")),
         dataType: 'json',
         processData: false,
