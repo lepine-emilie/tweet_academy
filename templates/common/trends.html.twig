@@ -1,13 +1,15 @@
+{% if trends is not empty %}
 <div class="card trends trends-list">
     <div class="card-header">
         <strong>Trends</strong>
     </div>
     <div class="card-body">
-        {% for i in 0..4 %}
+        {% for t in trends %}
             <div>
-                <a class="trend-list__link" href="{{ path('hashtag_search', { name: 'BalanceTonCanard' }) }}">#BalanceTonCanard</a>
-                <p>69 Quacks</p>
+                <a class="trend-list__link" href="{{ path('hashtag_search', { name: t.name|slice(1) }) }}">{{ t.name }}</a>
+                <p>{{ t.useCount }} {{ t.useCount == 1 ? 'Quack' : 'Quacks' }}</p>
             </div>
         {% endfor %}
     </div>
 </div>
+{% endif %}

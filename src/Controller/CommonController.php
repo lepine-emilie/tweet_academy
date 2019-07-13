@@ -7,6 +7,7 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\UserPostType;
 use App\Repository\FavoriteRepository;
+use App\Repository\HashtagRepository;
 use App\Repository\NotificationRepository;
 use App\Repository\PostRepository;
 use App\Repository\UserRepository;
@@ -19,9 +20,16 @@ class CommonController extends AbstractController
     {
         return $this->render('common/mini_profile.html.twig');
     }
-    public function trends()
+
+    public function trends(HashtagRepository $hashtagRepository)
     {
-        return $this->render('common/trends.html.twig');
+        $trends = $hashtagRepository->findBy([],
+            ['use_count' => 'desc'], 10
+        );
+
+        return $this->render('common/trends.html.twig', [
+            'trends' => $trends
+        ]);
     }
 
     public function footer()
