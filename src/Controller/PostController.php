@@ -140,7 +140,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/post/{id}/view_post", name="view_post")
+     * @Route("/post/{id}/", name="view_post")
      */
     public function view_post(Post $post, Request $request)
     {
