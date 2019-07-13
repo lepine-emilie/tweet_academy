@@ -25,6 +25,7 @@ class AppExtension extends AbstractExtension
 
     public function format_post(string $postContent)
     {
+        $postContent = htmlspecialchars($postContent);
         $postContent = preg_replace(
             "/#([A-Za-z0-9]\w+)/",
             "<a href='/hashtag/$1'>#$1</a>",
