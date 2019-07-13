@@ -1,4 +1,4 @@
-$(document).click(function (e) {
+$(document).focusin(function (e) {
     if (e.target.id === "user_post_content")
     {
         $('#user_post_content').animate({height: 80}, "fast");
@@ -12,6 +12,7 @@ $(document).click(function (e) {
         $('.quacker-btn-displayer').fadeTo("fast", 0);
     }
 });
+
 $('.post_maker textarea').keyup(function () {
     $('.suggestions').html('');
     let regex = /@([A-Za-z0-9])\w+/g;
@@ -57,8 +58,9 @@ $(document).on('click' , '.mini_user_card', function () {
     if (spaceKey === -1)
         cuttedVal = '';
     cuttedVal = cuttedVal.split('').reverse().join('');
-    $('.post_maker textarea').val(cuttedVal + username);
+    $('.post_maker textarea').val(cuttedVal + username + ' ');
     $('.suggestions').html('');
+    $('.post_maker textarea').focus().click();
 });
 $('.submit-post_maker').click(function () {
     if ($('.post_maker textarea').val().length > 140)
