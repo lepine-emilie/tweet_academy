@@ -1,43 +1,33 @@
-{% extends 'layout-3.html.twig' %}
+{% set user = post.sender %}
+{% extends 'profile/_layout.html.twig' %}
 
-{% block center_body %}
-    {% set realPost = post.sourcePost ?? post %}
-    <div class="card card-body">
-        <div class="card-text">
-            <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-                <a href="{{ path('profile_view', { username: realPost.sender.username }) }}">
-                    <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
-                </a>
-                <span>(@{{ realPost.sender.username }})</span>
-            </div>
-            <p itemprop="text">{{ realPost.content }}</p>
-        </div>
-        <div class="my-3">
-            <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-secondary btn-sm" title="Comment">
-                <i class="far fa-comment"></i>
-                <span>{{ realPost.replies|length }}</span>
-            </a>
-            <button class="btn btn-secondary btn-sm post-card__repost-btn" title="Copyquack">
-                <i class="fas fa-retweet"></i>
-                <span>{{ realPost.reposts|length }}</span>
-            </button>
-            <button class="btn btn-secondary btn-sm post-card__like-btn" title="Like">
-                <i class="far fa-heart"></i>
-                <span>{{ realPost.favorites|length }}</span>
-            </button>
-            <button class="btn btn-secondary btn-sm" title="Direct message">
-                <i class="far fa-envelope"></i>
-            </button>
-            {% if app.user is not empty and post.sender.id == app.user.id %}
-                <button class="btn btn-danger btn-sm post-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
-            {% endif %}
-        </div>
-        <div class="card card-body">
-            {%  include 'common/post_maker.html.twig' %}
-        </div>
+{% block title %}
+    {{ post.sender.displayName }} on Ducker: "{{ post.content }}"
+{% endblock %}
+
+{% block profile_center %}
+    <div class="card">
+        {% include 'common/post_card.html.twig' with { post: post } only %}
     </div>
 
+    <div class="card my-3">
+        <div class="card-header bg-light">
+            {% include 'common/post_maker.html.twig' with {
+                formPost: formReply,
+                inputPlaceholder: 'Quack your reply',
+                sourcePostId: post.id
+            } only %}
+        </div>
+        {% if post.replies|length > 0 %}
+            <div class="list-group list-group-flush timeline">
+                {% for reply in post.replies %}
+                    {% include 'common/post_card.html.twig' with { post : reply } only %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('assets/js/post_maker.js') }}"></script>
 {% endblock %}

@@ -67,11 +67,11 @@
                         {% if app.user.id == user.id %}
                             <a href="{{ path('edit_profile', {username: user.username}) }}" class="btn btn-primary profile-nav-btn">Edit Profile</a>
                         {% else %}
-                        {% set already_following = 0 %}
+                            {% set already_following = 0 %}
                             {% for f in app.user.following %}
-                                 {% if f.user.id == user.id %}
-                                 {% set already_following = 1 %}
-                                 {% endif %}
+                                {% if f.user.id == user.id %}
+                                    {% set already_following = 1 %}
+                                {% endif %}
                             {% endfor %}
 
                             {% if already_following == 0 %}
@@ -79,7 +79,7 @@
                             {% else %}
                                 <button class="btn btn-primary profile-nav-btn unfollow">Unfollow</button>
                             {% endif %}
-                            {% endif %}
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -125,11 +125,13 @@
         </div>
     </div>
 
-    {% if app.user is not empty %}
-        {% if app.user.username ==  user.username %}
+    {% if app.user is not empty and app.user.id == user.id %}
+        {% if (formAvatar ?? null) is not empty %}
             {{ form_start(formAvatar, {'action': path('uploadAvatar'), 'method': 'POST',
                 attr: {'class': 'd-none formAvatar'}}) }}
             {{ form_end(formAvatar) }}
+        {% endif %}
+        {% if (formBanner ?? null) is not empty %}
             {{ form_start(formBanner, {'action': path('uploadBanner'), 'method': 'POST',
                 attr: {'class': 'd-none formBanner'}}) }}
             {{ form_end(formBanner) }}

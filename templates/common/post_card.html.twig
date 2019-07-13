@@ -57,5 +57,9 @@
         {% if app.user is not empty and post.sender.id == app.user.id %}
             <button class="btn btn-danger btn-sm post-card__delete-btn" title="Delete"><i class="far fa-trash-alt"></i></button>
         {% endif %}
+
+        <div class="text-right post-card__send-time">
+            Sent on {{ post.submitTime|date }}
+        </div>
     </div>
 </div>

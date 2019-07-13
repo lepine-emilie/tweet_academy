@@ -1,7 +1,8 @@
 <div class="list-group-item">
     {% set EntityType = 'App\\Entity\\Notification' %}
     {% set json = notification.notificationData %}
-    {% if notification.notificationType == constant(EntityType ~ '::TYPE_MENTION') %}
+    {% if notification.notificationType == constant(EntityType ~ '::TYPE_MENTION')
+        and user is not empty and post is not empty %}
         <p>User <strong>@{{ user.username }}</strong> mentioned you in a Quack</p>
         <div class="card card-body">
             <div>
@@ -10,9 +11,11 @@
             </div>
             <p>{{ post.content }}</p>
         </div>
-    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_FOLLOW') %}
+    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_FOLLOW')
+        and user is not empty %}
         <p>User <a href="{{ path('profile_view', { username: user.username }) }}"><strong>@{{ user.username }}</strong></a> started to follow you</p>
-    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_LIKE') %}
+    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_LIKE')
+        and user is not empty and post is not empty %}
         <p>User <strong>@{{ user.username }}</strong> liked your Quack</p>
         <div class="card card-body">
             <div>
@@ -21,7 +24,8 @@
             </div>
             <p>{{ post.content }}</p>
         </div>
-    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_REPOST') %}
+    {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_REPOST')
+        and user is not empty and post is not empty %}
         <p>One of your Quack has been reposted by <strong>@{{ user.username }}</strong></p>
         <div class="card card-body">
             <div>
@@ -31,6 +35,6 @@
             <p>{{ post.content }}</p>
         </div>
     {% else %}
-        <p>Unknown notification type</p>
+        <p class="alert alert-danger">Unknown notification type</p>
     {% endif %}
 </div>

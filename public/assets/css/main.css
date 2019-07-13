@@ -50,3 +50,7 @@ img.mini-avatar {
 .post-card__repost-info {
     font-size: smaller;
 }
+
+.post-card__send-time {
+    font-size: x-small;
+}
