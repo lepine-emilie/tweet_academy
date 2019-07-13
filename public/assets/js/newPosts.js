@@ -13,7 +13,7 @@ $('.timeline').prepend("<div class='" +
                 for (let value of data.htmlTemplate) {
                     $($('.wrapper_new-posts')[0]).prepend(value);
                 }
-                checkForTagsActu();
+
                 waiting_quacks += data.htmlTemplate.length;
                 let quack = waiting_quacks === 1 ? 'Quack' : 'Quacks';
                 $('.new_posts_btn')

@@ -30,7 +30,7 @@ $(document).on('click', '.post-card__repost-btn', function() {
                 $('.timeline').prepend(data.htmlTemplate);
                 $($('.card-timeline')[0]).hide();
                 $($('.card-timeline')[0]).css('opacity', '0');
-                checkForTags();
+
                 animate_timeline();
             }
         }
