@@ -1,7 +1,6 @@
 $(function () {
     $('.chat_conversation').scrollTop(1E10);
 });
-
 $('#send').click(function( event ) {
     event.preventDefault();
     var url = window.location.href;
