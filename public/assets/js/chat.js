@@ -1,11 +1,11 @@
 $(function () {
     $('.chat_conversation').scrollTop(1E10);
 });
-      
+
 $('#send').click(function( event ) {
     event.preventDefault();
     var url = window.location.href;
-    
+
     $.ajax({
         type: 'POST',
         url: url,
@@ -35,4 +35,10 @@ $('#send').click(function( event ) {
             $('.chat_conversation').scrollTop(1E10);
         }
     });
+});
+$('#chat_message_content').keydown(function (e) {
+    if (e.which == 13 && !e.shiftKey) {
+        e.preventDefault();
+        $('#send').trigger("click");
+    }
 });
