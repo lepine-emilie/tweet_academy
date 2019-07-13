@@ -31,7 +31,7 @@
                     <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
                 </a>
                 <span class="post-card__username">(@{{ realPost.sender.username }})</span>
-                <p itemprop="text">{{ realPost.content }}</p>
+                <p itemprop="text">{{ realPost.content|format_post|raw }}</p>
             </div>
         </div>
 

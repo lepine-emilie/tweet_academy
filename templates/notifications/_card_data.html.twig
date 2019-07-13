@@ -9,7 +9,7 @@
                 <strong>{{ post.sender.displayName }}</strong>
                 <span>(@{{ post.sender.username }}</span>
             </div>
-            <p>{{ post.content }}</p>
+            <p>{{ post.content|format_post|raw }}</p>
         </div>
     {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_FOLLOW')
         and user is not empty %}
@@ -20,9 +20,9 @@
         <div class="card card-body">
             <div>
                 <strong>{{ post.sender.displayName }}</strong>
-                <span>(@{{ post.sender.username }}</span>
+                <span>(@{{ post.sender.username }})</span>
             </div>
-            <p>{{ post.content }}</p>
+            <p>{{ post.content|format_post|raw }}</p>
         </div>
     {% elseif notification.notificationType == constant(EntityType ~ '::TYPE_REPOST')
         and user is not empty and post is not empty %}
@@ -32,7 +32,7 @@
                 <strong>{{ post.sender.displayName }}</strong>
                 <span>(@{{ post.sender.username }}</span>
             </div>
-            <p>{{ post.content }}</p>
+            <p>{{ post.content|format_post|raw }}</p>
         </div>
     {% else %}
         <p class="alert alert-danger">Unknown notification type</p>
