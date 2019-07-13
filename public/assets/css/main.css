@@ -18,10 +18,16 @@ img.mini-avatar {
     width: 32px;
 }
 
-img.mini-avatar-64 {
+.mini-avatar-64 {
     border-radius: 50%;
     height: 64px;
     width: 64px;
+}
+
+.mini-avatar-48 {
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
 }
 
 .mini-user-profile {
@@ -31,4 +37,16 @@ img.mini-avatar-64 {
 .trends {
     position: sticky;
     top: 174px;
+}
+
+.post-card__author_content {
+    word-break: break-word;
+}
+
+.post-card__username {
+    font-size: small;
+}
+
+.post-card__repost-info {
+    font-size: smaller;
 }

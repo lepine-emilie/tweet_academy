@@ -2,7 +2,8 @@
     <div>
         {# == Displays when the post has been reposted #}
         {% if post.sourcePost is not empty %}
-            <div><i class="fas fa-retweet"></i>
+            <div class="post-card__repost-info">
+                <i class="fas fa-retweet"></i>
                 <span><a href="{{ path('profile_view', { username: post.sender.username }) }}">{{ post.sender.displayName }}</a> Copyquacked</span>
             </div>
         {% endif %}
@@ -11,19 +12,23 @@
         {% set realPost = post.sourcePost ?? post %}
 
         {# == Displays the post content #}
-        <div class="mb-2" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="my-2 d-flex flex-row" itemprop="author" itemscope itemtype="http://schema.org/Person">
             {% if realPost.sender is not empty and realPost.sender.avatarPath is not empty %}
                 {% set avatarUrl = asset('upload/avatar/'~ realPost.sender.avatarPath) %}
             {% else %}
                 {% set avatarUrl = asset('assets/img/user-placeholder.png') %}
             {% endif %}
-            <img src="{{ avatarUrl }}" class="mini-avatar" height="32px" width="32px">
-            <a class="post-card__author-name" href="{{ path('profile_view', { username: realPost.sender.username }) }}">
-                <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
-            </a>
-            <span>(@{{ realPost.sender.username }})</span>
+            <div>
+                <img src="{{ avatarUrl }}" class="mini-avatar-48" height="48px" width="48px">
+            </div>
+            <div class="post-card__author_content pl-2">
+                <a class="post-card__author-name" href="{{ path('profile_view', { username: realPost.sender.username }) }}">
+                    <strong itemprop="name">{{ realPost.sender.displayName }}</strong>
+                </a>
+                <span class="post-card__username">(@{{ realPost.sender.username }})</span>
+                <p itemprop="text">{{ realPost.content }}</p>
+            </div>
         </div>
-        <p itemprop="text">{{ realPost.content }}</p>
 
         {# Displays embedded content if any #}
         {# TODO: Add video/audio support #}
@@ -33,7 +38,7 @@
             <img itemprop="image" class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
         {% endif %}
     </div>
-    <div class="my-3">
+    <div>
         <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm" title="Comment">
             <i class="far fa-comment"></i>
             <span>{{ realPost.replies|length }}</span>
