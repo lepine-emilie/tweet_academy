@@ -15,7 +15,7 @@
             {% include 'common/post_maker.html.twig' with {
                 formPost: formReply,
                 inputPlaceholder: 'Quack your reply',
-                sourcePostId: post.id
+                parentPostId: post.id
             } only %}
         </div>
         {% if post.replies|length > 0 %}

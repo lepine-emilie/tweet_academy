@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,6 +55,9 @@ class UserPostType extends AbstractType
                             "This picture's format is not supported"
                     ])
                 ],
+            ])
+            ->add('parent_post_id', HiddenType::class, [
+                'mapped' => false
             ])
         ;
     }

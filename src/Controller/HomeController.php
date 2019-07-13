@@ -38,9 +38,23 @@ class HomeController extends AbstractController
         if ($form->isSubmitted())
         {
             if (!$form->isValid())
-                return new JsonResponse(["success" => false]);
+                return new JsonResponse([
+                    "success" => false,
+                    'errors' => $form->getErrors()
+                ]);
+
             $post->setSender($this->getUser());
             $post->setSubmitTime(new \DateTime());
+
+
+            $parent_post_id = $form->get('parent_post_id')->getData();
+            if (false === empty($parent_post_id))
+            {
+                $parent_post = $repository->find($parent_post_id);
+                if ($parent_post !== null)
+                    $post->setParentPost($parent_post);
+            }
+
             $em->persist($post);
             if ($form['media_url']->getData() != null)
             {

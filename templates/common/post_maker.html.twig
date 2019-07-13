@@ -19,6 +19,7 @@
         <div class="d-none">
             {{ form_row(formPost.media_url, {attr: {'class': 'inputUpload'}}) }}
         </div>
+        {{ form_row(formPost.parent_post_id, {value: parentPostId ?? null}) }}
         {{ form_end(formPost) }}
     </div>
     <span class="quacker-btn-displayer">
