@@ -1,4 +1,4 @@
-$(document).focusin(function (e) {
+$(document).click(function (e) {
     if (e.target.id === "user_post_content")
     {
         $('#user_post_content').animate({height: 80}, "fast");
