@@ -87,3 +87,60 @@ header .navbar {
 .navbar .nav-link.active {
     color: rgb(29, 161, 242);
 }
+
+.mobile {
+    display: none;
+}
+@media only screen and (max-width: 1000px) {
+    .container{
+        height: 90px;
+    }
+}
+@media only screen and (max-width: 460px) {
+    .logo-click{
+        display: none;
+    }
+    .redir-links-nav a.active {
+        border-bottom: solid 0px;
+    }
+    .notif{
+        margin-left: -8px;
+    }
+    .search_bar {
+        margin-bottom: 5px;
+    }
+    .mobile {
+        display: block;
+    }
+    .mobile_logo{
+        margin-top: 4px;
+    }
+    .pc {
+        display: none;
+    }
+}
+@media only screen and (max-width: 430px) {
+    .p-2{
+        padding: 0px!important;
+        margin-left: 5px;
+    }
+    .notif{
+        margin-left: -4px;
+    }
+}
+@media only screen and (max-width: 387px) {
+    .p-2{
+        margin-left: 0px;
+    }
+    .notif{
+        margin-left: -6px;
+    }
+    .container{
+        height: 120px;
+    }
+}
+@media only screen and (max-width: 375px) {
+    .notif{
+        margin-left: 0px;
+    }
+}

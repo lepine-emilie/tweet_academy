@@ -7,7 +7,7 @@
             {% if app.user is not empty %}
                 <a class="nav-item nav-link {{ route == 'notifications' or route == 'mentions' ? 'active' }}" href="{{ path('notifications')}}">
                     <img src="{{ asset('assets/img/alarm.png') }}">
-                    <span class="p-2">Notifications</span>
+                    <span class="p-2 notif">Notifications</span>
                     {% if pending_notification_count > 0 %}
                         <span class="badge badge-primary">{{ pending_notification_count }}</span>
                     {% endif %}
@@ -15,12 +15,13 @@
                 <a class="nav-item nav-link {{ route == 'messages' ? 'active' }}" href="{{ path('messages') }}"><img alt="" src="{{ asset('assets/img/email.png') }}"><span class="p-2">Messages</span></a>
             {% endif %}
         </div>
-        <span class="logo-click"><img alt="logo" src="{{ asset('assets/img/shooting-gallery.png')}}"></span>
+        <span class="logo-click pc"><img alt="logo" src="{{ asset('assets/img/shooting-gallery.png')}}"></span>
         <div class="d-flex justify-content-between right-header">
-            <form class="nav-item d-flex" method="get" action="{{ path("search_home") }}">
+            <form class="nav-item d-flex search_bar" method="get" action="{{ path("search_home") }}">
                 <input class="searchNavBar" name="search_term" type="text" placeholder="Search Ducker">
                 <button class="btn-search-NavBar fas fa-search search-click"></button>
             </form>
+            <span class="logo-click mobile"><img class="mobile_logo" alt="logo" src="{{ asset('assets/img/shooting-gallery.png')}}"></span>
             {% if app.user is not empty %}
                 <div class="btn-group">
                     <span class="dropdown-btn nav-item">
