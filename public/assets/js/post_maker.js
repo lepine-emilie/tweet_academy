@@ -35,7 +35,6 @@ $('.submit-post_maker').click(function () {
                 $('.timeline').prepend(data.htmlTemplate);
                 $($('.card-timeline')[0]).hide();
                 $($('.card-timeline')[0]).css('opacity', '0');
-                checkForTagsPost();
                 animate_timeline();
             }
         }
