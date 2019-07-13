@@ -75,4 +75,15 @@ class UserRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function getCompletionInt($name)
+    {
+        $QB = $this->createQueryBuilder('u')
+            ->select('u.username')
+            ->where("u.username LIKE '".$name."%'")
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+        return($QB);
+    }
 }
