@@ -16,7 +16,8 @@
     <meta name="image" content="{{ absolute_url(userAvatarPath) }}">
     <meta property="og:site_name" content="Ducker">
     <meta property="og:title" content="{{ user.displayName }} (@{{ user.username }})">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
+    <meta property="og:profile:username" content="{{ username }}">
     <meta property="og:image" content="{{ absolute_url(userAvatarPath) }}">
 {% endblock %}
 
