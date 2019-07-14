@@ -56,3 +56,81 @@ body {
 .name-follow {
     padding: 0;
 }
+@media only screen and (max-width: 999px) {
+    .profile-bar{
+        margin-left: 35%;
+    }
+    .overall{
+        height: 125px;
+    }
+    .avatar{
+
+        transform: translate(-100%,-50%);
+    }
+    .button-profile{
+        margin-top: -15px;
+        margin-left: 600px;
+    }
+    .profile-info{
+        display: inline;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .profile-bar{
+        margin-left: 30%;
+    }
+    .overall{
+        height: 125px;
+    }
+    .avatar{
+        transform: translate(-100%,-50%);
+    }
+    .button-profile{
+        margin-top: -165px;
+        margin-left: 85%;
+    }
+    .profile-info{
+        display: inline;
+    }
+}
+@media only screen and (max-width: 625px) {
+    .profile-bar{
+        margin-left: 40%;
+        display: inline;
+    }
+    .overall{
+        height: 175px;
+    }
+    .avatar{
+        transform: translate(-70%,-50%);
+    }
+    .button-profile{
+        margin-top: -75px;
+        margin-left: 75%;
+    }
+    .profile-info{
+        display: inline;
+    }
+}
+@media only screen and (max-width: 580px) {
+    .profile-bar{
+        margin-left: 20%;
+        display: inline;
+    }
+    .overall{
+        height: 300px;
+    }
+    .avatar{
+        transform: translate(0,-50%);
+    }
+    .button-profile{
+        margin-top: -5px;
+        margin-left: -33%;
+    }
+    .profile-info{
+        display: inline;
+    }
+    #profile-nav{
+        margin-top: 100px;
+    }
+}
