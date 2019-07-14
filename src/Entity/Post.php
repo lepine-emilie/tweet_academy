@@ -260,4 +260,28 @@ class Post
 
         return $this;
     }
+
+    public function isLikedBy(User $user) : bool
+    {
+        $user_id = $user->getId();
+
+        return $this->getFavorites()->exists(
+            function($key, $entry) use ($user_id) {
+                /** @var Favorite $entry */
+                return $entry->getUser()->getId() == $user_id;
+            }
+        );
+    }
+
+    public function isRepostedBy(User $user) : bool
+    {
+        $user_id = $user->getId();
+
+        return $this->getReposts()->exists(
+            function($key, $entry) use ($user_id) {
+                /** @var Post $entry */
+                return $entry->getSender()->getId() == $user_id;
+            }
+        );
+    }
 }

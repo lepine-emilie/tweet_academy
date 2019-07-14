@@ -44,15 +44,23 @@
         {% endif %}
     </div>
     <div class="pt-2">
+        {% if app.user is not empty %}
+            {% set likedByUser = realPost.isLikedBy(app.user) %}
+            {% set repostedByUser = realPost.isRepostedBy(app.user) %}
+        {% endif %}
+
+        {% set repostBtnClass = repostedByUser ? 'btn-outline-success' : 'btn-outline-secondary' %}
+        {% set likeBtnClass = likedByUser ? 'btn-outline-danger' : 'btn-outline-secondary' %}
+
         <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm" title="Comment">
             <i class="far fa-comment"></i>
             <span>{{ realPost.replies|length }}</span>
         </a>
-        <button class="btn btn-outline-secondary btn-sm post-card__repost-btn" title="Copyquack">
+        <button class="btn {{ repostBtnClass }} btn-sm post-card__repost-btn" title="Copyquack">
             <i class="fas fa-retweet"></i>
             <span>{{ realPost.reposts|length }}</span>
         </button>
-        <button class="btn btn-outline-secondary btn-sm post-card__like-btn" title="Like">
+        <button class="btn {{ likeBtnClass }} btn-sm post-card__like-btn" title="Like">
             <i class="far fa-heart"></i>
             <span>{{ realPost.favorites|length }}</span>
         </button>
