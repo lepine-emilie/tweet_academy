@@ -67,4 +67,36 @@ class ChatController extends AbstractController
             ]);
         }
     }
+    
+    /**
+     * @Route("/refresh", name="refresh")
+     */
+    public function refresh(ChatConversation $chatConversation, ChatMessageRepository $chatMessageRepository)
+    {
+        $repoResponse = array_reverse($chatMessageRepository->getLastMessages($chatConversation));
+        $templates = [];
+        $cards = [];
+
+        if ($repoResponse !== null)
+        {
+            foreach ($repoResponse as $value)
+                $cards[] = $chatMessageRepository->find($value['id']);
+            foreach ($cards as $card)
+            {
+                $templates[] = $this->renderView('chat/conversation.html.twig', [
+                    'post' => $card
+                ]);
+            }
+        }
+        else
+        {
+            return new JsonResponse([
+                'success' => false
+            ]);
+        }
+        return new JsonResponse([
+            'success' => true,
+            'htmlTemplate' => $templates
+        ]);
+    }
 }
