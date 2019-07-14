@@ -10,6 +10,10 @@
         </div>
         <div class="card-body">
             {{ form(formEdit) }}
+            <button class="reset_color btn btn-primary">Reset Color</button>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/colorReset.js') }}"></script>
 {% endblock %}
