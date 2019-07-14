@@ -5,6 +5,14 @@
     {{ post.sender.displayName }} on Ducker: "{{ post.content }}"
 {% endblock %}
 
+{% block seo_opengraph %}
+    <meta property="og:title" content='{{ post.sender.displayName }} on Ducker: "{{ post.content }}"'>
+    <meta property="og:site_name" content="Ducker">
+    <meta property="og:url" content="{{ url('view_post', { id: post.id }) }}">
+    <meta property="og:description" content="{{ post.content }}">
+    <meta property="og:type" content="article">
+{% endblock %}
+
 {% block profile_center %}
     <div class="card">
         {% include 'common/post_card.html.twig' with { post: post } only %}
