@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Json;
 
@@ -293,5 +294,20 @@ class PostController extends AbstractController
                 'success' => false
             ]);
         }
+    }
+
+    /**
+     * @Route("/media/{id}", name="media_bin")
+     */
+    public function media(KernelInterface $kernel, Post $post)
+    {
+        if ($post->getMediaUrl() === null)
+            return $this->createNotFoundException();
+
+        $projectDir = $kernel->getProjectDir();
+        $publicDir = $projectDir . '/public/';
+        $path = $publicDir . '/upload/post/' . $post->getMediaUrl();
+
+        return new BinaryFileResponse($path);
     }
 }

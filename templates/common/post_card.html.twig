@@ -39,8 +39,7 @@
         {# TODO: Add video/audio support #}
 
         {% if realPost.mediaUrl is not empty %}
-            <a href="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">Link to this image</a>
-            <img itemprop="image" class="img-fluid rounded mx-auto d-block" src="{{ asset('upload/post/' ~ realPost.mediaUrl) }}">
+            <img itemprop="image" class="img-fluid rounded mx-auto d-block" src="{{ path('media_bin', { id: realPost.id }) }}">
         {% endif %}
     </div>
     <div class="pt-2">
