@@ -30,7 +30,8 @@ class ProfileController extends AbstractController
      */
     public function view(User $user, PostRepository $postRepository)
     {
-        if ($user->getId() === $this->getUser()->getId())
+        if ($this->getUser() !== null &&
+            $user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);

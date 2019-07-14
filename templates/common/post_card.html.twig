@@ -47,6 +47,9 @@
         {% if app.user is not empty %}
             {% set likedByUser = realPost.isLikedBy(app.user) %}
             {% set repostedByUser = realPost.isRepostedBy(app.user) %}
+        {% else %}
+            {% set likedByUser = false %}
+            {% set repostedByUser = false %}
         {% endif %}
 
         {% set repostBtnClass = repostedByUser ? 'btn-outline-success' : 'btn-outline-secondary' %}

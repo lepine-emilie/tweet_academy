@@ -1,8 +1,24 @@
 {% extends 'base.html.twig' %}
+
+{% if user.avatarPath is empty %}
+    {% set userAvatarPath = asset('assets/img/user-placeholder.png') %}
+{% else %}
+    {% set userAvatarPath = asset('upload/avatar/'~ user.avatarPath) %}
+{% endif %}
+
 {% block stylesheet %}
     <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
 {% endblock %}
+
 {% block title %}Profile{% endblock %}
+
+{% block seo_opengraph %}
+    <meta name="image" content="{{ absolute_url(userAvatarPath) }}">
+    <meta property="og:site_name" content="Ducker">
+    <meta property="og:title" content="{{ user.displayName }} (@{{ user.username }})">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ absolute_url(userAvatarPath) }}">
+{% endblock %}
 
 {% block user_stylesheet %}
     {% if user.themeColor is not empty %}
@@ -27,11 +43,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="profile-avatar">
-                        {% if user.avatarPath is empty %}
-                            <img src="{{ asset('assets/img/user-placeholder.png') }}" height="200" width="200" alt="Profile picture" class="avatar">
-                        {% else %}
-                            <img src="{{ asset('upload/avatar/'~ user.avatarPath) }}" height="200" width="200" alt="Profile picture" class="avatar">
-                        {% endif %}
+                        <img src="{{ userAvatarPath }}" height="200" width="200" alt="Profile picture" class="avatar">
                     </div>
                 </div>
                 <div class="col-lg-6">
