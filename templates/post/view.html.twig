@@ -19,6 +19,7 @@
     </div>
 
     <div class="card my-3">
+        {% if app.user is not empty %}
         <div class="card-header bg-light">
             {% include 'common/post_maker.html.twig' with {
                 formPost: formReply,
@@ -26,6 +27,8 @@
                 parentPostId: post.id
             } only %}
         </div>
+        {% endif %}
+
         {% if post.replies|length > 0 %}
             <div class="list-group list-group-flush timeline">
                 {% for reply in post.replies %}
@@ -37,5 +40,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('assets/js/post_maker.js') }}"></script>
+    {% if app.user is not empty %}
+        <script src="{{ asset('assets/js/post_maker.js') }}"></script>
+    {% endif %}
 {% endblock %}
