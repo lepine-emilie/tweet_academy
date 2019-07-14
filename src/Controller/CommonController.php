@@ -24,7 +24,7 @@ class CommonController extends AbstractController
     public function trends(HashtagRepository $hashtagRepository)
     {
         $trends = $hashtagRepository->findBy([],
-            ['use_count' => 'desc'], 10
+            ['use_count' => 'desc'], 5
         );
 
         return $this->render('common/trends.html.twig', [
