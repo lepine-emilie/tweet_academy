@@ -52,7 +52,7 @@
         {% set repostBtnClass = repostedByUser ? 'btn-outline-success' : 'btn-outline-secondary' %}
         {% set likeBtnClass = likedByUser ? 'btn-outline-danger' : 'btn-outline-secondary' %}
 
-        <a href="{{ path('view_post', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm" title="Comment">
+        <a href="{{ path('view_post', {id: realPost.id}) }}" class="btn btn-outline-secondary btn-sm" title="Comment">
             <i class="far fa-comment"></i>
             <span>{{ realPost.replies|length }}</span>
         </a>
