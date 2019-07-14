@@ -85,6 +85,11 @@ $('.submit-post_maker').click(function () {
                 $($('.card-timeline')[0]).css('opacity', '0');
                 $('.suggestions').html('');
                 animate_timeline();
+                $('.timeline').prepend("<div class='wrapper_new-posts'>"+
+                $($('.wrapper_new-posts')[0]).html() +
+                "</div>");
+                $($('.wrapper_new-posts')[0]).hide();
+                $($('.wrapper_new-posts')[1]).html('');
             }
         }
     });

@@ -9,7 +9,7 @@ $('.timeline').prepend("<div class='" +
         function (data) {
             if (data.success === true)
             {
-                $('.wrapper_new-posts').hide();
+                $($('.wrapper_new-posts')[0]).hide();
                 for (let value of data.htmlTemplate) {
                     $($('.wrapper_new-posts')[0]).prepend(value);
                 }
