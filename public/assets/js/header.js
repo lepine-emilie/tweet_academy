@@ -13,3 +13,10 @@ $('.logo-click').click(function (e) {
     var audioElement = new Audio('http://www.animal-sounds.org/farm/Duck-quacking%20animals039.wav');
     audioElement.play();
 });
+$('.search_bar').submit(function(e){
+    var content = $('input[name=\'search_term\']').val();
+    if (content === ""){
+        e.preventDefault();
+        alert("Please enter at least one character in the search field");
+    }
+});
