@@ -39,6 +39,7 @@ class PostRepository extends ServiceEntityRepository
         return $this->createQueryBuilder("u")
             ->where("u.content like :search_info")
             ->setParameter("search_info", "%$search_info%")
+            ->orderBy('submit_time', 'DESC')
             ->getQuery()
             ->getResult()
             ;

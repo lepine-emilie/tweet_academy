@@ -39,7 +39,7 @@ class SearchController extends AbstractController
     {
         $hashtag = $repository->findOneBy([
             'name' => '#' . $name
-        ]);
+        ], ['id' => 'DESC']);
 
         if ($hashtag == null)
             throw $this->createNotFoundException();
