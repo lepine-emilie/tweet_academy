@@ -15,6 +15,7 @@ use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\LoginType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 
@@ -23,14 +24,18 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/signup", name="signup")
      */
-    public function sign_up(Request $request, ObjectManager $manager, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator)
+    public function sign_up(Request $request,
+                            ObjectManager $manager,
+                            GuardAuthenticatorHandler $guardHandler,
+                            LoginFormAuthenticator $authenticator,
+                            UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            $pwd = hash('ripemd160', $user->getPassword().'vive le projet tweet_academy');
+            $pwd = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($pwd);
             $manager->persist($user);
             $manager->flush();

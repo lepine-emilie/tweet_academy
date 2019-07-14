@@ -372,7 +372,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return 'vive le projet tweet_academy';
     }
 
     /**

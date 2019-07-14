@@ -2,16 +2,9 @@
 
 {% block settings_body %}
     <div class="card">
-        <h2 class="card-header">Account</h2>
-        <div class="list-group list-group-flush">
-            <div class="list-group-item"></div>
-            <div class="list-group-item"></div>
-            <div class="list-group-item"></div>
-            <div class="list-group-item"></div>
-            <div class="list-group-item"></div>
-        </div>
+        <strong class="card-header">Change password</strong>
         <div class="card-body">
-            <a href="#">Deactivate your account</a>
+            {{ form(formChangePassword) }}
         </div>
     </div>
 {% endblock %}

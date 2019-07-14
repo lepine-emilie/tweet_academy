@@ -40,3 +40,7 @@ security:
         - { path: ^/notifications, roles: ROLE_USER }
         - { path: ^/messages, roles: ROLE_USER }
         - { path: ^/settings, roles: ROLE_USER }
+
+    encoders:
+        App\Entity\User:
+            id: 'App\Security\Encoder\EpitechPasswordEncoder'
