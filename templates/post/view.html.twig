@@ -20,7 +20,7 @@
 
     <div class="card my-3">
         {% if app.user is not empty %}
-        <div class="card-header bg-light">
+        <div class="card-header post-maker-container">
             {% include 'common/post_maker.html.twig' with {
                 formPost: formReply,
                 inputPlaceholder: 'Quack your reply',
@@ -41,6 +41,10 @@
 
 {% block javascripts %}
     {% if app.user is not empty %}
-        <script src="{{ asset('assets/js/post_maker.js') }}"></script>
+        {% if USE_EMOJIONE_EDITOR %}
+            <script src="{{ asset('assets/js/post_maker_bonus.js') }}"></script>
+        {% else %}
+            <script src="{{ asset('assets/js/post_maker.js') }}"></script>
+        {% endif %}
     {% endif %}
 {% endblock %}

@@ -24,7 +24,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ preload(asset('assets/css/main.css'), { as: 'style' }) }}">
     <link rel="stylesheet" href="{{ preload(asset('assets/css/header.css'), { as: 'style' }) }}">
+    {% if USE_EMOJIONE_EDITOR %}
+        <link rel="stylesheet" href="{{ preload(asset('assets/css/emojionearea.min.css'), { as: 'style', importance: 'low' }) }}">
+    {% endif %}
+
     {% block stylesheet %}{% endblock %}
+
     {% block user_stylesheet %}
         {% if app.user is not empty and app.user.themeColor is not empty %}
             <style>
@@ -44,8 +49,19 @@
     {% block body %}{% endblock %}
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="{{ asset('assets/js/header.js') }}"></script>
 <script src="{{ asset('assets/js/post-card.js') }}"></script>
+{% if USE_EMOJIONE_EDITOR %}
+    <script src="{{ asset('assets/js/emojionearea.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#user_post_content").emojioneArea({
+                pickerPosition: "bottom"
+            });
+        });
+    </script>
+{% endif %}
 {% block javascripts %}{% endblock %}
 </body>
 </html>

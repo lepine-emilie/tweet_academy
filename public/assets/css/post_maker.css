@@ -43,3 +43,8 @@
     height: 45px;
     border-radius: 100%;
 }
+
+.emojionearea-editor {
+    min-height: 36px !important;
+    height: 36px;
+}

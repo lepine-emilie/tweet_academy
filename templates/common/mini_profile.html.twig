@@ -6,14 +6,18 @@
                 <p>@{{ app.user.username }}</p>
             </a>
         </div>
-        <div class="d-flex">
-            <div>
-                <div><strong>{{ (app.user.posts|length)|number_format }}</strong></div>
-                <div>Quacks</div>
+        <div class="d-flex flex-row">
+            <div class="mx-2">
+                <div><small>Quacks</small></div>
+                <div><strong class="mini-profile__meta-number">{{ (app.user.posts|length)|number_format }}</strong></div>
             </div>
             <div class="mx-2">
-                <div><strong>{{ (app.user.followers|length)|number_format }}</strong></div>
-                <div>Followers</div>
+                <div><small>Following</small></div>
+                <div><strong class="mini-profile__meta-number">{{ (app.user.following|length)|number_format }}</strong></div>
+            </div>
+            <div class="mx-2">
+                <div><small>Followers</small></div>
+                <div><strong class="mini-profile__meta-number">{{ (app.user.followers|length)|number_format }}</strong></div>
             </div>
         </div>
     {% else %}

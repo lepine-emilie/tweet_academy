@@ -23,7 +23,7 @@
         {% if app.user is not empty and user.id == app.user.id %}
             <p><strong>Send your first Quack</strong></p>
             <div class="mb-4">
-                <div class="card card-body bg-light">
+                <div class="card card-body post-maker-container">
                     {{ render(controller('App\\Controller\\CommonController::postMaker')) }}
                 </div>
             </div>
@@ -38,5 +38,9 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('assets/js/post_maker.js') }}"></script>
+    {% if USE_EMOJIONE_EDITOR %}
+        <script src="{{ asset('assets/js/post_maker_bonus.js') }}"></script>
+    {% else %}
+        <script src="{{ asset('assets/js/post_maker.js') }}"></script>
+    {% endif %}
 {% endblock %}
