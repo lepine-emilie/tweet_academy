@@ -32,7 +32,7 @@ class AppExtension extends AbstractExtension
         $postContent = htmlspecialchars($postContent);
 
         $postContent = preg_replace(
-            '/(https?|ftp):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/iS',
+            '/(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/',
             "<a href='$0'>$0</a>",
             $postContent);
 
