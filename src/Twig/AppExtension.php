@@ -30,6 +30,12 @@ class AppExtension extends AbstractExtension
     public function format_post(string $postContent)
     {
         $postContent = htmlspecialchars($postContent);
+
+        $postContent = preg_replace(
+            '/(https?|ftp):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/iS',
+            "<a href='$0'>$0</a>",
+            $postContent);
+
         $postContent = preg_replace(
             "/#([A-Za-z0-9]\w+)/",
             "<a href='/hashtag/$1'>#$1</a>",
@@ -59,6 +65,7 @@ class AppExtension extends AbstractExtension
                 }
             }
         }
+
 
         return $postContent;
     }
