@@ -2,6 +2,19 @@
 
 {% block title %}Ducker Search{% endblock %}
 
+{% block body %}
+    <div class="search-top-bar-wrapper">
+        <div class="container search-top-bar">
+            {% if (search_type_ex ?? null) is not empty and search_type_ex == 'hashtag'%}
+                <span>#{{ search_info }}</span>
+            {% else %}
+                <span>{{ search_info }}</span>
+            {% endif %}
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}
+
 {% block left_sidebar %}
     {#
     <div class="card">
@@ -20,12 +33,14 @@
 
 {% block center_body %}
     <div class="card">
+        {% if (search_type_ex ?? null) is not empty and search_type_ex != 'hashtag' %}
         <div class="card-header">
             <nav class="nav nav-pills">
                 <a href="{{ path('search_home',{search_type: "post", search_term: search_info}) }}" class="nav-item nav-link {{ search_type == 'post' ? 'active' }}">Latest</a>
                 <a href="{{ path('search_home',{search_type: "people", search_term: search_info}) }}" class="nav-item nav-link {{ search_type == 'people' ? 'active' }}">People</a>
             </nav>
         </div>
+        {% endif %}
 
         {% if results is not empty %}
             {% if search_type == "people" %}

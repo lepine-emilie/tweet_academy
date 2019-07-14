@@ -54,3 +54,16 @@ img.mini-avatar {
 .post-card__send-time {
     font-size: x-small;
 }
+
+.search-top-bar-wrapper {
+    padding: 0.5em;
+    border-bottom: 1px solid white;
+    background-color: #1da1f2;
+    font-size: 2em;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+}
