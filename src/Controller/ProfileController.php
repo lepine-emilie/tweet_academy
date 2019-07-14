@@ -56,7 +56,8 @@ class ProfileController extends AbstractController
      */
     public function view_replies(User $user, PostRepository $postRepository)
     {
-        if ($user->getId() === $this->getUser()->getId())
+        if ($this->getUser() !== null &&
+            $user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);
@@ -81,7 +82,8 @@ class ProfileController extends AbstractController
      */
     public function view_media(User $user, PostRepository $postRepository)
     {
-        if ($user->getId() === $this->getUser()->getId())
+        if ($this->getUser() !== null &&
+            $user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);
@@ -184,7 +186,8 @@ class ProfileController extends AbstractController
      */
     public function following(User $user)
     {
-        if ($user === $this->getUser())
+        if ($this->getUser() !== null &&
+            $user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);
@@ -203,7 +206,8 @@ class ProfileController extends AbstractController
      */
     public function followers(User $user)
     {
-        if ($user === $this->getUser())
+        if ($this->getUser() !== null &&
+            $user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);
@@ -222,7 +226,8 @@ class ProfileController extends AbstractController
      */
     public function favorites(User $user)
     {
-        if ($user === $this->getUser())
+        if ($this->getUser() !== null &&
+            $user->getId() === $this->getUser()->getId())
         {
             $upload = new Upload();
             $formAvatar = $this->createForm(AvatarType::class, $upload);
