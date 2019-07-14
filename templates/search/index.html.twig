@@ -33,7 +33,7 @@
 
 {% block center_body %}
     <div class="card">
-        {% if (search_type_ex ?? null) is not empty and search_type_ex != 'hashtag' %}
+        {% if (search_type_ex ?? null) is empty or search_type_ex != 'hashtag' %}
         <div class="card-header">
             <nav class="nav nav-pills">
                 <a href="{{ path('search_home',{search_type: "post", search_term: search_info}) }}" class="nav-item nav-link {{ search_type == 'post' ? 'active' }}">Latest</a>
