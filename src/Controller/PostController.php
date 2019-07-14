@@ -239,9 +239,11 @@ class PostController extends AbstractController
                 $matches[0] = array_unique($matches[0]);
                 foreach ($matches[0] as $key => $userTag)
                 {
-                    $notif = new Notification();
                     $userTagged = $userRepository->findOneBy([
                         'username' => substr($userTag, 1)]);
+                    if ($userTagged === null)
+                        continue;
+                    $notif = new Notification();
                     $notif->setUser($userTagged);
                     $notif->setIsRead(0);
                     $notif->setNotificationData([
