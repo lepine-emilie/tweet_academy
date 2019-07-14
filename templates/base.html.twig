@@ -22,6 +22,7 @@
 </head>
 <body>
 <header>
+    {# Forward the route, as the controller is not aware #}
     {{ render(controller('App\\Controller\\CommonController::navBar', {
         routeForward: app.request.get('_route')
     })) }}
