@@ -44,6 +44,9 @@ class HomeController extends AbstractController
      */
     public function actualisation(PostRepository $repository)
     {
+        if ($this->getUser() === null)
+            throw $this->createNotFoundException();
+
         $repoResponse = $repository->postRepository($this->getUser()->getId());
         $templates = [];
         $cards = [];
